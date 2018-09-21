@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.TextView;
 
 /*
     This class is the "press to start" opening screen.
@@ -27,6 +30,17 @@ public class StartScreenActivity extends AppCompatActivity {
             }
         });
 
+
+        //Animation to make text flash
+        TextView pressToStart = findViewById(R.id.PressToStart );
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+
+        //Speed of the flashing
+        animation.setDuration(475);
+        animation.setStartOffset(50);
+        animation.setRepeatMode(Animation.REVERSE);
+        animation.setRepeatCount(Animation.INFINITE);
+        pressToStart.startAnimation(animation);
     }
 
 }
