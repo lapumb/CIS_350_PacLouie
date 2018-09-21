@@ -11,7 +11,7 @@ public class SplashActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent = new Intent(this, MainActivity.class); //change MainActivity.class to whatever the "start screen" will be
+        Intent intent = new Intent(this, StartScreenActivity.class); //change MainActivity.class to whatever the "start screen" will be
 
         startActivity(intent);
         finish();
