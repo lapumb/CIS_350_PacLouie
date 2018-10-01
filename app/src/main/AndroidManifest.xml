@@ -27,6 +27,10 @@
             android:name=".StartScreenActivity"
             android:label="@string/title_activity_start_screen"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".difficulty_page"
+            android:label="@string/title_activity_difficulty_page"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
