@@ -2,6 +2,7 @@
     <string name="app_name">PacLouie</string>
     <string name="action_settings">Settings</string>
     <string name="Start">Press Anywhere to Start</string>
+    <string name="title_activity_difficulty_page">difficulty_page</string>
     <string name="title_activity_settings">Settings</string>
     <string name="press_to_start">Press Anywhere to Start</string>
 
