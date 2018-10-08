@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(id == R.id.action_difficulty) {
-            Intent intent = new Intent(this, difficulty_page.class);
+            Intent intent = new Intent(this, DifficultyActivity.class);
             startActivity(intent);
         }
 
