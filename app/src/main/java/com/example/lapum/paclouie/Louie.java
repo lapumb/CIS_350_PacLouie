@@ -1,6 +1,6 @@
 package com.example.lapum.paclouie;
 
-import android.media.Image;
+import android.widget.ImageView;
 
 public class Louie {
 
@@ -12,7 +12,7 @@ public class Louie {
     private int y;
 
     //Louie sprite
-    private Image sprite;
+    private ImageView sprite;
 
     int maxWidth = 100;
     int maxHeight = 100;
@@ -45,7 +45,7 @@ public class Louie {
     }
 
     //return sprite
-    public Image getSprite() {
+    public ImageView getSprite() {
         return sprite;
     }
 

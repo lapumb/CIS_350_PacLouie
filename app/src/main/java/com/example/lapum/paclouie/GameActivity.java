@@ -7,11 +7,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import java.util.Random;
+
 public class GameActivity extends AppCompatActivity {
 
     private int x;
     private int y;
     private RelativeLayout layout;
+    final Random rnd = new Random();
+    String str;
 
 
     @Override
@@ -20,7 +24,51 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         layout = (RelativeLayout) findViewById(R.id.gameView);
 
-        ImageView louie = findViewById(R.id.gameLouie);
+        //initializing images
+        ImageView prof0 = (ImageView) findViewById(R.id.randomTest0);
+        ImageView prof1 = (ImageView) findViewById(R.id.randomTest1);
+        ImageView prof2 = (ImageView) findViewById(R.id.randomTest2);
+        ImageView prof3 = (ImageView) findViewById(R.id.randomTest3);
+        ImageView prof4 = (ImageView) findViewById(R.id.randomTest4);
+        ImageView prof5 = (ImageView) findViewById(R.id.randomTest5);
+        ImageView louie = (ImageView) findViewById(R.id.gameLouie);
+
+
+        //initially setting all profs to not appear (gone)
+        prof0.setVisibility(View.GONE);
+        prof1.setVisibility(View.GONE);
+        prof2.setVisibility(View.GONE);
+        prof3.setVisibility(View.GONE);
+        prof4.setVisibility(View.GONE);
+        prof5.setVisibility(View.GONE);
+
+
+        //"randomly" generating which (stand-in profs) appear (using a stand in hard number)
+        for(int i = 0; i < 1; i++) {
+            str = "prof" + rnd.nextInt(6);
+            if(str.equals("prof0") && prof0.getVisibility() == View.GONE) {
+                prof0.setVisibility(View.VISIBLE);
+            }
+            else if(str.equals("prof1") && prof1.getVisibility() == View.GONE) {
+                prof1.setVisibility(View.VISIBLE);
+            }
+            else if(str.equals("prof2") && prof2.getVisibility() == View.GONE) {
+                prof2.setVisibility(View.VISIBLE);
+            }
+            else if(str.equals("prof3") && prof3.getVisibility() == View.GONE) {
+                prof3.setVisibility(View.VISIBLE);
+            }
+            else if(str.equals("prof4") && prof4.getVisibility() == View.GONE) {
+                prof4.setVisibility(View.VISIBLE);
+            }
+            else if(str.equals("prof5") && prof5.getVisibility() == View.GONE) {
+                prof5.setVisibility(View.VISIBLE);
+            }
+            else {
+                i--;
+            }
+        }
+
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(150, 150);
         louie.setLayoutParams(layoutParams);
         louie.setOnTouchListener(new ChoiceTouchListener());
