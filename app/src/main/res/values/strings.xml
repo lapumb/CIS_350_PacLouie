@@ -9,6 +9,8 @@
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
+    <string name="louie">Louie the Laker</string>
+    <string name="pressHere">Click Here to Play</string>
 
 
     <!-- Strings related to Settings -->
