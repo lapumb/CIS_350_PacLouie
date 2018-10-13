@@ -12,6 +12,10 @@
     <string name="louie">Louie the Laker</string>
     <string name="pressHere">Click Here to Play</string>
     <string name="test">Testing something</string>
+    <string name="specifyProf">Adjust Number of Professors in Game</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="currentNumber">Current Number of Professors: </string>
 
 
     <!-- Strings related to Settings -->
