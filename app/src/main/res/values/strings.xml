@@ -28,6 +28,10 @@
     <string name="highscore8">8. </string>
     <string name="highscore9">9. </string>
     <string name="highscore10">10. </string>
+    <string name="underclassmen">Underclassmen</string>
+    <string name="upperclassmen">Upperclassmen</string>
+    <string name="grad">Graduate</string>
+    <string name="difficultyLevel">Difficulty Level</string>
 
 
 
