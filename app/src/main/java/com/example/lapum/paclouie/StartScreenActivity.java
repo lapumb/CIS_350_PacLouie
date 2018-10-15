@@ -21,8 +21,6 @@ public class StartScreenActivity extends AppCompatActivity {
 
         ConstraintLayout constraintLayout = findViewById(R.id.startscreen);
         constraintLayout.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(StartScreenActivity.this, MainActivity.class);
@@ -32,7 +30,7 @@ public class StartScreenActivity extends AppCompatActivity {
 
 
         //Animation to make text flash
-        TextView pressToStart = findViewById(R.id.PressToStart );
+        TextView pressToStart = findViewById(R.id.PressToStart);
         Animation animation = new AlphaAnimation(0.0f, 1.0f);
 
         //Speed of the flashing

@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.lapum.paclouie">
 
     <application
+        android:name=".ColdStartSimulation"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,8 +22,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".difficulty_page"
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".StartScreenActivity"
+            android:label="@string/title_activity_start_screen"
+            android:theme="@style/StartTheme" />
+        <activity
+            android:name=".DifficultyActivity"
             android:label="@string/title_activity_difficulty_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GameActivity"
+            android:label="@string/title_activity_game"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

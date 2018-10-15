@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +18,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Button startButton = (Button) findViewById(R.id.testButton);
+        startButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, GameActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -34,11 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
 
         if(id == R.id.action_difficulty) {
-            Intent intent = new Intent(this, difficulty_page.class);
+            Intent intent = new Intent(this, DifficultyActivity.class);
             startActivity(intent);
         }
 
