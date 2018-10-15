@@ -17,6 +17,17 @@
     <string name="minus">-</string>
     <string name="currentNumber">Current Number of Professors: </string>
     <string name="prof">Professor trying to get Louie and take his good grades</string>
+    <string name="highscore">Highscores</string>
+    <string name="highscore1">1. </string>
+    <string name="highscore2">2. </string>
+    <string name="highscore3">3. </string>
+    <string name="highscore4">4. </string>
+    <string name="highscore5">5. </string>
+    <string name="highscore6">6. </string>
+    <string name="highscore7">7. </string>
+    <string name="highscore8">8. </string>
+    <string name="highscore9">9. </string>
+    <string name="highscore10">10. </string>
 
 
 
@@ -94,4 +105,5 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_start_screen">StartScreenActivity</string>
     <string name="title_activity_game">GameActivity</string>
+    <string name="title_activity_highscore">HighscoreActivity</string>
 </resources>
