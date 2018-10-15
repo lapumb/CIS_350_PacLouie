@@ -16,6 +16,8 @@
     <string name="plus">+</string>
     <string name="minus">-</string>
     <string name="currentNumber">Current Number of Professors: </string>
+    <string name="prof">Professor trying to get Louie and take his good grades</string>
+
 
 
     <!-- Strings related to Settings -->
