@@ -10,4 +10,7 @@
     <item
         android:id="@+id/action_difficulty"
         android:title="@string/difficulty" />
+    <item
+        android:id="@+id/action_highscores"
+        android:title="@string/highscore" />
 </menu>

@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button startButton = (Button) findViewById(R.id.testButton);
+        Button startButton = (Button) findViewById(R.id.startButton);
         startButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
 
         if(id == R.id.action_difficulty) {
             Intent intent = new Intent(this, DifficultyActivity.class);
+            startActivity(intent);
+        }
+
+        if(id == R.id.action_highscores) {
+            Intent intent = new Intent(this, HighscoreActivity.class);
             startActivity(intent);
         }
 
