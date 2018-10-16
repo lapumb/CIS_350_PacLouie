@@ -54,7 +54,7 @@
         android:layout_marginTop="13dp"
         android:contentDescription="@string/louie"
         android:visibility="visible"
-        app:srcCompat="@drawable/louielaker" />
+        app:srcCompat="@drawable/single_louielaker" />
 
     <ImageView
         android:id="@+id/prof4"

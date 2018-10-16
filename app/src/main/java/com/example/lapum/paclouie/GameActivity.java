@@ -15,9 +15,7 @@ public class GameActivity extends AppCompatActivity {
     private int x, y;
     private RelativeLayout layout;
     final Random rnd = new Random();
-    String str;
-    //public static int SETTINGS_RESULT = 1; //variable to get settings save intent
-    int numProfs = SettingsActivity.num;
+    private int numProfs = SettingsActivity.num;
 
 
     @Override
@@ -54,7 +52,7 @@ public class GameActivity extends AppCompatActivity {
 
         //"randomly" generating which (stand-in profs) appear (using a stand in hard number)
         for(int i = 0; i < numProfs; i++) {
-            str = "prof" + rnd.nextInt(9);
+            String str = "prof" + rnd.nextInt(9);
             if(str.equals("prof1") && prof1.getVisibility() == View.GONE) {
                 prof1.setVisibility(View.VISIBLE);
             }
