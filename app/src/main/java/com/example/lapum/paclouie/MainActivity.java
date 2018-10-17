@@ -9,9 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Home screen activity.
+ */
 public class MainActivity extends AppCompatActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -20,22 +23,23 @@ public class MainActivity extends AppCompatActivity {
         Button startButton = (Button) findViewById(R.id.startButton);
         startButton.setOnClickListener(new Button.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GameActivity.class);
+            public void onClick(final View v) {
+                Intent intent = new Intent(MainActivity.this,
+                        GameActivity.class);
                 startActivity(intent);
             }
         });
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(final Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -47,12 +51,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        if(id == R.id.action_difficulty) {
+        if (id == R.id.action_difficulty) {
             Intent intent = new Intent(this, DifficultyActivity.class);
             startActivity(intent);
         }
 
-        if(id == R.id.action_highscores) {
+        if (id == R.id.action_highscores) {
             Intent intent = new Intent(this, HighscoreActivity.class);
             startActivity(intent);
         }

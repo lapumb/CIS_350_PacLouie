@@ -4,50 +4,85 @@ import android.widget.ImageView;
 
 import java.util.Random;
 
+/**
+ * Class to create the games professors.
+ */
 public class Professor {
 
+    /** Integer value for profs speed. **/
     private int speed;
+    /** Image View variable. **/
     private ImageView sprite;
+    /** Integer value for profs X location. **/
     private int x;
+    /** Integer value for profs Y location. **/
     private int y;
+    /** Value to create new random value. **/
     private Random random = new Random();
 
-    //base constructor
-    Professor(){
+    /**
+     * Default constructor for Professor class.
+     */
+    Professor() {
         this.speed = 1;
         //this.sprite = sprite path;
-        int x = 0;
-        int y = 0;
+        this.x = 0;
+        this.y = 0;
 
     }
 
-    //custom constructor
-    Professor(int x, int y, int speed){
-        this.x = x;
-        this.y = y;
-        this.speed = speed;
+    /**
+     * Constructor to set x, y, and speed instance variables.
+     * @param xLoc X location to prof.
+     * @param yLoc Y location of prof.
+     * @param profSpeed Prof's speed.
+     */
+    Professor(final int xLoc, final int yLoc, final int profSpeed) {
+        this.x = xLoc;
+        this.y = yLoc;
+        this.speed = profSpeed;
     }
 
-    int getX(){
+    /**
+     * Get method for the X location.
+     * @return The X location.
+     */
+    int getX() {
         return x;
     }
 
-    int getY(){
+    /**
+     * Get method for the Y location.
+     * @return The Y location.
+     */
+    int getY() {
         return y;
     }
 
-    public int getSpeed(){
+    /**
+     * Get method for the profs speed.
+     * @return The profs speed.
+     */
+    public int getSpeed() {
         return speed;
     }
 
-    public ImageView getSprite(){
+    /**
+     * Return this sprite.
+     * @return This sprite.
+     */
+    public ImageView getSprite() {
         return this.sprite;
     }
 
 
-    //moves the sprite by one tile based on RNG
-    //TODO make sure the new spot is not out of bounds and make sure it is moving 1 FPS
-    public void move(){
+    //TODO make sure the new spot is not out of bounds and make sure
+    // TODO it is moving 1 FPS
+
+    /**
+     * Moves the sprite by one tile based on RNG.
+     */
+    public void move() {
         int dx = 0;
         int dy = 0;
 
@@ -57,13 +92,13 @@ public class Professor {
         if (dx == 1) {
             this.x++;
         }
-        if  (dx == 0){
+        if  (dx == 0) {
             this.x--;
         }
         if (dy == 1) {
             this.y++;
         }
-        if  (dy == 0){
+        if  (dy == 0) {
             this.y--;
         }
     }

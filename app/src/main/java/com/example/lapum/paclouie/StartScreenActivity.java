@@ -9,21 +9,22 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
 
-/*
-    This class is the "press to start" opening screen.
- */
+/**
+ *  This class is the "press to start" opening screen.
+ **/
 public class StartScreenActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_screen);
 
         ConstraintLayout constraintLayout = findViewById(R.id.startscreen);
         constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StartScreenActivity.this, MainActivity.class);
+            public void onClick(final View v) {
+                Intent intent = new Intent(StartScreenActivity.this,
+                        MainActivity.class);
                 startActivity(intent);
             }
         });
