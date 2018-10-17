@@ -10,18 +10,33 @@ import android.widget.RelativeLayout;
 
 import java.util.Random;
 
+/**
+ * The PacLouie game activity.
+ */
 public class GameActivity extends AppCompatActivity {
 
-    private int x, y;
+    /** X location. **/
+    private int x;
+
+    /** Y location. **/
+    private int y;
+
+    /** PacLouie layout. **/
     private RelativeLayout layout;
+
+    //TODO can we make these vaiables private?
+    /** Variable for random value. **/
     final Random rnd = new Random();
+    /** TODO Need to add javadoc for instance variables. **/
     String str;
-    //public static int SETTINGS_RESULT = 1; //variable to get settings save intent
+    //public static int SETTINGS_RESULT = 1;
+    // variable to get settings save intent
+    /** TODO Need to add javadoc for instance variables. **/
     int numProfs = SettingsActivity.num;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         layout = (RelativeLayout) findViewById(R.id.gameView);
@@ -52,65 +67,77 @@ public class GameActivity extends AppCompatActivity {
         prof0.setVisibility(View.GONE);
 
 
-        //"randomly" generating which (stand-in profs) appear (using a stand in hard number)
-        for(int i = 0; i < numProfs; i++) {
+        //"randomly" generating which (stand-in profs)
+        // appear (using a stand in hard number)
+        for (int i = 0; i < numProfs; i++) {
             str = "prof" + rnd.nextInt(9);
-            if(str.equals("prof1") && prof1.getVisibility() == View.GONE) {
+            if (str.equals("prof1") && prof1.getVisibility() == View.GONE) {
                 prof1.setVisibility(View.VISIBLE);
-            }
-            else if(str.equals("prof2") && prof2.getVisibility() == View.GONE) {
+            } else if (str.equals("prof2") && prof2.getVisibility()
+                    == View.GONE) {
                 prof2.setVisibility(View.VISIBLE);
-            }
-            else if(str.equals("prof3") && prof3.getVisibility() == View.GONE) {
+            } else if (str.equals("prof3") && prof3.getVisibility()
+                    == View.GONE) {
                 prof3.setVisibility(View.VISIBLE);
-            }
-            else if(str.equals("prof4") && prof4.getVisibility() == View.GONE) {
+            } else if (str.equals("prof4") && prof4.getVisibility()
+                    == View.GONE) {
                 prof4.setVisibility(View.VISIBLE);
-            }
-            else if(str.equals("prof5") && prof5.getVisibility() == View.GONE) {
+            } else if (str.equals("prof5") && prof5.getVisibility()
+                    == View.GONE) {
                 prof5.setVisibility(View.VISIBLE);
-            }
-            else if(str.equals("prof6") && prof6.getVisibility() == View.GONE) {
+            } else if (str.equals("prof6") && prof6.getVisibility()
+                    == View.GONE) {
                 prof6.setVisibility(View.VISIBLE);
-            }
-            else if(str.equals("prof7") && prof7.getVisibility() == View.GONE) {
+            } else if (str.equals("prof7") && prof7.getVisibility()
+                    == View.GONE) {
                 prof7.setVisibility(View.VISIBLE);
-            }
-            else if(str.equals("prof8") && prof8.getVisibility() == View.GONE) {
+            } else if (str.equals("prof8") && prof8.getVisibility()
+                    == View.GONE) {
                 prof8.setVisibility(View.VISIBLE);
-            }
-            else if(str.equals("prof0") && prof0.getVisibility() == View.GONE) {
+            } else if (str.equals("prof0") && prof0.getVisibility()
+                    == View.GONE) {
                 prof0.setVisibility(View.VISIBLE);
-            }
-            else {
+            } else {
                 i--;
             }
         }
 
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(150, 150);
+        RelativeLayout.LayoutParams layoutParams
+                = new RelativeLayout.LayoutParams(150, 150);
         louie.setLayoutParams(layoutParams);
         louie.setOnTouchListener(new ChoiceTouchListener());
     }
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(final int requestCode,
+                                    final int resultCode, final Intent data) {
         /*if(requestCode == SETTINGS_RESULT) {
             numProfs = data.getIntExtra("numProfs", 0);
         } */
     }
 
-
+    /**
+     * Class to handle Louie movement.
+     */
     private final class ChoiceTouchListener implements View.OnTouchListener {
-        public boolean onTouch(View view, MotionEvent event) {
-            final int X = (int) event.getRawX();
-            final int Y = (int) event.getRawY();
-            switch(event.getAction() & MotionEvent.ACTION_MASK) {
+
+        /**
+         * Method to handle user touching screen and move Louie.
+         * @param view The view.
+         * @param event The event.
+         * @return  Boolean value.
+         */
+        public boolean onTouch(final View view, final MotionEvent event) {
+            final int xLoc = (int) event.getRawX();
+            final int yLoc = (int) event.getRawY();
+            switch (event.getAction() & MotionEvent.ACTION_MASK) {
                 case MotionEvent.ACTION_DOWN:
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)
+                    RelativeLayout.LayoutParams params
+                            = (RelativeLayout.LayoutParams)
                             view.getLayoutParams();
-                    x = X - params.leftMargin;
-                    y = Y - params.topMargin;
+                    x = xLoc - params.leftMargin;
+                    y = yLoc - params.topMargin;
                     break;
 
                 case MotionEvent.ACTION_UP:
@@ -123,10 +150,11 @@ public class GameActivity extends AppCompatActivity {
                     break;
 
                 case MotionEvent.ACTION_MOVE:
-                    RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)
+                    RelativeLayout.LayoutParams layoutParams
+                            = (RelativeLayout.LayoutParams)
                             view.getLayoutParams();
-                    layoutParams.leftMargin = X - x;
-                    layoutParams.topMargin = Y - y;
+                    layoutParams.leftMargin = xLoc - x;
+                    layoutParams.topMargin = yLoc - y;
                     layoutParams.rightMargin = -250;
                     layoutParams.bottomMargin = -250;
                     view.setLayoutParams(layoutParams);
