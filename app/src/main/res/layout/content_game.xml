@@ -10,122 +10,122 @@
 
     <ImageView
         android:id="@+id/prof1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="141dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="278dp"
-        android:layout_marginTop="359dp"
+        android:layout_marginStart="268dp"
+        android:layout_marginTop="404dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/professor" />
 
     <ImageView
         android:id="@+id/prof2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="141dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="358dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="401dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/professor" />
 
     <ImageView
         android:id="@+id/prof3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="141dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="13dp"
         android:layout_marginTop="351dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/professor" />
 
     <ImageView
         android:id="@+id/gameLouie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="191dp"
+        android:layout_height="199dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         android:contentDescription="@string/louie"
         android:visibility="visible"
-        app:srcCompat="@drawable/louielaker" />
+        app:srcCompat="@drawable/single_louielaker" />
 
     <ImageView
         android:id="@+id/prof4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="141dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
         android:layout_marginTop="118dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/professor" />
 
     <ImageView
         android:id="@+id/prof5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="141dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="286dp"
         android:layout_marginTop="237dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/professor" />
 
     <ImageView
         android:id="@+id/prof6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="141dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="283dp"
         android:layout_marginTop="111dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/professor" />
 
     <ImageView
         android:id="@+id/prof7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="141dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="118dp"
+        android:layout_marginStart="301dp"
+        android:layout_marginTop="0dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/professor" />
 
     <ImageView
         android:id="@+id/prof8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="141dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="13dp"
         android:layout_marginTop="250dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/professor" />
 
     <ImageView
         android:id="@+id/prof0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="141dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="146dp"
-        android:layout_marginTop="249dp"
+        android:layout_marginStart="158dp"
+        android:layout_marginTop="198dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@drawable/professor" />
 
 </RelativeLayout>

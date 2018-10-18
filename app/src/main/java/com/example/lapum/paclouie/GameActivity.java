@@ -24,15 +24,15 @@ public class GameActivity extends AppCompatActivity {
     /** PacLouie layout. **/
     private RelativeLayout layout;
 
-    //TODO can we make these vaiables private?
     /** Variable for random value. **/
-    final Random rnd = new Random();
+    private final Random rnd = new Random();
+
     /** TODO Need to add javadoc for instance variables. **/
-    String str;
-    //public static int SETTINGS_RESULT = 1;
-    // variable to get settings save intent
+    private int numProfs = SettingsActivity.num;
+
     /** TODO Need to add javadoc for instance variables. **/
-    int numProfs = SettingsActivity.num;
+    //String str;
+
 
 
     @Override
@@ -67,10 +67,11 @@ public class GameActivity extends AppCompatActivity {
         prof0.setVisibility(View.GONE);
 
 
+
         //"randomly" generating which (stand-in profs)
         // appear (using a stand in hard number)
         for (int i = 0; i < numProfs; i++) {
-            str = "prof" + rnd.nextInt(9);
+            String str = "prof" + rnd.nextInt(9);
             if (str.equals("prof1") && prof1.getVisibility() == View.GONE) {
                 prof1.setVisibility(View.VISIBLE);
             } else if (str.equals("prof2") && prof2.getVisibility()
@@ -103,7 +104,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         RelativeLayout.LayoutParams layoutParams
-                = new RelativeLayout.LayoutParams(150, 150);
+                = new RelativeLayout.LayoutParams(600, 600);
         louie.setLayoutParams(layoutParams);
         louie.setOnTouchListener(new ChoiceTouchListener());
     }

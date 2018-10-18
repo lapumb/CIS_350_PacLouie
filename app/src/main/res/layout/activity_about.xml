@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DifficultyActivity">
+    tools:context=".AboutActivity">
 
-    <include layout="@layout/content_difficulty_page" />
+    <include layout="@layout/content_about" />
 
 </android.support.design.widget.CoordinatorLayout>

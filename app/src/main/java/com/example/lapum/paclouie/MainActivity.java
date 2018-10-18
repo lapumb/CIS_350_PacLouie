@@ -20,12 +20,24 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //start the game activity
         Button startButton = (Button) findViewById(R.id.startButton);
         startButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 Intent intent = new Intent(MainActivity.this,
                         GameActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //go to the 'about' information
+        Button aboutButton = (Button) findViewById(R.id.aboutBtn);
+        aboutButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                Intent intent = new Intent(MainActivity.this,
+                        AboutActivity.class);
                 startActivity(intent);
             }
         });

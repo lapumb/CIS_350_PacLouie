@@ -10,7 +10,8 @@ import android.widget.TextView;
 
 /**
  * Class to display the settings page where the
- * number of profs can be modified.
+ * number of profs can be modified. (Add to this whatever
+ * settings get added (i.e speed, range, etc. ))
  */
 public class SettingsActivity extends AppCompatActivity {
 
@@ -41,13 +42,9 @@ public class SettingsActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                /*Intent intent = new Intent();
-                intent.putExtra("numProfs", num);
-                setResult(GameActivity.SETTINGS_RESULT, intent); */
                 finish();
             }
         });
-
 
         //setting initial text to be # of profs to 1;
         modifyNum = currentNum.getText().toString();

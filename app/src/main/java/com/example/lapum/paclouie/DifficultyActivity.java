@@ -25,7 +25,6 @@ public class DifficultyActivity extends AppCompatActivity {
                 SettingsActivity.num = 1;
                 startActivity(new Intent(DifficultyActivity.this,
                         GameActivity.class));
-
             }
         });
 
@@ -48,8 +47,6 @@ public class DifficultyActivity extends AppCompatActivity {
                         GameActivity.class));
             }
         });
-
-
     }
 
 }
