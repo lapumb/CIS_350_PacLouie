@@ -24,4 +24,9 @@
     <style name="StartTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/mainscreen</item>
     </style>
+
+    <style name="BlackBackground" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/black_background</item>
+    </style>
+
 </resources>
