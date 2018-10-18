@@ -17,6 +17,8 @@
     <string name="minus">-</string>
     <string name="currentNumber">Current Number of Professors: </string>
     <string name="prof">Professor trying to get Louie and take his good grades</string>
+
+    <!-- Strings related to 'Highscore' -->
     <string name="highscore">Highscores</string>
     <string name="highscore1">1. </string>
     <string name="highscore2">2. </string>
@@ -32,6 +34,23 @@
     <string name="upperclassmen">Upperclassmen</string>
     <string name="grad">Graduate</string>
     <string name="difficultyLevel">Difficulty Level</string>
+    <string name="play">Play Now</string>
+
+    <!-- Strings related to 'About' -->
+    <string name="about">About</string>
+    <string name="about_development">About the Development: </string>
+    <string name="development_1"> PacLouie was developed by Blake Lapum, Jay Brunsting,
+        and Ryan Eisenbart for CIS 350, Software Engineering. </string>
+    <string name="about_directions">Customizing Your Play:</string>
+    <string name="customize_play"> Pick a difficulty by selecting "Difficulty", or customize your
+        own difficulty by selecting settings and set the number of professors, speed, range,
+        and number of lives. </string>
+    <string name="about_goals">Goals of the Game: </string>
+    <string name="goals_1">1. Avoid being hit by professors (Each time you get hit, you lose a life)
+    </string>
+    <string name="goals_2">2. Gather as many A\'s you can and reach new high scores</string>
+    <string name="goals_3"> 3. Avoid structures you cannot move through</string>
+    <string name="releaseInfo">Release 1.0.0, 10/26/2018</string>
 
 
 
@@ -110,4 +129,5 @@
     <string name="title_activity_start_screen">StartScreenActivity</string>
     <string name="title_activity_game">GameActivity</string>
     <string name="title_activity_highscore">HighscoreActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
 </resources>

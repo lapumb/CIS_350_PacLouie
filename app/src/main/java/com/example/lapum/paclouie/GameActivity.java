@@ -104,7 +104,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         RelativeLayout.LayoutParams layoutParams
-                = new RelativeLayout.LayoutParams(150, 150);
+                = new RelativeLayout.LayoutParams(600, 600);
         louie.setLayoutParams(layoutParams);
         louie.setOnTouchListener(new ChoiceTouchListener());
     }
