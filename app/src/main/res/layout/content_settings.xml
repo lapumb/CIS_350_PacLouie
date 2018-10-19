@@ -9,6 +9,153 @@
     tools:showIn="@layout/activity_settings">
 
     <TextView
+        android:id="@+id/numLives"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="448dp"
+        android:text="@string/currentNumLives"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/specProf" />
+
+    <Button
+        android:id="@+id/minusLives"
+        android:layout_width="48dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="432dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/minus"
+        app:layout_constraintEnd_toStartOf="@+id/addProfs"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/addProfs" />
+
+    <Button
+        android:id="@+id/addLives"
+        android:layout_width="48dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="464dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/plus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/specLives"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="440dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/specifyLives"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/specRange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="296dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/specifyRange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/numRange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="304dp"
+        android:text="@string/currentNumRange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/specProf" />
+
+    <Button
+        android:id="@+id/minusRange"
+        android:layout_width="48dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="288dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/minus"
+        app:layout_constraintEnd_toStartOf="@+id/addProfs"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/addProfs" />
+
+    <Button
+        android:id="@+id/addRange"
+        android:layout_width="48dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/plus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.943"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/specSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/specifySpeed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/numSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="160dp"
+        android:text="@string/currentNumSpeed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/specProf" />
+
+    <Button
+        android:id="@+id/minusSpeed"
+        android:layout_width="48dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/minus"
+        app:layout_constraintEnd_toStartOf="@+id/addProfs"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/addProfs" />
+
+    <Button
+        android:id="@+id/addSpeed"
+        android:layout_width="48dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="176dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/plus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.943"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/specProf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,24 +180,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/currentNumber"
+        android:text="@string/currentNumProf"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/specProf" />
 
     <Button
-        android:id="@+id/minusButton"
+        android:id="@+id/minusProfs"
         android:layout_width="48dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/minus"
-        app:layout_constraintEnd_toStartOf="@+id/addButton"
+        app:layout_constraintEnd_toStartOf="@+id/addProfs"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/addButton" />
+        app:layout_constraintTop_toTopOf="@+id/addProfs" />
 
     <Button
-        android:id="@+id/addButton"
+        android:id="@+id/addProfs"
         android:layout_width="48dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
@@ -77,7 +224,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.893"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/minusButton"
+        app:layout_constraintTop_toBottomOf="@+id/minusProfs"
         app:layout_constraintVertical_bias="0.984"
         app:srcCompat="@android:drawable/checkbox_on_background" />
 </android.support.constraint.ConstraintLayout>

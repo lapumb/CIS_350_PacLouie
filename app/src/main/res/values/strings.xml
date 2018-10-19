@@ -19,10 +19,16 @@
     <!-- Strings related to 'Settings' -->
     <string name="action_settings">Settings</string>
     <string name="title_activity_settings">Settings</string>
-    <string name="specifyProf">Adjust Number of Professors in Game</string>
     <string name="plus">+</string>
     <string name="minus">-</string>
-    <string name="currentNumber">Current Number of Professors: </string>
+    <string name="specifyProf">Adjust Number of Professors in Game</string>
+    <string name="currentNumProf">Current Number of Professors: </string>
+    <string name="specifySpeed">Adjust Current Professor Movement Speed</string>
+    <string name="currentNumSpeed">Current Speed: </string>
+    <string name="specifyRange">Adjust the Range at which Professors Rome</string>
+    <string name="currentNumRange">Current Range: </string>
+    <string name="specifyLives">Adjust the Amount of Lives you want</string>
+    <string name="currentNumLives">Current Number of Lives: </string>
 
 
     <!-- Strings related to 'Difficulty' -->
@@ -35,12 +41,12 @@
     <string name="upperclassmen">Upperclassmen</string>
     <string name="grad">Graduate</string>
     <string name="difficultyLevel">Difficulty Level</string>
-    <string name="detailsUnderclassmen">Number of professors: 1, Speed: (num),
-        Range: (num), Lives: (num)</string>
-    <string name="detailsUpperclassmen">Number of professors: 5, Speed: (num),
-        Range: (num), Lives: (num)</string>
-    <string name="detailsGraduate">Number of professors: 9, Speed: (num),
-        Range: (num), Lives: (num)</string>
+    <string name="detailsUnderclassmen">Number of professors: 1, Speed: 1,
+        Range: 1, Lives: 5</string>
+    <string name="detailsUpperclassmen">Number of professors: 5, Speed: 5,
+        Range: 5, Lives: 3</string>
+    <string name="detailsGraduate">Number of professors: 9, Speed: 9,
+        Range: 9, Lives: 1</string>
 
 
     <!-- Strings related to 'Highscore' -->

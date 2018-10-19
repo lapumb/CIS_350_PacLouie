@@ -28,7 +28,7 @@ public class GameActivity extends AppCompatActivity {
     private final Random rnd = new Random();
 
     /** TODO Need to add javadoc for instance variables. **/
-    private int numProfs = SettingsActivity.num;
+    private int numProfs = SettingsActivity.currentNumProfs;
 
     /** TODO Need to add javadoc for instance variables. **/
     //String str;
