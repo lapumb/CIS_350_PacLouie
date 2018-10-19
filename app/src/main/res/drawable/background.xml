@@ -4,7 +4,7 @@
 <item android:drawable = "@color/Black" />
 
 <item>
-    <bitmap android:src="@drawable/gvsulogo"
+    <bitmap android:src="@drawable/gv_blackbackground"
         android:gravity="center" />
 </item>
 
