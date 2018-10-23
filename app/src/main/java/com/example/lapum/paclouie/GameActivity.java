@@ -1,6 +1,7 @@
 package com.example.lapum.paclouie;
 
 import android.content.Intent;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -8,12 +9,16 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+
 import java.util.Random;
 
 /**
  * The PacLouie game activity.
  */
 public class GameActivity extends AppCompatActivity {
+
+    /** Game is Running boolean **/
+    boolean gameIsRunning;
 
     /** X location. **/
     private int x;
@@ -33,25 +38,36 @@ public class GameActivity extends AppCompatActivity {
     /** TODO Need to add javadoc for instance variables. **/
     //String str;
 
-
+   //Images for profs and louie
+    ImageView prof0;
+    ImageView prof1;
+    ImageView prof2;
+    ImageView prof3;
+    ImageView prof4;
+    ImageView prof5;
+    ImageView prof6;
+    ImageView prof7;
+    ImageView prof8;
+    ImageView louie;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        gameIsRunning = true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         layout = (RelativeLayout) findViewById(R.id.gameView);
 
         //initializing images
-        ImageView prof0 = (ImageView) findViewById(R.id.prof0);
-        ImageView prof1 = (ImageView) findViewById(R.id.prof1);
-        ImageView prof2 = (ImageView) findViewById(R.id.prof2);
-        ImageView prof3 = (ImageView) findViewById(R.id.prof3);
-        ImageView prof4 = (ImageView) findViewById(R.id.prof4);
-        ImageView prof5 = (ImageView) findViewById(R.id.prof5);
-        ImageView prof6 = (ImageView) findViewById(R.id.prof6);
-        ImageView prof7 = (ImageView) findViewById(R.id.prof7);
-        ImageView prof8 = (ImageView) findViewById(R.id.prof8);
-        ImageView louie = (ImageView) findViewById(R.id.gameLouie);
+        this.prof0 = (ImageView) findViewById(R.id.prof0);
+        this.prof1 = (ImageView) findViewById(R.id.prof1);
+        this.prof2 = (ImageView) findViewById(R.id.prof2);
+        this.prof3 = (ImageView) findViewById(R.id.prof3);
+        this.prof4 = (ImageView) findViewById(R.id.prof4);
+        this.prof5 = (ImageView) findViewById(R.id.prof5);
+        this.prof6 = (ImageView) findViewById(R.id.prof6);
+        this.prof7 = (ImageView) findViewById(R.id.prof7);
+        this.prof8 = (ImageView) findViewById(R.id.prof8);
+        this.louie = (ImageView) findViewById(R.id.gameLouie);
 
 
 
@@ -107,6 +123,43 @@ public class GameActivity extends AppCompatActivity {
                 = new RelativeLayout.LayoutParams(600, 600);
         louie.setLayoutParams(layoutParams);
         louie.setOnTouchListener(new ChoiceTouchListener());
+
+        //onStart();
+
+    }
+
+    /*
+    @override
+    */
+    protected void onResume(){
+        super.onResume();
+        callMoveProf();
+    }
+    public void callMoveProf(){
+        //while game is running
+        int i = 0;
+        while(i < 10000){
+            if(prof0.getVisibility() == View.VISIBLE)
+                moveProf(System.currentTimeMillis(), prof0);
+            if(prof1.getVisibility() == View.VISIBLE)
+                moveProf(System.currentTimeMillis(), prof1);
+            if(prof2.getVisibility() == View.VISIBLE)
+                moveProf(System.currentTimeMillis(), prof2);
+            if(prof3.getVisibility() == View.VISIBLE)
+                moveProf(System.currentTimeMillis(), prof3);
+            if(prof4.getVisibility() == View.VISIBLE)
+                moveProf(System.currentTimeMillis(), prof4);
+            if(prof5.getVisibility() == View.VISIBLE)
+                moveProf(System.currentTimeMillis(), prof5);
+            if(prof6.getVisibility() == View.VISIBLE)
+                moveProf(System.currentTimeMillis(), prof6);
+            if(prof7.getVisibility() == View.VISIBLE)
+                moveProf(System.currentTimeMillis(), prof7);
+            if(prof8.getVisibility() == View.VISIBLE)
+                moveProf(System.currentTimeMillis(), prof8);
+            i++;
+        }
+
     }
 
 
@@ -116,6 +169,34 @@ public class GameActivity extends AppCompatActivity {
         /*if(requestCode == SETTINGS_RESULT) {
             numProfs = data.getIntExtra("numProfs", 0);
         } */
+    }
+
+    /*
+    Moves the professor that is being called
+    @param long callTime is the time of calling this method
+    @param ImageView prof the prof that wants to be moved
+     */
+    public void moveProf(long callTime, ImageView prof){
+
+        //current time
+        long now = System.currentTimeMillis();
+        //difference in x and y
+        int dx = 0;
+        int dy = 0;
+
+        //random to choose direction of professor
+        Random random = new Random();
+        dx = random.nextInt(2);
+        dy = random.nextInt(2);
+
+        //only moves prof if a second has passed
+        if(now >= callTime + 1000){
+            if (prof.getVisibility() == View.VISIBLE){
+                prof.setX(prof.getX()+ dx * 10);
+                prof.setY(prof.getY() + dy * 10);
+            }
+        }
+
     }
 
     /**
