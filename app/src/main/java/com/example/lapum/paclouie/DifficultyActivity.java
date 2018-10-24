@@ -32,10 +32,10 @@ public class DifficultyActivity extends AppCompatActivity {
         btnUnder.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
                 //set number of profs to 1 and open game activity
-                SettingsActivity.currentNumProfs = 1;
-                SettingsActivity.currentNumSpeed = 1;
-                SettingsActivity.currentNumRange = 1;
-                SettingsActivity.currentNumLives = 5;
+                SettingsActivity.setCurrentNumProfs(1);
+                SettingsActivity.setCurrentNumSpeed(1);
+                SettingsActivity.setCurrentNumRange(1);
+                SettingsActivity.setCurrentNumLives(5);
                 //startActivity(new Intent(DifficultyActivity.this,
                 //        GameActivity.class));
             }
@@ -45,10 +45,10 @@ public class DifficultyActivity extends AppCompatActivity {
         btnUpper.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
                 //set number of profs to 5 and open game activity
-                SettingsActivity.currentNumProfs = 5;
-                SettingsActivity.currentNumSpeed = 5;
-                SettingsActivity.currentNumRange = 5;
-                SettingsActivity.currentNumLives = 3;
+                SettingsActivity.setCurrentNumProfs(5);
+                SettingsActivity.setCurrentNumSpeed(5);
+                SettingsActivity.setCurrentNumRange(5);
+                SettingsActivity.setCurrentNumLives(3);
                 //startActivity(new Intent(DifficultyActivity.this,
                 //        GameActivity.class));
             }
@@ -58,10 +58,10 @@ public class DifficultyActivity extends AppCompatActivity {
         btnGrad.setOnClickListener(new View.OnClickListener() {
             public void onClick(final View v) {
                 //set number of profs to 9 and open game activity
-                SettingsActivity.currentNumProfs = 9;
-                SettingsActivity.currentNumSpeed = 9;
-                SettingsActivity.currentNumRange = 9;
-                SettingsActivity.currentNumLives = 1;
+                SettingsActivity.setCurrentNumProfs(9);
+                SettingsActivity.setCurrentNumSpeed(9);
+                SettingsActivity.setCurrentNumRange(9);
+                SettingsActivity.setCurrentNumLives(1);
                 //startActivity(new Intent(DifficultyActivity.this,
                 //        GameActivity.class));
             }
