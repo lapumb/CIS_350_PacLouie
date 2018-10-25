@@ -16,16 +16,16 @@ import android.widget.TextView;
 public class SettingsActivity extends AppCompatActivity {
 
     /** Integer value for the number of profs in the game. **/
-    public static int currentNumProfs = 1;
+    private static int currentNumProfs = 1;
 
     /** Integer value for the speed in the game. **/
-    public static int currentNumSpeed = 1;
+    private static int currentNumSpeed = 1;
 
     /** Integer value for the range in the game. **/
-    public static int currentNumRange = 1;
+    private static int currentNumRange = 1;
 
     /** Integer value for the number of lives in the game. **/
-    public static int currentNumLives = 1;
+    private static int currentNumLives = 1;
 
     /** String value for the number of profs to display. **/
     private String modifyNumProfs;
@@ -75,6 +75,69 @@ public class SettingsActivity extends AppCompatActivity {
     /** String to represent the number of lives. **/
     private String strNumLives;
 
+    /**
+     * Get method for currentNumProfs.
+     * @return The current number of profs.
+     */
+    public static int getCurrentNumProfs() {
+        return currentNumProfs;
+    }
+
+    /**
+     * Set method for currentNumProfs.
+     * @param currentNumProfs The current number of profs.
+     */
+    public static void setCurrentNumProfs(int currentNumProfs) {
+        SettingsActivity.currentNumProfs = currentNumProfs;
+    }
+
+    /**
+     * Get method for the currentNumSpeed.
+     * @return The current speed.
+     */
+    public static int getCurrentNumSpeed() {
+        return currentNumSpeed;
+    }
+
+    /**
+     * Set method for the currentNumSpeed.
+     * @param currentNumSpeed The current speed of the profs.
+     */
+    public static void setCurrentNumSpeed(int currentNumSpeed) {
+        SettingsActivity.currentNumSpeed = currentNumSpeed;
+    }
+
+    /**
+     * Get method for currentNumRange.
+     * @return The current range of the profs.
+     */
+    public static int getCurrentNumRange() {
+        return currentNumRange;
+    }
+
+    /**
+     * Set method for the currentNumRange.
+     * @param currentNumRange The current prof range.
+     */
+    public static void setCurrentNumRange(int currentNumRange) {
+        SettingsActivity.currentNumRange = currentNumRange;
+    }
+
+    /**
+     * Get method for the currentNumLives.
+     * @return The current number of lives.
+     */
+    public static int getCurrentNumLives() {
+        return currentNumLives;
+    }
+
+    /**
+     * Set method for the currentNumLives.
+     * @param currentNumLives The current number of lives.
+     */
+    public static void setCurrentNumLives(int currentNumLives) {
+        SettingsActivity.currentNumLives = currentNumLives;
+    }
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -82,29 +145,28 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         //initializing currentNumProfs prof settings
-        final Button minusProfs = (Button) findViewById(R.id.minusProfs);
-        final Button addProfs = (Button) findViewById(R.id.addProfs);
-        final TextView currentNumProfs = (TextView) findViewById(R.id.numProfs);
+        final Button minusProfs = findViewById(R.id.minusProfs);
+        final Button addProfs = findViewById(R.id.addProfs);
+        final TextView currentNumProfs = findViewById(R.id.numProfs);
 
         //initializing currentNumProfs speed settings
-        final Button minusSpeed = (Button) findViewById(R.id.minusSpeed);
-        final Button addSpeed = (Button) findViewById(R.id.addSpeed);
-        final TextView currentNumSpeed = (TextView) findViewById(R.id.numSpeed);
+        final Button minusSpeed = findViewById(R.id.minusSpeed);
+        final Button addSpeed = findViewById(R.id.addSpeed);
+        final TextView currentNumSpeed = findViewById(R.id.numSpeed);
 
         //initializing currentNumProfs range settings
-        final Button minusRange = (Button) findViewById(R.id.minusRange);
-        final Button addRange = (Button) findViewById(R.id.addRange);
-        final TextView currentNumRange = (TextView) findViewById(R.id.numRange);
+        final Button minusRange = findViewById(R.id.minusRange);
+        final Button addRange = findViewById(R.id.addRange);
+        final TextView currentNumRange = findViewById(R.id.numRange);
 
         //initializing currentNumProfs lives settings
-        final Button minusLives = (Button) findViewById(R.id.minusLives);
-        final Button addLives = (Button) findViewById(R.id.addLives);
-        final TextView currentNumLives = (TextView) findViewById(R.id.numLives);
+        final Button minusLives = findViewById(R.id.minusLives);
+        final Button addLives = findViewById(R.id.addLives);
+        final TextView currentNumLives = findViewById(R.id.numLives);
 
         //settings the content and initializing the save fab
-        final View parentLayout = (View) findViewById(android.R.id.content);
-        final FloatingActionButton save = (FloatingActionButton)
-                findViewById(R.id.saveSettings);
+        final View parentLayout = findViewById(android.R.id.content);
+        final FloatingActionButton save = findViewById(R.id.saveSettings);
 
         //save settings, close out of settings
         save.setOnClickListener(new View.OnClickListener() {

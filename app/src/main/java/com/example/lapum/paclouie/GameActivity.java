@@ -28,7 +28,7 @@ public class GameActivity extends AppCompatActivity {
     private final Random rnd = new Random();
 
     /** TODO Need to add javadoc for instance variables. **/
-    private int numProfs = SettingsActivity.currentNumProfs;
+    private int numProfs = SettingsActivity.getCurrentNumProfs();
 
     /** TODO Need to add javadoc for instance variables. **/
     //String str;
@@ -159,6 +159,8 @@ public class GameActivity extends AppCompatActivity {
                     layoutParams.rightMargin = -250;
                     layoutParams.bottomMargin = -250;
                     view.setLayoutParams(layoutParams);
+                    break;
+                default:
                     break;
             }
             layout.invalidate();
