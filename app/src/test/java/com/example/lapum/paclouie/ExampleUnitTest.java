@@ -14,4 +14,10 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+    @Test
+    public void testSetting(){
+        SettingsActivity.setCurrentNumLives(1);
+
+        assertEquals(1, SettingsActivity.getCurrentNumLives());
+    }
 }
