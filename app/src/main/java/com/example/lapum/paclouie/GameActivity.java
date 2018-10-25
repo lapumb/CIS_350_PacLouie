@@ -1,14 +1,12 @@
 package com.example.lapum.paclouie;
 
 import android.content.Intent;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
 
 import java.util.Random;
 
@@ -128,6 +126,7 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+
     /*
     @override
     */
@@ -135,6 +134,8 @@ public class GameActivity extends AppCompatActivity {
         super.onResume();
         callMoveProf();
     }
+
+
     public void callMoveProf(){
         //while game is running
         int i = 0;
@@ -171,6 +172,7 @@ public class GameActivity extends AppCompatActivity {
         } */
     }
 
+
     /*
     Moves the professor that is being called
     @param long callTime is the time of calling this method
@@ -198,6 +200,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
     }
+
 
     /**
      * Class to handle Louie movement.
