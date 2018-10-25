@@ -52,7 +52,7 @@ public class SettingsActivity extends AppCompatActivity {
     private int minNumSpeed = 1;
 
     /** Integer value for the maximum range profs can move. **/
-    private int maxNumRange= 9;
+    private int maxNumRange = 9;
 
     /** Integer that represents the minimum range profs can move. **/
     private int minNumRange = 1;
@@ -84,11 +84,11 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     /**
-     * Set method for currentNumProfs.
-     * @param currentNumProfs The current number of profs.
+     * Set method for numProfs.
+     * @param numProfs The current number of profs.
      */
-    public static void setCurrentNumProfs(int currentNumProfs) {
-        SettingsActivity.currentNumProfs = currentNumProfs;
+    public static void setCurrentNumProfs(final int numProfs) {
+        SettingsActivity.currentNumProfs = numProfs;
     }
 
     /**
@@ -100,11 +100,11 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     /**
-     * Set method for the currentNumSpeed.
-     * @param currentNumSpeed The current speed of the profs.
+     * Set method for the numSpeed.
+     * @param numSpeed The current speed of the profs.
      */
-    public static void setCurrentNumSpeed(int currentNumSpeed) {
-        SettingsActivity.currentNumSpeed = currentNumSpeed;
+    public static void setCurrentNumSpeed(final int numSpeed) {
+        SettingsActivity.currentNumSpeed = numSpeed;
     }
 
     /**
@@ -116,11 +116,11 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     /**
-     * Set method for the currentNumRange.
-     * @param currentNumRange The current prof range.
+     * Set method for the numRange.
+     * @param numRange The current prof range.
      */
-    public static void setCurrentNumRange(int currentNumRange) {
-        SettingsActivity.currentNumRange = currentNumRange;
+    public static void setCurrentNumRange(final int numRange) {
+        SettingsActivity.currentNumRange = numRange;
     }
 
     /**
@@ -132,11 +132,11 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     /**
-     * Set method for the currentNumLives.
-     * @param currentNumLives The current number of lives.
+     * Set method for the numLives.
+     * @param numLives The current number of lives.
      */
-    public static void setCurrentNumLives(int currentNumLives) {
-        SettingsActivity.currentNumLives = currentNumLives;
+    public static void setCurrentNumLives(final int numLives) {
+        SettingsActivity.currentNumLives = numLives;
     }
 
     @Override
@@ -147,22 +147,22 @@ public class SettingsActivity extends AppCompatActivity {
         //initializing currentNumProfs prof settings
         final Button minusProfs = findViewById(R.id.minusProfs);
         final Button addProfs = findViewById(R.id.addProfs);
-        final TextView currentNumProfs = findViewById(R.id.numProfs);
+        final TextView tvNumProfs = findViewById(R.id.numProfs);
 
-        //initializing currentNumProfs speed settings
+        //initializing currentNumSpeed speed settings
         final Button minusSpeed = findViewById(R.id.minusSpeed);
         final Button addSpeed = findViewById(R.id.addSpeed);
-        final TextView currentNumSpeed = findViewById(R.id.numSpeed);
+        final TextView tvNumSpeed = findViewById(R.id.numSpeed);
 
-        //initializing currentNumProfs range settings
+        //initializing currentNumRange range settings
         final Button minusRange = findViewById(R.id.minusRange);
         final Button addRange = findViewById(R.id.addRange);
-        final TextView currentNumRange = findViewById(R.id.numRange);
+        final TextView tvNumRange = findViewById(R.id.numRange);
 
-        //initializing currentNumProfs lives settings
+        //initializing currentNumLives lives settings
         final Button minusLives = findViewById(R.id.minusLives);
         final Button addLives = findViewById(R.id.addLives);
-        final TextView currentNumLives = findViewById(R.id.numLives);
+        final TextView tvNumLives = findViewById(R.id.numLives);
 
         //settings the content and initializing the save fab
         final View parentLayout = findViewById(android.R.id.content);
@@ -177,31 +177,63 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         //setting initial text to be # of profs to 1;
-        modifyNumProfs = currentNumProfs.getText().toString();
-        modifyNumProfs = modifyNumProfs.substring(0, modifyNumProfs.length() - 2);
-        modifyNumProfs = modifyNumProfs + ": " + SettingsActivity.currentNumProfs;
-        currentNumProfs.setText(modifyNumProfs);
+        modifyNumProfs = tvNumProfs.getText().toString();
+        modifyNumProfs = modifyNumProfs
+                .substring(0, modifyNumProfs.length() - 2);
+        modifyNumProfs = modifyNumProfs + ": "
+                + SettingsActivity.currentNumProfs;
+        tvNumProfs.setText(modifyNumProfs);
 
         //setting initial text to be # of speed to 1;
-        modifyNumSpeed = currentNumSpeed.getText().toString();
-        modifyNumSpeed = modifyNumSpeed.substring(0, modifyNumSpeed.length() - 2);
-        modifyNumSpeed = modifyNumSpeed + ": " + SettingsActivity.currentNumSpeed;
-        currentNumSpeed.setText(modifyNumSpeed);
+        modifyNumSpeed = tvNumSpeed.getText().toString();
+        modifyNumSpeed = modifyNumSpeed
+                .substring(0, modifyNumSpeed.length() - 2);
+        modifyNumSpeed = modifyNumSpeed + ": "
+                + SettingsActivity.currentNumSpeed;
+        tvNumSpeed.setText(modifyNumSpeed);
 
         //setting initial text to be # of range to 1;
-        modifyNumRange = currentNumRange.getText().toString();
-        modifyNumRange = modifyNumRange.substring(0, modifyNumRange.length() - 2);
-        modifyNumRange = modifyNumRange + ": " + SettingsActivity.currentNumRange;
-        currentNumRange.setText(modifyNumRange);
+        modifyNumRange = tvNumRange.getText().toString();
+        modifyNumRange = modifyNumRange
+                .substring(0, modifyNumRange.length() - 2);
+        modifyNumRange = modifyNumRange + ": "
+                + SettingsActivity.currentNumRange;
+        tvNumRange.setText(modifyNumRange);
 
         //setting initial text bo be # of lives to 1;
-        modifyNumLives = currentNumLives.getText().toString();
-        modifyNumLives = modifyNumLives.substring(0, modifyNumLives.length() - 2);
-        modifyNumLives = modifyNumLives + ": " + SettingsActivity.currentNumLives;
-        currentNumLives.setText(modifyNumLives);
+        modifyNumLives = tvNumLives.getText().toString();
+        modifyNumLives = modifyNumLives
+                .substring(0, modifyNumLives.length() - 2);
+        modifyNumLives = modifyNumLives + ": "
+                + SettingsActivity.currentNumLives;
+        tvNumLives.setText(modifyNumLives);
 
+        subtractCurrentNumProfs(minusProfs, tvNumProfs, parentLayout);
 
-        //subtract currentNumProfs of profs
+        addCurrentNumProfs(addProfs, tvNumProfs, parentLayout);
+
+        subtractCurrentNumSpeed(minusSpeed, tvNumSpeed, parentLayout);
+
+        addCurrentNumSpeed(addSpeed, tvNumSpeed, parentLayout);
+
+        subtractCurrentNumRange(minusRange, tvNumRange, parentLayout);
+
+        addCurrentNumRange(addRange, tvNumRange, parentLayout);
+
+        subtractCurrentNumLives(minusLives, tvNumLives, parentLayout);
+
+        addCurrentNumLives(addLives, tvNumLives, parentLayout);
+    }
+
+    /**
+     * Subtract tvNumProfs of profs.
+     * @param minusProfs The minusProfs button.
+     * @param tvNumProfs Text view currentNumProfs.
+     * @param parentLayout The parent layout.
+     */
+    private void subtractCurrentNumProfs(final Button minusProfs,
+                                         final TextView tvNumProfs,
+                                         final View parentLayout) {
         minusProfs.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -212,19 +244,31 @@ public class SettingsActivity extends AppCompatActivity {
                                     + minNumProfs, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
-                    //if not, subtract 1 from currentNumProfs of profs
-                    strNumProfs = Integer.toString(SettingsActivity.currentNumProfs);
+                    //if not, subtract 1 from tvNumProfs of profs
+                    strNumProfs = Integer
+                            .toString(SettingsActivity.currentNumProfs);
                     SettingsActivity.currentNumProfs--;
-                    modifyNumProfs = currentNumProfs.getText().toString();
-                    modifyNumProfs = modifyNumProfs.substring(0, modifyNumProfs.length()
+                    modifyNumProfs = tvNumProfs.getText().toString();
+                    modifyNumProfs = modifyNumProfs
+                            .substring(0, modifyNumProfs.length()
                             - (strNumProfs.length()));
-                    modifyNumProfs = modifyNumProfs + SettingsActivity.currentNumProfs;
-                    currentNumProfs.setText(modifyNumProfs);
+                    modifyNumProfs = modifyNumProfs
+                            + SettingsActivity.currentNumProfs;
+                    tvNumProfs.setText(modifyNumProfs);
                 }
             }
         });
+    }
 
-        //add to currentNumProfs of profs
+    /**
+     * Add to tvNumProfs of profs.
+     * @param addProfs AddProfs button.
+     * @param tvNumProfs The currentNumProfs text view.
+     * @param parentLayout The parent layout.
+     */
+    private void addCurrentNumProfs(final Button addProfs,
+                                    final TextView tvNumProfs,
+                                    final View parentLayout) {
         addProfs.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -235,20 +279,31 @@ public class SettingsActivity extends AppCompatActivity {
                                     + maxNumProfs, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
-                    //if not, add 1 to the currentNumProfs of profs
+                    //if not, add 1 to the tvNumProfs of profs
                     SettingsActivity.currentNumProfs++;
-                    strNumProfs = Integer.toString(SettingsActivity.currentNumProfs);
-                    modifyNumProfs = currentNumProfs.getText().toString();
-                    modifyNumProfs = modifyNumProfs.substring(0, modifyNumProfs.length()
+                    strNumProfs = Integer
+                            .toString(SettingsActivity.currentNumProfs);
+                    modifyNumProfs = tvNumProfs.getText().toString();
+                    modifyNumProfs = modifyNumProfs
+                            .substring(0, modifyNumProfs.length()
                             - (strNumProfs.length()));
-                    modifyNumProfs = modifyNumProfs + SettingsActivity.currentNumProfs;
-                    currentNumProfs.setText(modifyNumProfs);
+                    modifyNumProfs = modifyNumProfs
+                            + SettingsActivity.currentNumProfs;
+                    tvNumProfs.setText(modifyNumProfs);
                 }
             }
         });
+    }
 
-
-        //subtract currentNumSpeed of profs
+    /**
+     * Subtract tvNumSpeed of profs.
+     * @param minusSpeed The minusSpeed button.
+     * @param tvNumSpeed The currentNumSpeed text view.
+     * @param parentLayout The parent layout.
+     */
+    private void subtractCurrentNumSpeed(final Button minusSpeed,
+                                         final TextView tvNumSpeed,
+                                         final View parentLayout) {
         minusSpeed.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -259,19 +314,31 @@ public class SettingsActivity extends AppCompatActivity {
                                     + minNumSpeed, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
-                    //if not, subtract 1 from currentNumSpeed
-                    strNumSpeed = Integer.toString(SettingsActivity.currentNumSpeed);
+                    //if not, subtract 1 from tvNumSpeed
+                    strNumSpeed = Integer
+                            .toString(SettingsActivity.currentNumSpeed);
                     SettingsActivity.currentNumSpeed--;
-                    modifyNumSpeed = currentNumSpeed.getText().toString();
-                    modifyNumSpeed = modifyNumSpeed.substring(0, modifyNumSpeed.length()
+                    modifyNumSpeed = tvNumSpeed.getText().toString();
+                    modifyNumSpeed = modifyNumSpeed
+                            .substring(0, modifyNumSpeed.length()
                             - (strNumSpeed.length()));
-                    modifyNumSpeed = modifyNumSpeed + SettingsActivity.currentNumSpeed;
-                    currentNumSpeed.setText(modifyNumSpeed);
+                    modifyNumSpeed = modifyNumSpeed
+                            + SettingsActivity.currentNumSpeed;
+                    tvNumSpeed.setText(modifyNumSpeed);
                 }
             }
         });
+    }
 
-        //add to currentNumSpeed of profs
+    /**
+     * Add to tvNumSpeed of profs.
+     * @param addSpeed The addSpeed button
+     * @param tvNumSpeed The currentNumSpeed text view.
+     * @param parentLayout The parent layout.
+     */
+    private void addCurrentNumSpeed(final Button addSpeed,
+                                    final TextView tvNumSpeed,
+                                    final View parentLayout) {
         addSpeed.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -282,20 +349,31 @@ public class SettingsActivity extends AppCompatActivity {
                                     + maxNumSpeed, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
-                    //if not, add 1 to the currentNumSpeed of profs
+                    //if not, add 1 to the tvNumSpeed of profs
                     SettingsActivity.currentNumSpeed++;
-                    strNumSpeed = Integer.toString(SettingsActivity.currentNumSpeed);
-                    modifyNumSpeed = currentNumSpeed.getText().toString();
-                    modifyNumSpeed = modifyNumSpeed.substring(0, modifyNumSpeed.length()
+                    strNumSpeed = Integer
+                            .toString(SettingsActivity.currentNumSpeed);
+                    modifyNumSpeed = tvNumSpeed.getText().toString();
+                    modifyNumSpeed = modifyNumSpeed
+                            .substring(0, modifyNumSpeed.length()
                             - (strNumSpeed.length()));
-                    modifyNumSpeed = modifyNumSpeed + SettingsActivity.currentNumSpeed;
-                    currentNumSpeed.setText(modifyNumSpeed);
+                    modifyNumSpeed = modifyNumSpeed
+                            + SettingsActivity.currentNumSpeed;
+                    tvNumSpeed.setText(modifyNumSpeed);
                 }
             }
         });
+    }
 
-
-        //subtract currentNumRange of profs
+    /**
+     * Subtract tvNumRange of profs.
+     * @param minusRange The minusRange button.
+     * @param tvNumRange The currentNumRange button.
+     * @param parentLayout The parent layout.
+     */
+    private void subtractCurrentNumRange(final Button minusRange,
+                                         final TextView tvNumRange,
+                                         final View parentLayout) {
         minusRange.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -306,19 +384,31 @@ public class SettingsActivity extends AppCompatActivity {
                                     + minNumRange, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
-                    //if not, subtract 1 from currentNumRange of profs
-                    strNumRange = Integer.toString(SettingsActivity.currentNumRange);
+                    //if not, subtract 1 from tvNumRange of profs
+                    strNumRange = Integer
+                            .toString(SettingsActivity.currentNumRange);
                     SettingsActivity.currentNumRange--;
-                    modifyNumRange = currentNumRange.getText().toString();
-                    modifyNumRange = modifyNumRange.substring(0, modifyNumRange.length()
+                    modifyNumRange = tvNumRange.getText().toString();
+                    modifyNumRange = modifyNumRange
+                            .substring(0, modifyNumRange.length()
                             - (strNumRange.length()));
-                    modifyNumRange = modifyNumRange + SettingsActivity.currentNumRange;
-                    currentNumRange.setText(modifyNumRange);
+                    modifyNumRange = modifyNumRange
+                            + SettingsActivity.currentNumRange;
+                    tvNumRange.setText(modifyNumRange);
                 }
             }
         });
+    }
 
-        //add to currentNumRange of profs
+    /**
+     * Add to tvNumRange of profs.
+     * @param addRange The addRange button.
+     * @param tvNumRange The currentNumRange text view.
+     * @param parentLayout The parent layout.
+     */
+    private void addCurrentNumRange(final Button addRange,
+                                    final TextView tvNumRange,
+                                    final View parentLayout) {
         addRange.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -329,19 +419,31 @@ public class SettingsActivity extends AppCompatActivity {
                                     + maxNumRange, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
-                    //if not, add 1 to the currentNumRange of profs
+                    //if not, add 1 to the tvNumRange of profs
                     SettingsActivity.currentNumRange++;
-                    strNumRange = Integer.toString(SettingsActivity.currentNumRange);
-                    modifyNumRange = currentNumRange.getText().toString();
-                    modifyNumRange = modifyNumRange.substring(0, modifyNumRange.length()
+                    strNumRange = Integer
+                            .toString(SettingsActivity.currentNumRange);
+                    modifyNumRange = tvNumRange.getText().toString();
+                    modifyNumRange = modifyNumRange
+                            .substring(0, modifyNumRange.length()
                             - (strNumRange.length()));
-                    modifyNumRange = modifyNumRange + SettingsActivity.currentNumRange;
-                    currentNumRange.setText(modifyNumRange);
+                    modifyNumRange = modifyNumRange
+                            + SettingsActivity.currentNumRange;
+                    tvNumRange.setText(modifyNumRange);
                 }
             }
         });
+    }
 
-        //subtract currentNumLives in game
+    /**
+     * Subtract tvNumLives in game.
+     * @param minusLives The minusLives button.
+     * @param tvNumLives The currentNumLives text view.
+     * @param parentLayout The parent layout.
+     */
+    private void subtractCurrentNumLives(final Button minusLives,
+                                         final TextView tvNumLives,
+                                         final View parentLayout) {
         minusLives.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -352,19 +454,31 @@ public class SettingsActivity extends AppCompatActivity {
                                     + minNumLives, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
-                    //if not, subtract 1 from currentNumLives in game
-                    strNumLives = Integer.toString(SettingsActivity.currentNumLives);
+                    //if not, subtract 1 from tvNumLives in game
+                    strNumLives = Integer
+                            .toString(SettingsActivity.currentNumLives);
                     SettingsActivity.currentNumLives--;
-                    modifyNumLives = currentNumLives.getText().toString();
-                    modifyNumLives = modifyNumLives.substring(0, modifyNumLives.length()
+                    modifyNumLives = tvNumLives.getText().toString();
+                    modifyNumLives = modifyNumLives
+                            .substring(0, modifyNumLives.length()
                             - (strNumLives.length()));
-                    modifyNumLives = modifyNumLives + SettingsActivity.currentNumLives;
-                    currentNumLives.setText(modifyNumLives);
+                    modifyNumLives = modifyNumLives
+                            + SettingsActivity.currentNumLives;
+                    tvNumLives.setText(modifyNumLives);
                 }
             }
         });
+    }
 
-        //add to currentNumLives in game
+    /**
+     * Add to tvNumLives in game.
+     * @param addLives The addLives button.
+     * @param tvNumLives The currentNumLives text view.
+     * @param parentLayout The parent layout.
+     */
+    private void addCurrentNumLives(final Button addLives,
+                                    final TextView tvNumLives,
+                                    final View parentLayout) {
         addLives.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -377,12 +491,15 @@ public class SettingsActivity extends AppCompatActivity {
                 } else {
                     //if not, add 1 to the number of lives in game
                     SettingsActivity.currentNumLives++;
-                    strNumLives = Integer.toString(SettingsActivity.currentNumLives);
-                    modifyNumLives = currentNumLives.getText().toString();
-                    modifyNumLives = modifyNumLives.substring(0, modifyNumLives.length()
+                    strNumLives = Integer
+                            .toString(SettingsActivity.currentNumLives);
+                    modifyNumLives = tvNumLives.getText().toString();
+                    modifyNumLives = modifyNumLives
+                            .substring(0, modifyNumLives.length()
                             - (strNumLives.length()));
-                    modifyNumLives = modifyNumLives + SettingsActivity.currentNumLives;
-                    currentNumLives.setText(modifyNumLives);
+                    modifyNumLives = modifyNumLives
+                            + SettingsActivity.currentNumLives;
+                    tvNumLives.setText(modifyNumLives);
                 }
             }
         });
