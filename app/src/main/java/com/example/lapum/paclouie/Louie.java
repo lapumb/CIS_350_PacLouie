@@ -20,10 +20,10 @@ public class Louie {
     private ImageView sprite;
 
     /** Integer value for the maximum width of Louie. **/
-    int maxWidth = 100;
+    private int maxWidth = 100;
 
     /** Integer value for the maximum height of Louie. **/
-    int maxHeight = 100;
+    private int maxHeight = 100;
 
     /**
      * Louie the Laker constructor. X and y are coordinates of starting Louie.
