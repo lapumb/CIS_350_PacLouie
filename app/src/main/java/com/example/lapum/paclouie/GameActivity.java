@@ -1,7 +1,7 @@
 package com.example.lapum.paclouie;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import java.util.Random;
 
 /**
- * The PacLouie game activity.
+ * The PacLouie game activity; view and logic to play the game.
  */
 public class GameActivity extends AppCompatActivity {
 
@@ -30,11 +30,30 @@ public class GameActivity extends AppCompatActivity {
     /** Variable for random value. **/
     private final Random rnd = new Random();
 
-    /** TODO Need to add javadoc for instance variables. **/
+    /** Variable for number of professors in game **/
     private int numProfs = SettingsActivity.currentNumProfs;
 
-    /** TODO Need to add javadoc for instance variables. **/
-    //String str;
+    /** Variable for speed of profs in game **/
+    private int numSpeed = SettingsActivity.currentNumSpeed;
+
+    /** Variable for range of profs in game **/
+    private int numRange = SettingsActivity.currentNumRange;
+
+    /** Variable for number of lives in game **/
+    private int numLives = SettingsActivity.currentNumLives;
+
+    /** Variable to set the actual speed of the profs movements **/
+    private int speed = getRealSpeed(numSpeed);
+
+    //handler and runnable responsible for constantly moving the profs
+    Handler handler = new Handler();
+    final Runnable r = new Runnable() {
+        public void run() {
+            callMoveProf();
+            handler.postDelayed(r, speed);
+        }
+    };
+
 
    //Images for profs and louie
     ImageView prof0;
@@ -81,9 +100,7 @@ public class GameActivity extends AppCompatActivity {
         prof0.setVisibility(View.GONE);
 
 
-
-        //"randomly" generating which (stand-in profs)
-        // appear (using a stand in hard number)
+        //randomly generating which profs
         for (int i = 0; i < numProfs; i++) {
             String str = "prof" + rnd.nextInt(9);
             if (str.equals("prof1") && prof1.getVisibility() == View.GONE) {
@@ -117,88 +134,100 @@ public class GameActivity extends AppCompatActivity {
             }
         }
 
+        r.run();
+
         RelativeLayout.LayoutParams layoutParams
                 = new RelativeLayout.LayoutParams(600, 600);
         louie.setLayoutParams(layoutParams);
         louie.setOnTouchListener(new ChoiceTouchListener());
-
-        //onStart();
-
     }
 
 
-    /*
-    @override
-    */
-    protected void onResume(){
-        super.onResume();
-        callMoveProf();
+    //method returns the actual speed we want the profs to move
+    public int getRealSpeed(int speed) {
+        //variable to manipulate speed selected
+        int realSpeed = 0;
+
+        //setting physical speed
+        if(speed == 1)
+            realSpeed = 880;
+        else if(speed == 2)
+            realSpeed = 780;
+        else if(speed == 3)
+            realSpeed = 680;
+        else if(speed == 4)
+            realSpeed = 580;
+        else if(speed == 5)
+            realSpeed = 480;
+        else if(speed == 6)
+            realSpeed = 380;
+        else if(speed == 7)
+            realSpeed = 280;
+        else if(speed == 8)
+            realSpeed = 180;
+        else if(speed == 9)
+            realSpeed = 80;
+
+        return realSpeed;
     }
 
-
+    //function to determine which profs are present and need movement
     public void callMoveProf(){
-        //while game is running
-        int i = 0;
-        while(i < 10000){
-            if(prof0.getVisibility() == View.VISIBLE)
-                moveProf(System.currentTimeMillis(), prof0);
-            if(prof1.getVisibility() == View.VISIBLE)
-                moveProf(System.currentTimeMillis(), prof1);
-            if(prof2.getVisibility() == View.VISIBLE)
-                moveProf(System.currentTimeMillis(), prof2);
-            if(prof3.getVisibility() == View.VISIBLE)
-                moveProf(System.currentTimeMillis(), prof3);
-            if(prof4.getVisibility() == View.VISIBLE)
-                moveProf(System.currentTimeMillis(), prof4);
-            if(prof5.getVisibility() == View.VISIBLE)
-                moveProf(System.currentTimeMillis(), prof5);
-            if(prof6.getVisibility() == View.VISIBLE)
-                moveProf(System.currentTimeMillis(), prof6);
-            if(prof7.getVisibility() == View.VISIBLE)
-                moveProf(System.currentTimeMillis(), prof7);
-            if(prof8.getVisibility() == View.VISIBLE)
-                moveProf(System.currentTimeMillis(), prof8);
-            i++;
-        }
-
-    }
-
-
-    @Override
-    protected void onActivityResult(final int requestCode,
-                                    final int resultCode, final Intent data) {
-        /*if(requestCode == SETTINGS_RESULT) {
-            numProfs = data.getIntExtra("numProfs", 0);
-        } */
+        if(prof0.getVisibility() == View.VISIBLE)
+            moveProf(prof0, numSpeed, numRange);
+        if(prof1.getVisibility() == View.VISIBLE)
+            moveProf(prof1, numSpeed, numRange);
+        if(prof2.getVisibility() == View.VISIBLE)
+            moveProf(prof2, numSpeed, numRange);
+        if(prof3.getVisibility() == View.VISIBLE)
+            moveProf(prof3, numSpeed, numRange);
+        if(prof4.getVisibility() == View.VISIBLE)
+            moveProf(prof4, numSpeed, numRange);
+        if(prof5.getVisibility() == View.VISIBLE)
+            moveProf(prof5, numSpeed, numRange);
+        if(prof6.getVisibility() == View.VISIBLE)
+            moveProf(prof6, numSpeed, numRange);
+        if(prof7.getVisibility() == View.VISIBLE)
+            moveProf(prof7, numSpeed, numRange);
+        if(prof8.getVisibility() == View.VISIBLE)
+            moveProf(prof8, numSpeed, numRange);
     }
 
 
     /*
-    Moves the professor that is being called
-    @param long callTime is the time of calling this method
-    @param ImageView prof the prof that wants to be moved
+    /**Moves the professor that is being called
+    * @param long callTime is the time of calling this method
+    * @param ImageView prof the prof that wants to be moved
      */
-    public void moveProf(long callTime, ImageView prof){
+    public void moveProf(ImageView prof, int speed, int range) {
 
-        //current time
-        long now = System.currentTimeMillis();
+        //setting the range
+        range = range * 2;
+
         //difference in x and y
-        int dx = 0;
-        int dy = 0;
+        int dx;
+        int dy;
+        int rnd;
 
         //random to choose direction of professor
         Random random = new Random();
         dx = random.nextInt(2);
         dy = random.nextInt(2);
+        rnd = random.nextInt(11);
 
-        //only moves prof if a second has passed
-        if(now >= callTime + 1000){
-            if (prof.getVisibility() == View.VISIBLE){
-                prof.setX(prof.getX()+ dx * 10);
+        //applying range to prof movement
+        if(rnd >= 5) {
+            for(int i = 0; i < range; i++) {
+                prof.setX(prof.getX() + dx * 10);
                 prof.setY(prof.getY() + dy * 10);
             }
         }
-
+        else {
+            for(int i = 0; i < range; i++) {
+                prof.setX(prof.getX() - dx * 10);
+                prof.setY(prof.getY() - dy * 10);
+            }
+        }
     }
 
 
