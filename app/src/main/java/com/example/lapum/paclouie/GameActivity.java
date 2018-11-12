@@ -30,8 +30,8 @@ public class GameActivity extends AppCompatActivity {
     /** Variable for random value. **/
     private final Random rnd = new Random();
 
-    /** Variable for number of professors in game **/
-    private int numProfs = SettingsActivity.currentNumProfs;
+    /** TODO Need to add javadoc for instance variables. **/
+    private int numProfs = SettingsActivity.getCurrentNumProfs();
 
     /** Variable for speed of profs in game **/
     private int numSpeed = SettingsActivity.currentNumSpeed;
@@ -272,6 +272,8 @@ public class GameActivity extends AppCompatActivity {
                     layoutParams.rightMargin = -250;
                     layoutParams.bottomMargin = -250;
                     view.setLayoutParams(layoutParams);
+                    break;
+                default:
                     break;
             }
             layout.invalidate();
