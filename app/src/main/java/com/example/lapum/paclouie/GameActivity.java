@@ -134,7 +134,7 @@ public class GameActivity extends AppCompatActivity {
             }
         }
 
-        r.run();
+        r.run(); //runs the runnable; ie constantly calling callMoveProf
 
         RelativeLayout.LayoutParams layoutParams
                 = new RelativeLayout.LayoutParams(600, 600);
@@ -174,35 +174,35 @@ public class GameActivity extends AppCompatActivity {
     //function to determine which profs are present and need movement
     public void callMoveProf(){
         if(prof0.getVisibility() == View.VISIBLE)
-            moveProf(prof0, numSpeed, numRange);
+            moveProf(prof0, numRange);
         if(prof1.getVisibility() == View.VISIBLE)
-            moveProf(prof1, numSpeed, numRange);
+            moveProf(prof1, numRange);
         if(prof2.getVisibility() == View.VISIBLE)
-            moveProf(prof2, numSpeed, numRange);
+            moveProf(prof2, numRange);
         if(prof3.getVisibility() == View.VISIBLE)
-            moveProf(prof3, numSpeed, numRange);
+            moveProf(prof3, numRange);
         if(prof4.getVisibility() == View.VISIBLE)
-            moveProf(prof4, numSpeed, numRange);
+            moveProf(prof4, numRange);
         if(prof5.getVisibility() == View.VISIBLE)
-            moveProf(prof5, numSpeed, numRange);
+            moveProf(prof5, numRange);
         if(prof6.getVisibility() == View.VISIBLE)
-            moveProf(prof6, numSpeed, numRange);
+            moveProf(prof6, numRange);
         if(prof7.getVisibility() == View.VISIBLE)
-            moveProf(prof7, numSpeed, numRange);
+            moveProf(prof7, numRange);
         if(prof8.getVisibility() == View.VISIBLE)
-            moveProf(prof8, numSpeed, numRange);
+            moveProf(prof8, numRange);
     }
 
 
     /*
     /**Moves the professor that is being called
-    * @param long callTime is the time of calling this method
     * @param ImageView prof the prof that wants to be moved
+    * @param int range professors can move
      */
-    public void moveProf(ImageView prof, int speed, int range) {
+    public void moveProf(ImageView prof, int range) {
 
         //setting the range
-        range = range * 2;
+        range = range * 3;
 
         //difference in x and y
         int dx;
@@ -213,17 +213,17 @@ public class GameActivity extends AppCompatActivity {
         Random random = new Random();
         dx = random.nextInt(2);
         dy = random.nextInt(2);
-        rnd = random.nextInt(11);
+        rnd = random.nextInt(10);
 
         //applying range to prof movement
         if(rnd >= 5) {
-            for(int i = 0; i < range; i++) {
+            for(int i = 0; i <= range; i++) {
                 prof.setX(prof.getX() + dx * 10);
                 prof.setY(prof.getY() + dy * 10);
             }
         }
         else {
-            for(int i = 0; i < range; i++) {
+            for(int i = 0; i <= range; i++) {
                 prof.setX(prof.getX() - dx * 10);
                 prof.setY(prof.getY() - dy * 10);
             }
