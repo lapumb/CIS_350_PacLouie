@@ -179,7 +179,7 @@ public class SettingsActivity extends AppCompatActivity {
         //setting initial text to be # of profs to 1;
         modifyNumProfs = tvNumProfs.getText().toString();
         modifyNumProfs = modifyNumProfs
-                .substring(0, modifyNumProfs.length() - 2);
+                .substring(0, modifyNumProfs.length() - 1);
         modifyNumProfs = modifyNumProfs + ": "
                 + SettingsActivity.currentNumProfs;
         tvNumProfs.setText(modifyNumProfs);
@@ -187,7 +187,7 @@ public class SettingsActivity extends AppCompatActivity {
         //setting initial text to be # of speed to 1;
         modifyNumSpeed = tvNumSpeed.getText().toString();
         modifyNumSpeed = modifyNumSpeed
-                .substring(0, modifyNumSpeed.length() - 2);
+                .substring(0, modifyNumSpeed.length() - 1);
         modifyNumSpeed = modifyNumSpeed + ": "
                 + SettingsActivity.currentNumSpeed;
         tvNumSpeed.setText(modifyNumSpeed);
@@ -195,7 +195,7 @@ public class SettingsActivity extends AppCompatActivity {
         //setting initial text to be # of range to 1;
         modifyNumRange = tvNumRange.getText().toString();
         modifyNumRange = modifyNumRange
-                .substring(0, modifyNumRange.length() - 2);
+                .substring(0, modifyNumRange.length() - 1);
         modifyNumRange = modifyNumRange + ": "
                 + SettingsActivity.currentNumRange;
         tvNumRange.setText(modifyNumRange);
@@ -203,7 +203,7 @@ public class SettingsActivity extends AppCompatActivity {
         //setting initial text bo be # of lives to 1;
         modifyNumLives = tvNumLives.getText().toString();
         modifyNumLives = modifyNumLives
-                .substring(0, modifyNumLives.length() - 2);
+                .substring(0, modifyNumLives.length() - 1);
         modifyNumLives = modifyNumLives + ": "
                 + SettingsActivity.currentNumLives;
         tvNumLives.setText(modifyNumLives);

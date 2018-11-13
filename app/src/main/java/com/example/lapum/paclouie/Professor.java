@@ -102,4 +102,32 @@ public class Professor {
             this.y--;
         }
     }
+
+    //method returns the actual speed we want the profs to move
+    public static int getRealSpeed(int speed) {
+        //variable to manipulate speed selected
+        int realSpeed = 0;
+
+        //setting physical speed
+        if(speed == 1)
+            realSpeed = 880;
+        else if(speed == 2)
+            realSpeed = 780;
+        else if(speed == 3)
+            realSpeed = 680;
+        else if(speed == 4)
+            realSpeed = 580;
+        else if(speed == 5)
+            realSpeed = 480;
+        else if(speed == 6)
+            realSpeed = 380;
+        else if(speed == 7)
+            realSpeed = 280;
+        else if(speed == 8)
+            realSpeed = 180;
+        else if(speed == 9)
+            realSpeed = 80;
+
+        return realSpeed;
+    }
 }
