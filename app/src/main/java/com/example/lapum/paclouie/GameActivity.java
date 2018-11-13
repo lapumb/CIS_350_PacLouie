@@ -288,7 +288,7 @@ public class GameActivity extends AppCompatActivity {
     //method to set which A's are visible (random)
     public void setAVisibility(int profs, int range, int speed, int lives) {
         Random rnd = new Random();
-        int numA = 1 + (profs/2 + 2) + (range/2 + 2) + (speed/2 + 2) + (lives/2 + 2);
+        int numA = 1 + ((profs/2) + 2) + ((range/2) + 2) + ((speed/2) + 2) + ((lives/2) + 2);
         for(int i = 0; i <= numA; i++) {
             String str = "a" + rnd.nextInt(24);
             if (str.equals("a0") && a0.getVisibility() == View.GONE) {
