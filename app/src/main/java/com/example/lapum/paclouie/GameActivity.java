@@ -1,12 +1,18 @@
 package com.example.lapum.paclouie;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.Random;
 
@@ -183,14 +189,14 @@ public class GameActivity extends AppCompatActivity {
         r.run(); //runs the runnable; ie constantly calling callMoveProf
 
         RelativeLayout.LayoutParams layoutParams
-                = new RelativeLayout.LayoutParams(600, 600);
+                = new RelativeLayout.LayoutParams(250, 250);
         louie.setLayoutParams(layoutParams);
         louie.setOnTouchListener(new ChoiceTouchListener());
     }
 
 
     //function to determine which profs are present and need movement
-    public void callMoveProf(){
+    public void callMoveProf() {
         if(prof0.getVisibility() == View.VISIBLE)
             moveProf(prof0, numRange);
         if(prof1.getVisibility() == View.VISIBLE)
@@ -246,6 +252,13 @@ public class GameActivity extends AppCompatActivity {
                 prof.setY(prof.getY() - dy * 10);
             }
         }
+
+        //handling collisions
+        if(isViewOverlapping(louie, prof)) {
+            profCollision();
+            prof.setX(0);
+            prof.setY(0);
+        }
     }
 
     //randomly generating which profs appear (user selected amount)
@@ -283,6 +296,42 @@ public class GameActivity extends AppCompatActivity {
                 i--;
             }
         }
+    }
+
+
+    //returns which profs are visible.
+    private ImageView[] getProfsVisible() {
+        ImageView visible[] = new ImageView[10];
+        for(int i = 0; i <= visible.length; i++) {
+            if(prof0.getVisibility() == View.VISIBLE) {
+                visible[i] = prof0;
+            }
+            if(prof1.getVisibility() == View.VISIBLE) {
+                visible[i] = prof1;
+            }
+            if(prof2.getVisibility() == View.VISIBLE) {
+                visible[i] = prof2;
+            }
+            if(prof3.getVisibility() == View.VISIBLE) {
+                visible[i] = prof3;
+            }
+            if(prof4.getVisibility() == View.VISIBLE) {
+                visible[i] = prof4;
+            }
+            if(prof5.getVisibility() == View.VISIBLE) {
+                visible[i] = prof5;
+            }
+            if(prof6.getVisibility() == View.VISIBLE) {
+                visible[i] = prof6;
+            }
+            if(prof7.getVisibility() == View.VISIBLE) {
+                visible[i] = prof7;
+            }
+            if(prof8.getVisibility() == View.VISIBLE) {
+                visible[i] = prof8;
+            }
+        }
+        return visible;
     }
 
     //method to set which A's are visible (random)
@@ -343,6 +392,183 @@ public class GameActivity extends AppCompatActivity {
                 a24.setVisibility(View.VISIBLE);
             }
         }
+    }
+
+
+    //returns which A's are visible
+    private ImageView[] getAsVisible() {
+        ImageView visible[] = new ImageView[25];
+        for(int i = 0; i <= visible.length; i++) {
+            if (a0.getVisibility() == View.VISIBLE) {
+                visible[i] = a0;
+            }
+            if (a1.getVisibility() == View.VISIBLE) {
+                visible[i] = a1;
+            }
+            if (a2.getVisibility() == View.VISIBLE) {
+                visible[i] = a2;
+            }
+            if (a3.getVisibility() == View.VISIBLE) {
+                visible[i] = a3;
+            }
+            if (a4.getVisibility() == View.VISIBLE) {
+                visible[i] = a4;
+            }
+            if (a5.getVisibility() == View.VISIBLE) {
+                visible[i] = a5;
+            }
+            if (a6.getVisibility() == View.VISIBLE) {
+                visible[i] = a6;
+            }
+            if (a7.getVisibility() == View.VISIBLE) {
+                visible[i] = a7;
+            }
+            if (a8.getVisibility() == View.VISIBLE) {
+                visible[i] = a8;
+            }
+            if (a9.getVisibility() == View.VISIBLE) {
+                visible[i] = a9;
+            }
+            if (a10.getVisibility() == View.VISIBLE) {
+                visible[i] = a10;
+            }
+            if (a11.getVisibility() == View.VISIBLE) {
+                visible[i] = a11;
+            }
+            if (a12.getVisibility() == View.VISIBLE) {
+                visible[i] = a12;
+            }
+            if (a13.getVisibility() == View.VISIBLE) {
+                visible[i] = a13;
+            }
+            if (a14.getVisibility() == View.VISIBLE) {
+                visible[i] = a14;
+            }
+            if (a15.getVisibility() == View.VISIBLE) {
+                visible[i] = a15;
+            }
+            if (a16.getVisibility() == View.VISIBLE) {
+                visible[i] = a16;
+            }
+            if (a17.getVisibility() == View.VISIBLE) {
+                visible[i] = a17;
+            }
+            if (a18.getVisibility() == View.VISIBLE) {
+                visible[i] = a18;
+            }
+            if (a19.getVisibility() == View.VISIBLE) {
+                visible[i] = a19;
+            }
+            if (a20.getVisibility() == View.VISIBLE) {
+                visible[i] = a20;
+            }
+            if (a21.getVisibility() == View.VISIBLE) {
+                visible[i] = a21;
+            }
+            if (a22.getVisibility() == View.VISIBLE) {
+                visible[i] = a22;
+            }
+            if (a23.getVisibility() == View.VISIBLE) {
+                visible[i] = a23;
+            }
+            if (a24.getVisibility() == View.VISIBLE) {
+                visible[i] = a24;
+            }
+        }
+        return visible;
+    }
+
+
+
+    //checking if ImageView's overlap (I think)
+    private boolean isViewOverlapping(ImageView firstView, ImageView secondView) {
+        int[] firstPosition = new int[2];
+        int[] secondPosition = new int[2];
+
+        firstView.getLocationOnScreen(firstPosition);
+        secondView.getLocationOnScreen(secondPosition);
+
+        // Rect constructor parameters: left, top, right, bottom
+        Rect rectFirstView = new Rect(firstPosition[0], firstPosition[1],
+                firstPosition[0] + firstView.getMeasuredWidth(), firstPosition[1] +
+                firstView.getMeasuredHeight());
+        Rect rectSecondView = new Rect(secondPosition[0], secondPosition[1],
+                secondPosition[0] + secondView.getMeasuredWidth(), secondPosition[1] +
+                secondView.getMeasuredHeight());
+        return rectFirstView.intersect(rectSecondView);
+    }
+
+
+    //handling collision with louie and an 'A'
+    private void aObtained(ImageView A) {
+        int aCount = getAsVisible().length;
+        if(A.getVisibility() == View.VISIBLE) {
+            A.setVisibility(View.GONE);
+            if(aCount == 0) {
+                gameWon(this);
+            }
+            //increase the score here as well, depend on difficulty?
+            // high-score?
+        }
+    }
+
+
+    //handling collision with louie and a prof
+    private void profCollision() {
+        if (numLives > 0) {
+            numLives--;
+        } else {
+            gameOver(this);
+        }
+    }
+
+
+    //function to show popup dialog (Maybe???)
+    private void gameOver(Context c) {
+        final TextView gameOver = new TextView(c);
+        AlertDialog dialog = new AlertDialog.Builder(c)
+                .setTitle("GAME OVER")
+                .setMessage("You lost! Click 'Okay' to exit to home screen.")
+                .setView(gameOver)
+                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //also check high-score shit
+                        Intent intent = new Intent(GameActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .create();
+        dialog.show();
+    }
+
+
+    //you won
+    private void gameWon(Context c) {
+        final TextView gameWon = new TextView(c);
+        AlertDialog dialog = new AlertDialog.Builder(c)
+                .setTitle("GAME WON!")
+                .setMessage("You collected all the A's! You won the game! " +
+                        "Press Okay to go back to main screen, " +
+                        "or highscores to see highscores page")
+                .setView(gameWon)
+                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //also check high-score shit
+                        Intent intent = new Intent(GameActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Highscores", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(GameActivity.this, HighscoreActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .create();
+        dialog.show();
     }
 
 
