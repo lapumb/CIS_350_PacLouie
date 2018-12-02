@@ -34,13 +34,13 @@ public class GameActivity extends AppCompatActivity {
     private int numProfs = SettingsActivity.getCurrentNumProfs();
 
     /** Variable for speed of profs in game **/
-    private int numSpeed = SettingsActivity.currentNumSpeed;
+    private int numSpeed = SettingsActivity.getCurrentNumSpeed();
 
     /** Variable for range of profs in game **/
-    private int numRange = SettingsActivity.currentNumRange;
+    private int numRange = SettingsActivity.getCurrentNumRange();
 
     /** Variable for number of lives in game **/
-    private int numLives = SettingsActivity.currentNumLives;
+    private int numLives = SettingsActivity.getCurrentNumLives();
 
     /** Variable to set the actual speed of the profs movements **/
     private int speed = getRealSpeed(numSpeed);
