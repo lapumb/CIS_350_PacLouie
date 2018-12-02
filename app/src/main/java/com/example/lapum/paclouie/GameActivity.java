@@ -254,11 +254,12 @@ public class GameActivity extends AppCompatActivity {
         }
 
         //handling collisions
-        if(isViewOverlapping(louie, prof)) {
+        /*if(isViewOverlapping(louie, prof)) {
             profCollision();
             prof.setX(0);
             prof.setY(0);
-        }
+        } */
+        //profCollision(louie, prof); //handles collisions with prof
     }
 
     //randomly generating which profs appear (user selected amount)
@@ -514,11 +515,15 @@ public class GameActivity extends AppCompatActivity {
 
 
     //handling collision with louie and a prof
-    private void profCollision() {
-        if (numLives > 0) {
-            numLives--;
-        } else {
-            gameOver(this);
+    private void profCollision(ImageView louie, ImageView prof) {
+        if(isViewOverlapping(louie, prof)) {
+            if (numLives > 0) {
+                numLives--;
+                prof.setX(0);
+                prof.setY(0);
+            } else {
+                gameOver(this);
+            }
         }
     }
 
