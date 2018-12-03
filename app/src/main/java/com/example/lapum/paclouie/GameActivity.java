@@ -33,6 +33,12 @@ public class GameActivity extends AppCompatActivity {
     /** PacLouie layout. **/
     private RelativeLayout layout;
 
+    /** string for number of lives remaining in game **/
+    private String strNumLives;
+
+    /** string to show number of lives remaining **/
+    private String decreaseNumLives;
+
     /** TODO Need to add javadoc for instance variables. **/
     private int numProfs = SettingsActivity.getCurrentNumProfs();
 
@@ -98,6 +104,9 @@ public class GameActivity extends AppCompatActivity {
     ImageView a24;
 
 
+    //text views in upper corners
+    TextView highesetScore;
+    TextView livesRemaining;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -143,6 +152,10 @@ public class GameActivity extends AppCompatActivity {
         this.a23 = (ImageView) findViewById(R.id.a23);
         this.a24 = (ImageView) findViewById(R.id.a24);
 
+        //text in upper corners (always visible)
+        this.highesetScore = (TextView) findViewById(R.id.highscoresText);
+        this.livesRemaining = (TextView) findViewById(R.id.livesText);
+
 
         //initially setting all profs to not appear (gone)
         prof1.setVisibility(View.GONE);
@@ -185,6 +198,20 @@ public class GameActivity extends AppCompatActivity {
         setProfVisibility(numProfs); //setting how many profs are visible
         setAVisibility(numProfs, numRange, numSpeed, numLives); //setting number of A's appearing
 
+
+        /*
+        modifyNumProfs = tvNumProfs.getText().toString();
+        modifyNumProfs = modifyNumProfs
+                .substring(0, modifyNumProfs.length() - 1);
+        modifyNumProfs = modifyNumProfs + ": "
+                + SettingsActivity.currentNumProfs;
+        tvNumProfs.setText(modifyNumProfs);
+         */
+
+        decreaseNumLives = livesRemaining.getText().toString();
+        decreaseNumLives = decreaseNumLives.substring(0, decreaseNumLives.length()-1);
+        decreaseNumLives = decreaseNumLives + ": " + numLives;
+        livesRemaining.setText(decreaseNumLives);
 
         r.run(); //runs the runnable; ie constantly calling callMoveProf
 
@@ -259,7 +286,7 @@ public class GameActivity extends AppCompatActivity {
             prof.setX(0);
             prof.setY(0);
         } */
-        //profCollision(louie, prof); //handles collisions with prof
+        profCollision(louie, prof); //handles collisions with prof
     }
 
     //randomly generating which profs appear (user selected amount)
@@ -517,12 +544,15 @@ public class GameActivity extends AppCompatActivity {
     //handling collision with louie and a prof
     private void profCollision(ImageView louie, ImageView prof) {
         if(isViewOverlapping(louie, prof)) {
-            if (numLives > 0) {
+            if (numLives > 1) {
                 numLives--;
                 prof.setX(0);
                 prof.setY(0);
+                updateLives();
             } else {
                 gameOver(this);
+                //maybe check a "gameover page" rather than a popup message.
+                // (there are intent issues)
             }
         }
     }
@@ -545,6 +575,7 @@ public class GameActivity extends AppCompatActivity {
                 })
                 .create();
         dialog.show();
+        updateLives();
     }
 
 
@@ -574,6 +605,28 @@ public class GameActivity extends AppCompatActivity {
                 })
                 .create();
         dialog.show();
+    }
+
+    private void updateLives() {
+        /*
+        SettingsActivity.currentNumLives++;
+                    strNumLives = Integer
+                            .toString(SettingsActivity.currentNumLives);
+                    modifyNumLives = tvNumLives.getText().toString();
+                    modifyNumLives = modifyNumLives
+                            .substring(0, modifyNumLives.length()
+                            - (strNumLives.length()));
+                    modifyNumLives = modifyNumLives
+                            + SettingsActivity.currentNumLives;
+                    tvNumLives.setText(modifyNumLives);
+         */
+        strNumLives = Integer .toString(numLives);
+        decreaseNumLives = livesRemaining.getText().toString();
+        decreaseNumLives = decreaseNumLives.substring(0, decreaseNumLives.length() -
+                (strNumLives.length()));
+        decreaseNumLives = decreaseNumLives + numLives;
+        livesRemaining.setText(decreaseNumLives);
+
     }
 
 
