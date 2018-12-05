@@ -7,6 +7,11 @@
     <string name="a">A that Louie is trying to obtain</string>
 
 
+    <!-- Strings related to 'Game Activity' -->
+    <string name="high">Highest Score: </string>
+    <string name="lives">Live Remaining: </string>
+
+
     <!-- Strings related to 'Start Screen' -->
     <string name="Start">Press Anywhere to Start</string>
     <string name="press_to_start">Press Anywhere to Start</string>

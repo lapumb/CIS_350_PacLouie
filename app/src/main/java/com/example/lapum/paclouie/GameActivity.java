@@ -34,6 +34,13 @@ public class GameActivity extends AppCompatActivity {
     /** PacLouie layout. **/
     private RelativeLayout layout;
 
+    /** string for number of lives remaining in game **/
+    private String strNumLives;
+
+    /** string to show number of lives remaining **/
+    private String decreaseNumLives;
+
+    /** TODO Need to add javadoc for instance variables. **/
     /** Variable for the number of profs in the game. **/
     private int numProfs = SettingsActivity.getCurrentNumProfs();
 
@@ -56,12 +63,21 @@ public class GameActivity extends AppCompatActivity {
     Handler handler = new Handler();
     final Runnable r = new Runnable() {
         public void run() {
-            aObtained();
-            profCollision();
             callMoveProf();
             handler.postDelayed(r, speed);
         }
     };
+
+    /*
+    //check about a runnable for checking about 'A' collisions, and consatntly checking if overlapping
+    Handler handler2 = new Handler();
+    final Runnable r2 = new Runnable() {
+        @Override
+        public void run() {
+            updateLives();
+            handler2.postDelayed(r2, 1);
+        }
+    }; */
 
 
    //Images for profs and louie
@@ -72,6 +88,9 @@ public class GameActivity extends AppCompatActivity {
     ImageView a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14,
                 a15, a16, a17, a18, a19, a20, a21, a22, a23, a24;
 
+    //text views in upper corners
+    TextView highesetScore;
+    TextView livesRemaining;
     ArrayList<ImageView> profList = new ArrayList<>();
     ArrayList<ImageView> aList = new ArrayList<>();
     ArrayList<ImageView> aVisibleList = new ArrayList<>();
@@ -89,6 +108,10 @@ public class GameActivity extends AppCompatActivity {
         this.louie = findViewById(R.id.gameLouie);
         InstantiateAs();
 
+        //text in upper corners (always visible)
+        this.highesetScore = (TextView) findViewById(R.id.highscoresText);
+        this.livesRemaining = (TextView) findViewById(R.id.livesText);
+
         AddImageViewsToList();
 
         //initially setting all profs to not appear (gone)
@@ -104,6 +127,20 @@ public class GameActivity extends AppCompatActivity {
         setProfVisibility(numProfs); //setting how many profs are visible
         setAVisibility(numProfs, numRange, numSpeed, numLives); //setting number of A's appearing
 
+
+        /*
+        modifyNumProfs = tvNumProfs.getText().toString();
+        modifyNumProfs = modifyNumProfs
+                .substring(0, modifyNumProfs.length() - 1);
+        modifyNumProfs = modifyNumProfs + ": "
+                + SettingsActivity.currentNumProfs;
+        tvNumProfs.setText(modifyNumProfs);
+         */
+
+        decreaseNumLives = livesRemaining.getText().toString();
+        decreaseNumLives = decreaseNumLives.substring(0, decreaseNumLives.length()-1);
+        decreaseNumLives = decreaseNumLives + ": " + numLives;
+        livesRemaining.setText(decreaseNumLives);
 
         r.run(); //runs the runnable; ie constantly calling callMoveProf
 
@@ -185,6 +222,7 @@ public class GameActivity extends AppCompatActivity {
     * @param int range professors can move
      */
     public void moveProf(ImageView prof, int range) {
+
         //setting the range
         range = range * 3;
 
@@ -219,7 +257,7 @@ public class GameActivity extends AppCompatActivity {
             prof.setX(0);
             prof.setY(0);
         } */
-        //profCollision(louie, prof); //handles collisions with prof
+        profCollision(louie, prof); //handles collisions with prof
     }
 
     //randomly generating which profs appear (user selected amount)
@@ -233,6 +271,7 @@ public class GameActivity extends AppCompatActivity {
                 i--;
         }
     }
+
 
     //returns which profs are visible.
     private ImageView[] getProfsVisible() {
@@ -303,6 +342,8 @@ public class GameActivity extends AppCompatActivity {
                 numAVisible--;
                 removeA = a;
             }
+            //increase the score here as well, depend on difficulty?
+            // high-score?
         }
         if(removeA != null)
             aVisibleList.remove(removeA);
@@ -316,32 +357,21 @@ public class GameActivity extends AppCompatActivity {
 //        }
     }
 
-    /**
-     *Handling collision with louie and a profs.
-     **/
-    private void profCollision() {
-        for(ImageView prof : profList){
-            if(prof.getVisibility() == View.VISIBLE) {
-                if (isViewOverlapping(louie, prof))
-                    if (numLives > 0) {
-                        numLives--;
-                        //TODO: Display message that life has been lost
-                        prof.setX(0);
-                        prof.setY(0);
-                    } else {
-                        gameOver(this);
-                    }
+
+    //handling collision with louie and a prof
+    private void profCollision(ImageView louie, ImageView prof) {
+        if(isViewOverlapping(louie, prof)) {
+            if (numLives > 1) {
+                numLives--;
+                prof.setX(0);
+                prof.setY(0);
+                //updateLives();
+            } else {
+                gameOver(this);
+                //maybe check a "gameover page" rather than a popup message.
+                // (there are intent issues)
             }
         }
-//        if(isViewOverlapping(louie, prof)) {
-//            if (numLives > 0) {
-//                numLives--;
-//                prof.setX(0);
-//                prof.setY(0);
-//            } else {
-//                gameOver(this);
-//            }
-//        }
     }
 
 
@@ -362,6 +392,7 @@ public class GameActivity extends AppCompatActivity {
                 })
                 .create();
         dialog.show();
+        updateLives();
     }
 
 
@@ -391,6 +422,28 @@ public class GameActivity extends AppCompatActivity {
                 })
                 .create();
         dialog.show();
+    }
+
+    private void updateLives() {
+        /*
+        SettingsActivity.currentNumLives++;
+                    strNumLives = Integer
+                            .toString(SettingsActivity.currentNumLives);
+                    modifyNumLives = tvNumLives.getText().toString();
+                    modifyNumLives = modifyNumLives
+                            .substring(0, modifyNumLives.length()
+                            - (strNumLives.length()));
+                    modifyNumLives = modifyNumLives
+                            + SettingsActivity.currentNumLives;
+                    tvNumLives.setText(modifyNumLives);
+         */
+        strNumLives = Integer .toString(numLives);
+        decreaseNumLives = livesRemaining.getText().toString();
+        decreaseNumLives = decreaseNumLives.substring(0, decreaseNumLives.length() -
+                (strNumLives.length()));
+        decreaseNumLives = decreaseNumLives + numLives;
+        livesRemaining.setText(decreaseNumLives);
+
     }
 
 

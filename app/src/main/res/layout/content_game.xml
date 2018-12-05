@@ -50,8 +50,8 @@
         android:layout_height="199dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         android:contentDescription="@string/louie"
         android:visibility="visible"
         app:srcCompat="@drawable/single_louielaker" />
@@ -402,5 +402,27 @@
         android:layout_marginTop="318dp"
         android:contentDescription="@string/a"
         app:srcCompat="@drawable/a" />
+
+    <TextView
+        android:id="@+id/livesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="37dp"
+        android:text="@string/lives"
+        android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title" />
+
+    <TextView
+        android:id="@+id/highscoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/prof3"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="0dp"
+        android:text="@string/high"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.SearchResult.Title" />
 
 </RelativeLayout>
