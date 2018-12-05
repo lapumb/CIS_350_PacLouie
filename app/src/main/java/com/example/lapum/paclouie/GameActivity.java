@@ -34,13 +34,9 @@ public class GameActivity extends AppCompatActivity {
     /** PacLouie layout. **/
     private RelativeLayout layout;
 
-    /** string for number of lives remaining in game **/
-    private String strNumLives;
-
     /** string to show number of lives remaining **/
     private String decreaseNumLives;
 
-    /** TODO Need to add javadoc for instance variables. **/
     /** Variable for the number of profs in the game. **/
     private int numProfs = SettingsActivity.getCurrentNumProfs();
 
@@ -117,7 +113,7 @@ public class GameActivity extends AppCompatActivity {
 
         //initially setting all a's to be gone
         for(ImageView a : aList){
-            a.setVisibility((View.GONE));
+            a.setVisibility(View.GONE);
         }
 
         setProfVisibility(numProfs); //setting how many profs are visible
@@ -417,6 +413,7 @@ public class GameActivity extends AppCompatActivity {
                             + SettingsActivity.currentNumLives;
                     tvNumLives.setText(modifyNumLives);
          */
+        String strNumLives;
         strNumLives = Integer .toString(numLives);
         decreaseNumLives = livesRemaining.getText().toString();
         decreaseNumLives = decreaseNumLives.substring(0, decreaseNumLives.length() -
