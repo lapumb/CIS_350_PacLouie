@@ -422,7 +422,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="6dp"
         android:layout_marginTop="0dp"
-        android:text="@string/high"
+        android:text="@string/score"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.SearchResult.Title" />
 
 </RelativeLayout>

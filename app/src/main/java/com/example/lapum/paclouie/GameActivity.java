@@ -56,13 +56,7 @@ public class GameActivity extends AppCompatActivity {
     private int speed = Professor.getRealSpeed(numSpeed);
 
     //handler and runnable responsible for constantly moving the profs
-    Handler handler = new Handler();
-    final Runnable r = new Runnable() {
-        public void run() {
-            callMoveProf();
-            handler.postDelayed(r, speed);
-        }
-    };
+
 
     /*
     //check about a runnable for checking about 'A' collisions, and consatntly checking if overlapping
@@ -123,27 +117,38 @@ public class GameActivity extends AppCompatActivity {
         setProfVisibility(numProfs); //setting how many profs are visible
         setAVisibility(numProfs, numRange, numSpeed, numLives); //setting number of A's appearing
 
-
-        /*
-        modifyNumProfs = tvNumProfs.getText().toString();
-        modifyNumProfs = modifyNumProfs
-                .substring(0, modifyNumProfs.length() - 1);
-        modifyNumProfs = modifyNumProfs + ": "
-                + SettingsActivity.currentNumProfs;
-        tvNumProfs.setText(modifyNumProfs);
-         */
-
         decreaseNumLives = livesRemaining.getText().toString();
         decreaseNumLives = decreaseNumLives.substring(0, decreaseNumLives.length()-1);
         decreaseNumLives = decreaseNumLives + ": " + numLives;
         livesRemaining.setText(decreaseNumLives);
 
-        r.run(); //runs the runnable; ie constantly calling callMoveProf
+        handleRunables();
 
         RelativeLayout.LayoutParams layoutParams
                 = new RelativeLayout.LayoutParams(250, 250);
         louie.setLayoutParams(layoutParams);
         louie.setOnTouchListener(new ChoiceTouchListener());
+    }
+
+    //handler for moving profs, prof collisions, collecting A's.
+    private void handleRunables() {
+        final Handler handler = new Handler();
+        final Runnable r = new Runnable() {
+            public void run() {
+                callMoveProf();
+                handler.postDelayed(this, speed);
+            }
+        };
+
+        final Runnable r2 = new Runnable() {
+            @Override
+            public void run() {
+                aObtained();
+                handler.postDelayed(this, 1);
+            }
+        };
+        handler.postDelayed(r, 0);
+        handler.postDelayed(r2, 0);
     }
 
     /**
@@ -361,11 +366,12 @@ public class GameActivity extends AppCompatActivity {
                 numLives--;
                 prof.setX(0);
                 prof.setY(0);
-                //updateLives();
+                updateLives();
             } else {
-                gameOver(this);
+                numLives--;
+                //gameOver(this);
                 //maybe check a "gameover page" rather than a popup message.
-                // (there are intent issues)
+                //(there are intent issues)
             }
         }
     }
@@ -387,8 +393,9 @@ public class GameActivity extends AppCompatActivity {
                     }
                 })
                 .create();
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.show();
-        updateLives();
     }
 
 
@@ -421,18 +428,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void updateLives() {
-        /*
-        SettingsActivity.currentNumLives++;
-                    strNumLives = Integer
-                            .toString(SettingsActivity.currentNumLives);
-                    modifyNumLives = tvNumLives.getText().toString();
-                    modifyNumLives = modifyNumLives
-                            .substring(0, modifyNumLives.length()
-                            - (strNumLives.length()));
-                    modifyNumLives = modifyNumLives
-                            + SettingsActivity.currentNumLives;
-                    tvNumLives.setText(modifyNumLives);
-         */
         String strNumLives;
         strNumLives = Integer .toString(numLives);
         decreaseNumLives = livesRemaining.getText().toString();
@@ -440,7 +435,6 @@ public class GameActivity extends AppCompatActivity {
                 (strNumLives.length()));
         decreaseNumLives = decreaseNumLives + numLives;
         livesRemaining.setText(decreaseNumLives);
-
     }
 
 

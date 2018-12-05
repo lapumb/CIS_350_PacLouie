@@ -10,6 +10,7 @@
     <!-- Strings related to 'Game Activity' -->
     <string name="high">Highest Score: </string>
     <string name="lives">Live Remaining: </string>
+    <string name="score">Score: </string>
 
 
     <!-- Strings related to 'Start Screen' -->

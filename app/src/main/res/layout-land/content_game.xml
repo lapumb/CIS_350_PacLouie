@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/prof1"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="321dp"
@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/prof2"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="185dp"
@@ -34,8 +34,8 @@
 
     <ImageView
         android:id="@+id/prof3"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="109dp"
@@ -58,8 +58,8 @@
 
     <ImageView
         android:id="@+id/prof4"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="104dp"
@@ -70,8 +70,8 @@
 
     <ImageView
         android:id="@+id/prof5"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="442dp"
@@ -82,8 +82,8 @@
 
     <ImageView
         android:id="@+id/prof6"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="329dp"
@@ -94,8 +94,8 @@
 
     <ImageView
         android:id="@+id/prof7"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="453dp"
@@ -106,8 +106,8 @@
 
     <ImageView
         android:id="@+id/prof8"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="7dp"
@@ -118,8 +118,8 @@
 
     <ImageView
         android:id="@+id/prof0"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="228dp"
@@ -402,5 +402,27 @@
         android:layout_marginTop="182dp"
         android:contentDescription="@string/a"
         app:srcCompat="@drawable/a" />
+
+    <TextView
+        android:id="@+id/livesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="37dp"
+        android:text="@string/lives"
+        android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title" />
+
+    <TextView
+        android:id="@+id/highscoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/prof3"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="0dp"
+        android:text="@string/score"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.SearchResult.Title" />
 
 </RelativeLayout>
