@@ -13,7 +13,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -40,6 +41,7 @@ public class GameActivity extends AppCompatActivity {
     private String decreaseNumLives;
 
     /** TODO Need to add javadoc for instance variables. **/
+    /** Variable for the number of profs in the game. **/
     private int numProfs = SettingsActivity.getCurrentNumProfs();
 
     /** Variable for speed of profs in game **/
@@ -76,92 +78,32 @@ public class GameActivity extends AppCompatActivity {
 
 
    //Images for profs and louie
-    ImageView prof0;
-    ImageView prof1;
-    ImageView prof2;
-    ImageView prof3;
-    ImageView prof4;
-    ImageView prof5;
-    ImageView prof6;
-    ImageView prof7;
-    ImageView prof8;
+    ImageView prof0, prof1, prof2, prof3, prof4, prof5, prof6, prof7, prof8;
     ImageView louie;
 
     //objects Louie is to achieve
-    ImageView a0;
-    ImageView a1;
-    ImageView a2;
-    ImageView a3;
-    ImageView a4;
-    ImageView a5;
-    ImageView a6;
-    ImageView a7;
-    ImageView a8;
-    ImageView a9;
-    ImageView a10;
-    ImageView a11;
-    ImageView a12;
-    ImageView a13;
-    ImageView a14;
-    ImageView a15;
-    ImageView a16;
-    ImageView a17;
-    ImageView a18;
-    ImageView a19;
-    ImageView a20;
-    ImageView a21;
-    ImageView a22;
-    ImageView a23;
-    ImageView a24;
-
+    ImageView a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14,
+                a15, a16, a17, a18, a19, a20, a21, a22, a23, a24;
 
     //text views in upper corners
     TextView highesetScore;
     TextView livesRemaining;
+    ArrayList<ImageView> profList = new ArrayList<>();
+    ArrayList<ImageView> aList = new ArrayList<>();
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         gameIsRunning = true;
+        AddImageViewsToList();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        layout = (RelativeLayout) findViewById(R.id.gameView);
+        layout = findViewById(R.id.gameView);
 
         //initializing images (profs, louie, a's)
-        this.prof0 = (ImageView) findViewById(R.id.prof0);
-        this.prof1 = (ImageView) findViewById(R.id.prof1);
-        this.prof2 = (ImageView) findViewById(R.id.prof2);
-        this.prof3 = (ImageView) findViewById(R.id.prof3);
-        this.prof4 = (ImageView) findViewById(R.id.prof4);
-        this.prof5 = (ImageView) findViewById(R.id.prof5);
-        this.prof6 = (ImageView) findViewById(R.id.prof6);
-        this.prof7 = (ImageView) findViewById(R.id.prof7);
-        this.prof8 = (ImageView) findViewById(R.id.prof8);
-        this.louie = (ImageView) findViewById(R.id.gameLouie);
-        this.a0 = (ImageView) findViewById(R.id.a0);
-        this.a1 = (ImageView) findViewById(R.id.a1);
-        this.a2 = (ImageView) findViewById(R.id.a2);
-        this.a3 = (ImageView) findViewById(R.id.a3);
-        this.a4 = (ImageView) findViewById(R.id.a4);
-        this.a5 = (ImageView) findViewById(R.id.a5);
-        this.a6 = (ImageView) findViewById(R.id.a6);
-        this.a7 = (ImageView) findViewById(R.id.a7);
-        this.a8 = (ImageView) findViewById(R.id.a8);
-        this.a9 = (ImageView) findViewById(R.id.a9);
-        this.a10 = (ImageView) findViewById(R.id.a10);
-        this.a11 = (ImageView) findViewById(R.id.a11);
-        this.a12 = (ImageView) findViewById(R.id.a12);
-        this.a13 = (ImageView) findViewById(R.id.a13);
-        this.a14 = (ImageView) findViewById(R.id.a14);
-        this.a15 = (ImageView) findViewById(R.id.a15);
-        this.a16 = (ImageView) findViewById(R.id.a16);
-        this.a17 = (ImageView) findViewById(R.id.a17);
-        this.a18 = (ImageView) findViewById(R.id.a18);
-        this.a19 = (ImageView) findViewById(R.id.a19);
-        this.a20 = (ImageView) findViewById(R.id.a20);
-        this.a21 = (ImageView) findViewById(R.id.a21);
-        this.a22 = (ImageView) findViewById(R.id.a22);
-        this.a23 = (ImageView) findViewById(R.id.a23);
-        this.a24 = (ImageView) findViewById(R.id.a24);
+        InstantiateProfs();
+        this.louie = findViewById(R.id.gameLouie);
+        InstantiateAs();
 
         //text in upper corners (always visible)
         this.highesetScore = (TextView) findViewById(R.id.highscoresText);
@@ -169,42 +111,14 @@ public class GameActivity extends AppCompatActivity {
 
 
         //initially setting all profs to not appear (gone)
-        prof1.setVisibility(View.GONE);
-        prof2.setVisibility(View.GONE);
-        prof3.setVisibility(View.GONE);
-        prof4.setVisibility(View.GONE);
-        prof5.setVisibility(View.GONE);
-        prof6.setVisibility(View.GONE);
-        prof7.setVisibility(View.GONE);
-        prof8.setVisibility(View.GONE);
-        prof0.setVisibility(View.GONE);
+        for(ImageView prof : profList){
+            prof.setVisibility(View.GONE);
+        }
 
         //initially setting all a's to be gone
-        a0.setVisibility(View.GONE);
-        a1.setVisibility(View.GONE);
-        a2.setVisibility(View.GONE);
-        a3.setVisibility(View.GONE);
-        a4.setVisibility(View.GONE);
-        a5.setVisibility(View.GONE);
-        a6.setVisibility(View.GONE);
-        a7.setVisibility(View.GONE);
-        a8.setVisibility(View.GONE);
-        a9.setVisibility(View.GONE);
-        a10.setVisibility(View.GONE);
-        a11.setVisibility(View.GONE);
-        a12.setVisibility(View.GONE);
-        a13.setVisibility(View.GONE);
-        a14.setVisibility(View.GONE);
-        a15.setVisibility(View.GONE);
-        a16.setVisibility(View.GONE);
-        a17.setVisibility(View.GONE);
-        a18.setVisibility(View.GONE);
-        a19.setVisibility(View.GONE);
-        a20.setVisibility(View.GONE);
-        a21.setVisibility(View.GONE);
-        a22.setVisibility(View.GONE);
-        a23.setVisibility(View.GONE);
-        a24.setVisibility(View.GONE);
+        for(ImageView a : aList){
+            a.setVisibility((View.GONE));
+        }
 
         setProfVisibility(numProfs); //setting how many profs are visible
         setAVisibility(numProfs, numRange, numSpeed, numLives); //setting number of A's appearing
@@ -232,29 +146,71 @@ public class GameActivity extends AppCompatActivity {
         louie.setOnTouchListener(new ChoiceTouchListener());
     }
 
+    /**
+     * Instantiate prof ImageViews.
+     */
+    private void InstantiateProfs() {
+        this.prof0 = findViewById(R.id.prof0);
+        this.prof1 = findViewById(R.id.prof1);
+        this.prof2 = findViewById(R.id.prof2);
+        this.prof3 = findViewById(R.id.prof3);
+        this.prof4 = findViewById(R.id.prof4);
+        this.prof5 = findViewById(R.id.prof5);
+        this.prof6 = findViewById(R.id.prof6);
+        this.prof7 = findViewById(R.id.prof7);
+        this.prof8 = findViewById(R.id.prof8);
+    }
+
+    /**
+     * Instantiate A ImageViews.
+     */
+    private void InstantiateAs() {
+        this.a0 = findViewById(R.id.a0);
+        this.a1 = findViewById(R.id.a1);
+        this.a2 = findViewById(R.id.a2);
+        this.a3 = findViewById(R.id.a3);
+        this.a4 = findViewById(R.id.a4);
+        this.a5 = findViewById(R.id.a5);
+        this.a6 = findViewById(R.id.a6);
+        this.a7 = findViewById(R.id.a7);
+        this.a8 = findViewById(R.id.a8);
+        this.a9 = findViewById(R.id.a9);
+        this.a10 = findViewById(R.id.a10);
+        this.a11 = findViewById(R.id.a11);
+        this.a12 = findViewById(R.id.a12);
+        this.a13 = findViewById(R.id.a13);
+        this.a14 = findViewById(R.id.a14);
+        this.a15 = findViewById(R.id.a15);
+        this.a16 = findViewById(R.id.a16);
+        this.a17 = findViewById(R.id.a17);
+        this.a18 = findViewById(R.id.a18);
+        this.a19 = findViewById(R.id.a19);
+        this.a20 = findViewById(R.id.a20);
+        this.a21 = findViewById(R.id.a21);
+        this.a22 = findViewById(R.id.a22);
+        this.a23 = findViewById(R.id.a23);
+        this.a24 = findViewById(R.id.a24);
+    }
+
+    /**
+     * Adds the prof's and a's to lists.
+     */
+    private void AddImageViewsToList() {
+        ImageView[] tempProfList = {prof0, prof1, prof2, prof3, prof4, prof5, prof6, prof7, prof8};
+        Collections.addAll(profList, tempProfList);
+        ImageView[] tempAList = {a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14,
+                a15, a16, a17, a18, a19, a20, a21, a22, a23, a24};
+        Collections.addAll(aList, tempAList);
+    }
+
 
     //function to determine which profs are present and need movement
     public void callMoveProf() {
-        if(prof0.getVisibility() == View.VISIBLE)
-            moveProf(prof0, numRange);
-        if(prof1.getVisibility() == View.VISIBLE)
-            moveProf(prof1, numRange);
-        if(prof2.getVisibility() == View.VISIBLE)
-            moveProf(prof2, numRange);
-        if(prof3.getVisibility() == View.VISIBLE)
-            moveProf(prof3, numRange);
-        if(prof4.getVisibility() == View.VISIBLE)
-            moveProf(prof4, numRange);
-        if(prof5.getVisibility() == View.VISIBLE)
-            moveProf(prof5, numRange);
-        if(prof6.getVisibility() == View.VISIBLE)
-            moveProf(prof6, numRange);
-        if(prof7.getVisibility() == View.VISIBLE)
-            moveProf(prof7, numRange);
-        if(prof8.getVisibility() == View.VISIBLE)
-            moveProf(prof8, numRange);
+        for(ImageView prof : profList){
+            if(prof.getVisibility() == View.VISIBLE)
+                moveProf(prof, numRange);
+        }
     }
-
 
     /*
     /**Moves the professor that is being called
@@ -304,36 +260,11 @@ public class GameActivity extends AppCompatActivity {
     public void setProfVisibility(int numProfs) {
         Random rnd = new Random();
         for (int i = 0; i < numProfs; i++) {
-            String str = "prof" + rnd.nextInt(9);
-            if (str.equals("prof1") && prof1.getVisibility() == View.GONE) {
-                prof1.setVisibility(View.VISIBLE);
-            } else if (str.equals("prof2") && prof2.getVisibility()
-                    == View.GONE) {
-                prof2.setVisibility(View.VISIBLE);
-            } else if (str.equals("prof3") && prof3.getVisibility()
-                    == View.GONE) {
-                prof3.setVisibility(View.VISIBLE);
-            } else if (str.equals("prof4") && prof4.getVisibility()
-                    == View.GONE) {
-                prof4.setVisibility(View.VISIBLE);
-            } else if (str.equals("prof5") && prof5.getVisibility()
-                    == View.GONE) {
-                prof5.setVisibility(View.VISIBLE);
-            } else if (str.equals("prof6") && prof6.getVisibility()
-                    == View.GONE) {
-                prof6.setVisibility(View.VISIBLE);
-            } else if (str.equals("prof7") && prof7.getVisibility()
-                    == View.GONE) {
-                prof7.setVisibility(View.VISIBLE);
-            } else if (str.equals("prof8") && prof8.getVisibility()
-                    == View.GONE) {
-                prof8.setVisibility(View.VISIBLE);
-            } else if (str.equals("prof0") && prof0.getVisibility()
-                    == View.GONE) {
-                prof0.setVisibility(View.VISIBLE);
-            } else {
+            int rand = rnd.nextInt(9);
+            if (profList.get(rand).getVisibility() == View.GONE)
+                profList.get(rand).setVisibility(View.VISIBLE);
+            else
                 i--;
-            }
         }
     }
 
@@ -341,34 +272,9 @@ public class GameActivity extends AppCompatActivity {
     //returns which profs are visible.
     private ImageView[] getProfsVisible() {
         ImageView visible[] = new ImageView[10];
-        for(int i = 0; i <= visible.length; i++) {
-            if(prof0.getVisibility() == View.VISIBLE) {
-                visible[i] = prof0;
-            }
-            if(prof1.getVisibility() == View.VISIBLE) {
-                visible[i] = prof1;
-            }
-            if(prof2.getVisibility() == View.VISIBLE) {
-                visible[i] = prof2;
-            }
-            if(prof3.getVisibility() == View.VISIBLE) {
-                visible[i] = prof3;
-            }
-            if(prof4.getVisibility() == View.VISIBLE) {
-                visible[i] = prof4;
-            }
-            if(prof5.getVisibility() == View.VISIBLE) {
-                visible[i] = prof5;
-            }
-            if(prof6.getVisibility() == View.VISIBLE) {
-                visible[i] = prof6;
-            }
-            if(prof7.getVisibility() == View.VISIBLE) {
-                visible[i] = prof7;
-            }
-            if(prof8.getVisibility() == View.VISIBLE) {
-                visible[i] = prof8;
-            }
+        for(int i = 0; i < profList.size(); i++){
+            if (profList.get(i).getVisibility() == View.GONE)
+                visible[i] = profList.get(i);
         }
         return visible;
     }
@@ -378,58 +284,11 @@ public class GameActivity extends AppCompatActivity {
         Random rnd = new Random();
         int numA = 1 + ((profs/2) + 2) + ((range/2) + 2) + ((speed/2) + 2) + ((lives/2) + 2);
         for(int i = 0; i <= numA; i++) {
-            String str = "a" + rnd.nextInt(24);
-            if (str.equals("a0") && a0.getVisibility() == View.GONE) {
-                a0.setVisibility(View.VISIBLE);
-            } else if (str.equals("a1") && a1.getVisibility() == View.GONE) {
-                a1.setVisibility(View.VISIBLE);
-            } else if (str.equals("a2") && a2.getVisibility() == View.GONE) {
-                a2.setVisibility(View.VISIBLE);
-            } else if (str.equals("a3") && a3.getVisibility() == View.GONE) {
-                a3.setVisibility(View.VISIBLE);
-            } else if (str.equals("a4") && a4.getVisibility() == View.GONE) {
-                a4.setVisibility(View.VISIBLE);
-            } else if (str.equals("a5") && a5.getVisibility() == View.GONE) {
-                a5.setVisibility(View.VISIBLE);
-            } else if (str.equals("a6") && a6.getVisibility() == View.GONE) {
-                a6.setVisibility(View.VISIBLE);
-            } else if (str.equals("a7") && a7.getVisibility() == View.GONE) {
-                a7.setVisibility(View.VISIBLE);
-            } else if (str.equals("a8") && a8.getVisibility() == View.GONE) {
-                a8.setVisibility(View.VISIBLE);
-            } else if (str.equals("a9") && a9.getVisibility() == View.GONE) {
-                a9.setVisibility(View.VISIBLE);
-            } else if (str.equals("a10") && a10.getVisibility() == View.GONE) {
-                a10.setVisibility(View.VISIBLE);
-            } else if (str.equals("a11") && a11.getVisibility() == View.GONE) {
-                a11.setVisibility(View.VISIBLE);
-            } else if (str.equals("a12") && a12.getVisibility() == View.GONE) {
-                a12.setVisibility(View.VISIBLE);
-            } else if (str.equals("a13") && a13.getVisibility() == View.GONE) {
-                a13.setVisibility(View.VISIBLE);
-            } else if (str.equals("a14") && a14.getVisibility() == View.GONE) {
-                a14.setVisibility(View.VISIBLE);
-            } else if (str.equals("a15") && a15.getVisibility() == View.GONE) {
-                a15.setVisibility(View.VISIBLE);
-            } else if (str.equals("a16") && a16.getVisibility() == View.GONE) {
-                a16.setVisibility(View.VISIBLE);
-            } else if (str.equals("a17") && a17.getVisibility() == View.GONE) {
-                a17.setVisibility(View.VISIBLE);
-            } else if (str.equals("a18") && a18.getVisibility() == View.GONE) {
-                a18.setVisibility(View.VISIBLE);
-            } else if (str.equals("a19") && a19.getVisibility() == View.GONE) {
-                a19.setVisibility(View.VISIBLE);
-            } else if (str.equals("a20") && a20.getVisibility() == View.GONE) {
-                a20.setVisibility(View.VISIBLE);
-            } else if (str.equals("a21") && a21.getVisibility() == View.GONE) {
-                a21.setVisibility(View.VISIBLE);
-            } else if (str.equals("a22") && a22.getVisibility() == View.GONE) {
-                a22.setVisibility(View.VISIBLE);
-            } else if (str.equals("a23") && a23.getVisibility() == View.GONE) {
-                a23.setVisibility(View.VISIBLE);
-            } else if (str.equals("a24") && a24.getVisibility() == View.GONE) {
-                a24.setVisibility(View.VISIBLE);
-            }
+            int rand = rnd.nextInt();
+            if(aList.get(rand).getVisibility() == View.GONE)
+                aList.get(rand).setVisibility((View.VISIBLE));
+            else
+                i--;
         }
     }
 
@@ -437,82 +296,9 @@ public class GameActivity extends AppCompatActivity {
     //returns which A's are visible
     private ImageView[] getAsVisible() {
         ImageView visible[] = new ImageView[25];
-        for(int i = 0; i <= visible.length; i++) {
-            if (a0.getVisibility() == View.VISIBLE) {
-                visible[i] = a0;
-            }
-            if (a1.getVisibility() == View.VISIBLE) {
-                visible[i] = a1;
-            }
-            if (a2.getVisibility() == View.VISIBLE) {
-                visible[i] = a2;
-            }
-            if (a3.getVisibility() == View.VISIBLE) {
-                visible[i] = a3;
-            }
-            if (a4.getVisibility() == View.VISIBLE) {
-                visible[i] = a4;
-            }
-            if (a5.getVisibility() == View.VISIBLE) {
-                visible[i] = a5;
-            }
-            if (a6.getVisibility() == View.VISIBLE) {
-                visible[i] = a6;
-            }
-            if (a7.getVisibility() == View.VISIBLE) {
-                visible[i] = a7;
-            }
-            if (a8.getVisibility() == View.VISIBLE) {
-                visible[i] = a8;
-            }
-            if (a9.getVisibility() == View.VISIBLE) {
-                visible[i] = a9;
-            }
-            if (a10.getVisibility() == View.VISIBLE) {
-                visible[i] = a10;
-            }
-            if (a11.getVisibility() == View.VISIBLE) {
-                visible[i] = a11;
-            }
-            if (a12.getVisibility() == View.VISIBLE) {
-                visible[i] = a12;
-            }
-            if (a13.getVisibility() == View.VISIBLE) {
-                visible[i] = a13;
-            }
-            if (a14.getVisibility() == View.VISIBLE) {
-                visible[i] = a14;
-            }
-            if (a15.getVisibility() == View.VISIBLE) {
-                visible[i] = a15;
-            }
-            if (a16.getVisibility() == View.VISIBLE) {
-                visible[i] = a16;
-            }
-            if (a17.getVisibility() == View.VISIBLE) {
-                visible[i] = a17;
-            }
-            if (a18.getVisibility() == View.VISIBLE) {
-                visible[i] = a18;
-            }
-            if (a19.getVisibility() == View.VISIBLE) {
-                visible[i] = a19;
-            }
-            if (a20.getVisibility() == View.VISIBLE) {
-                visible[i] = a20;
-            }
-            if (a21.getVisibility() == View.VISIBLE) {
-                visible[i] = a21;
-            }
-            if (a22.getVisibility() == View.VISIBLE) {
-                visible[i] = a22;
-            }
-            if (a23.getVisibility() == View.VISIBLE) {
-                visible[i] = a23;
-            }
-            if (a24.getVisibility() == View.VISIBLE) {
-                visible[i] = a24;
-            }
+        for(int i = 0; i < aList.size(); i++){
+            if (aList.get(i).getVisibility() == View.GONE)
+                visible[i] = aList.get(i);
         }
         return visible;
     }
