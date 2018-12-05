@@ -55,9 +55,6 @@ public class GameActivity extends AppCompatActivity {
     /** Variable to set the actual speed of the profs movements **/
     private int speed = Professor.getRealSpeed(numSpeed);
 
-    //handler and runnable responsible for constantly moving the profs
-
-
     /*
     //check about a runnable for checking about 'A' collisions, and consatntly checking if overlapping
     Handler handler2 = new Handler();
@@ -79,7 +76,7 @@ public class GameActivity extends AppCompatActivity {
                 a15, a16, a17, a18, a19, a20, a21, a22, a23, a24;
 
     //text views in upper corners
-    TextView highesetScore;
+    TextView score;
     TextView livesRemaining;
     ArrayList<ImageView> profList = new ArrayList<>();
     ArrayList<ImageView> aList = new ArrayList<>();
@@ -99,7 +96,7 @@ public class GameActivity extends AppCompatActivity {
         InstantiateAs();
 
         //text in upper corners (always visible)
-        this.highesetScore = (TextView) findViewById(R.id.highscoresText);
+        this.score = (TextView) findViewById(R.id.highscoresText);
         this.livesRemaining = (TextView) findViewById(R.id.livesText);
 
         AddImageViewsToList();
@@ -144,6 +141,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void run() {
                 aObtained();
+
                 handler.postDelayed(this, 1);
             }
         };
@@ -251,13 +249,6 @@ public class GameActivity extends AppCompatActivity {
                 prof.setY(prof.getY() - dy * 10);
             }
         }
-
-        //handling collisions
-        /*if(isViewOverlapping(louie, prof)) {
-            profCollision();
-            prof.setX(0);
-            prof.setY(0);
-        } */
         profCollision(louie, prof); //handles collisions with prof
     }
 
@@ -300,7 +291,6 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-
     //returns which A's are visible
     private ImageView[] getAsVisible() {
         ImageView visible[] = new ImageView[25];
@@ -310,7 +300,6 @@ public class GameActivity extends AppCompatActivity {
         }
         return visible;
     }
-
 
 
     //checking if ImageView's overlap (I think)
@@ -338,24 +327,47 @@ public class GameActivity extends AppCompatActivity {
         for(ImageView a : aVisibleList){
             if(isViewOverlapping(louie, a)) {
                 a.setVisibility(View.GONE);
-                if(numAVisible == 0)
-                    gameWon(this);
+                //if(numAVisible == 0)
+                  //  gameWon(this);
                 numAVisible--;
                 removeA = a;
             }
             //increase the score here as well, depend on difficulty?
             // high-score?
         }
-        if(removeA != null)
+        if(removeA != null) {
             aVisibleList.remove(removeA);
-//        if(A.getVisibility() == View.VISIBLE) {
-//            A.setVisibility(View.GONE);
-//            if(aCount == 0) {
-//                gameWon(this);
-//            }
-//            //increase the score here as well, depend on difficulty?
-//            // high-score?
-//        }
+            updateGame();
+        }
+    }
+
+
+    //update the gameboard after an A is obtained
+    private void updateGame() {
+        Random rnd = new Random();
+
+        //making the game harder as A's are obtained
+        int random = rnd.nextInt(2);
+        if(random == 0) {
+            if(numRange < 9)
+                numRange++;
+        }
+        else {
+            if(numSpeed < 9) {
+                numSpeed++;
+            }
+        }
+
+        //repopulating the A randomly that was obtained
+        for(int i = 0; i < 1; i++) {
+            int rand = rnd.nextInt(25);
+            if(aList.get(rand).getVisibility() == View.GONE) {
+                aList.get(rand).setVisibility((View.VISIBLE));
+                aVisibleList.add(aList.get(rand));
+            }
+            else
+                i--;
+        }
     }
 
 
@@ -369,7 +381,7 @@ public class GameActivity extends AppCompatActivity {
                 updateLives();
             } else {
                 numLives--;
-                //gameOver(this);
+                gameOver(this);
                 //maybe check a "gameover page" rather than a popup message.
                 //(there are intent issues)
             }
@@ -382,13 +394,21 @@ public class GameActivity extends AppCompatActivity {
         final TextView gameOver = new TextView(c);
         AlertDialog dialog = new AlertDialog.Builder(c)
                 .setTitle("GAME OVER")
-                .setMessage("You lost! Click 'Okay' to exit to home screen.")
+                .setMessage("You lost! Click 'Okay' to exit to home screen, or click " +
+                        "Highscores to view you highscores.")
                 .setView(gameOver)
                 .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //also check high-score shit
                         Intent intent = new Intent(GameActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Highscores", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(GameActivity.this, HighscoreActivity.class);
                         startActivity(intent);
                     }
                 })
@@ -426,6 +446,14 @@ public class GameActivity extends AppCompatActivity {
                 .create();
         dialog.show();
     }
+
+    //handle if
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        gameOver(this);
+    }
+
 
     private void updateLives() {
         String strNumLives;
