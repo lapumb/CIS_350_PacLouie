@@ -51,7 +51,7 @@ public class GameActivity extends AppCompatActivity {
     private int numLives = SettingsActivity.getCurrentNumLives();
 
     /** Variable for the number of visible A's. **/
-    private int numAVisible;
+    protected int numAVisible;
 
     /** Variable to set the actual speed of the profs movements **/
     private int speed = Professor.getRealSpeed(numSpeed);
@@ -222,8 +222,6 @@ public class GameActivity extends AppCompatActivity {
     * @param int range professors can move
      */
     public void moveProf(ImageView prof, int range) {
-
-
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
@@ -430,42 +428,14 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
-    //you won
-    private void gameWon(Context c) {
-        final TextView gameWon = new TextView(c);
-        AlertDialog dialog = new AlertDialog.Builder(c)
-                .setTitle("GAME WON!")
-                .setMessage("You collected all the A's! You won the game! " +
-                        "Press Okay to go back to main screen, " +
-                        "or highscores to see highscores page")
-                .setView(gameWon)
-                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //also check high-score shit
-                        Intent intent = new Intent(GameActivity.this, MainActivity.class);
-                        startActivity(intent);
-                    }
-                })
-                .setNegativeButton("Highscores", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(GameActivity.this, HighscoreActivity.class);
-                        startActivity(intent);
-                    }
-                })
-                .create();
-        dialog.show();
-    }
-
-    //handle if
+    //handle if back is pressed, end game
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         gameOver(this);
     }
 
 
+    //update the # of lives remaining
     private void updateLives() {
         String strNumLives;
         strNumLives = Integer .toString(numLives);
