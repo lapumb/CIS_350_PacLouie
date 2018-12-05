@@ -46,6 +46,9 @@ public class GameActivity extends AppCompatActivity {
     /** Variable for number of lives in game **/
     private int numLives = SettingsActivity.getCurrentNumLives();
 
+    /** Variable for the number of visible A's. **/
+    private int numAVisible;
+
     /** Variable to set the actual speed of the profs movements **/
     private int speed = Professor.getRealSpeed(numSpeed);
 
@@ -53,6 +56,8 @@ public class GameActivity extends AppCompatActivity {
     Handler handler = new Handler();
     final Runnable r = new Runnable() {
         public void run() {
+            aObtained();
+            profCollision();
             callMoveProf();
             handler.postDelayed(r, speed);
         }
@@ -69,11 +74,11 @@ public class GameActivity extends AppCompatActivity {
 
     ArrayList<ImageView> profList = new ArrayList<>();
     ArrayList<ImageView> aList = new ArrayList<>();
+    ArrayList<ImageView> aVisibleList = new ArrayList<>();
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         gameIsRunning = true;
-        AddImageViewsToList();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
@@ -84,6 +89,7 @@ public class GameActivity extends AppCompatActivity {
         this.louie = findViewById(R.id.gameLouie);
         InstantiateAs();
 
+        AddImageViewsToList();
 
         //initially setting all profs to not appear (gone)
         for(ImageView prof : profList){
@@ -179,7 +185,6 @@ public class GameActivity extends AppCompatActivity {
     * @param int range professors can move
      */
     public void moveProf(ImageView prof, int range) {
-
         //setting the range
         range = range * 3;
 
@@ -229,7 +234,6 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-
     //returns which profs are visible.
     private ImageView[] getProfsVisible() {
         ImageView visible[] = new ImageView[10];
@@ -244,10 +248,13 @@ public class GameActivity extends AppCompatActivity {
     public void setAVisibility(int profs, int range, int speed, int lives) {
         Random rnd = new Random();
         int numA = 1 + ((profs/2) + 2) + ((range/2) + 2) + ((speed/2) + 2) + ((lives/2) + 2);
+        numAVisible = numA;
         for(int i = 0; i <= numA; i++) {
-            int rand = rnd.nextInt();
-            if(aList.get(rand).getVisibility() == View.GONE)
+            int rand = rnd.nextInt(25);
+            if(aList.get(rand).getVisibility() == View.GONE) {
                 aList.get(rand).setVisibility((View.VISIBLE));
+                aVisibleList.add(aList.get(rand));
+            }
             else
                 i--;
         }
@@ -286,30 +293,55 @@ public class GameActivity extends AppCompatActivity {
 
 
     //handling collision with louie and an 'A'
-    private void aObtained(ImageView A) {
-        int aCount = getAsVisible().length;
-        if(A.getVisibility() == View.VISIBLE) {
-            A.setVisibility(View.GONE);
-            if(aCount == 0) {
-                gameWon(this);
+    private void aObtained() {
+        ImageView removeA = null;
+        for(ImageView a : aVisibleList){
+            if(isViewOverlapping(louie, a)) {
+                a.setVisibility(View.GONE);
+                if(numAVisible == 0)
+                    gameWon(this);
+                numAVisible--;
+                removeA = a;
             }
-            //increase the score here as well, depend on difficulty?
-            // high-score?
         }
+        if(removeA != null)
+            aVisibleList.remove(removeA);
+//        if(A.getVisibility() == View.VISIBLE) {
+//            A.setVisibility(View.GONE);
+//            if(aCount == 0) {
+//                gameWon(this);
+//            }
+//            //increase the score here as well, depend on difficulty?
+//            // high-score?
+//        }
     }
 
-
-    //handling collision with louie and a prof
-    private void profCollision(ImageView louie, ImageView prof) {
-        if(isViewOverlapping(louie, prof)) {
-            if (numLives > 0) {
-                numLives--;
-                prof.setX(0);
-                prof.setY(0);
-            } else {
-                gameOver(this);
+    /**
+     *Handling collision with louie and a profs.
+     **/
+    private void profCollision() {
+        for(ImageView prof : profList){
+            if(prof.getVisibility() == View.VISIBLE) {
+                if (isViewOverlapping(louie, prof))
+                    if (numLives > 0) {
+                        numLives--;
+                        //TODO: Display message that life has been lost
+                        prof.setX(0);
+                        prof.setY(0);
+                    } else {
+                        gameOver(this);
+                    }
             }
         }
+//        if(isViewOverlapping(louie, prof)) {
+//            if (numLives > 0) {
+//                numLives--;
+//                prof.setX(0);
+//                prof.setY(0);
+//            } else {
+//                gameOver(this);
+//            }
+//        }
     }
 
 
