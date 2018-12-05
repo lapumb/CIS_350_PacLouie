@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -222,6 +223,12 @@ public class GameActivity extends AppCompatActivity {
      */
     public void moveProf(ImageView prof, int range) {
 
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+
         //setting the range
         range = range * 3;
 
@@ -239,14 +246,18 @@ public class GameActivity extends AppCompatActivity {
         //applying range to prof movement
         if(rnd >= 5) {
             for(int i = 0; i <= range; i++) {
-                prof.setX(prof.getX() + dx * 10);
-                prof.setY(prof.getY() + dy * 10);
+                if((prof.getX() + dx * 10) < width)
+                    prof.setX(prof.getX() + dx * 10);
+                if((prof.getY() + dy * 10) < height)
+                    prof.setY(prof.getY() + dy * 10);
             }
         }
         else {
             for(int i = 0; i <= range; i++) {
-                prof.setX(prof.getX() - dx * 10);
-                prof.setY(prof.getY() - dy * 10);
+                if((prof.getX() - dx * 10) >= 0)
+                    prof.setX(prof.getX() - dx * 10);
+                if((prof.getY() - dy * 10) >= 0)
+                    prof.setY(prof.getY() - dy * 10);
             }
         }
         profCollision(louie, prof); //handles collisions with prof
