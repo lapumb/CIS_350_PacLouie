@@ -38,6 +38,15 @@ public class GameActivity extends AppCompatActivity {
     /** string to show number of lives remaining **/
     private String decreaseNumLives;
 
+    /** string to show current score of the game **/
+    private String currentScore;
+
+    /** Score obainted in game **/
+    private int scoreBoard = 0;
+
+    /** variable for the selected number of lives to START game **/
+    final private int startLives = SettingsActivity.getCurrentNumLives();
+
     /** Variable for the number of profs in the game. **/
     private int numProfs = SettingsActivity.getCurrentNumProfs();
 
@@ -56,17 +65,6 @@ public class GameActivity extends AppCompatActivity {
     /** Variable to set the actual speed of the profs movements **/
     private int speed = Professor.getRealSpeed(numSpeed);
 
-    /*
-    //check about a runnable for checking about 'A' collisions, and consatntly checking if overlapping
-    Handler handler2 = new Handler();
-    final Runnable r2 = new Runnable() {
-        @Override
-        public void run() {
-            updateLives();
-            handler2.postDelayed(r2, 1);
-        }
-    }; */
-
 
    //Images for profs and louie
     ImageView prof0, prof1, prof2, prof3, prof4, prof5, prof6, prof7, prof8;
@@ -77,8 +75,7 @@ public class GameActivity extends AppCompatActivity {
                 a15, a16, a17, a18, a19, a20, a21, a22, a23, a24;
 
     //text views in upper corners
-    TextView score;
-    TextView livesRemaining;
+    TextView score, livesRemaining;
     ArrayList<ImageView> profList = new ArrayList<>();
     ArrayList<ImageView> aList = new ArrayList<>();
     ArrayList<ImageView> aVisibleList = new ArrayList<>();
@@ -97,7 +94,7 @@ public class GameActivity extends AppCompatActivity {
         InstantiateAs();
 
         //text in upper corners (always visible)
-        this.score = (TextView) findViewById(R.id.highscoresText);
+        this.score = (TextView) findViewById(R.id.scoreText);
         this.livesRemaining = (TextView) findViewById(R.id.livesText);
 
         AddImageViewsToList();
@@ -115,18 +112,29 @@ public class GameActivity extends AppCompatActivity {
         setProfVisibility(numProfs); //setting how many profs are visible
         setAVisibility(numProfs, numRange, numSpeed, numLives); //setting number of A's appearing
 
-        decreaseNumLives = livesRemaining.getText().toString();
-        decreaseNumLives = decreaseNumLives.substring(0, decreaseNumLives.length()-1);
-        decreaseNumLives = decreaseNumLives + ": " + numLives;
-        livesRemaining.setText(decreaseNumLives);
-
         handleRunables();
+
+        instantiateGameText();
 
         RelativeLayout.LayoutParams layoutParams
                 = new RelativeLayout.LayoutParams(250, 250);
         louie.setLayoutParams(layoutParams);
         louie.setOnTouchListener(new ChoiceTouchListener());
     }
+
+    //instantiating textView score / lives remaining
+    private void instantiateGameText() {
+        //lives remaining text
+        decreaseNumLives = livesRemaining.getText().toString();
+        decreaseNumLives = decreaseNumLives + " " + numLives;
+        livesRemaining.setText(decreaseNumLives);
+
+        //beginning score text
+        currentScore = score.getText().toString();
+        currentScore = currentScore + " " + scoreBoard;
+        score.setText(currentScore);
+    }
+
 
     //handler for moving profs, prof collisions, collecting A's.
     private void handleRunables() {
@@ -142,12 +150,20 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void run() {
                 aObtained();
+                handler.postDelayed(this, 1);
+            }
+        };
 
+        final Runnable r3 = new Runnable() {
+            @Override
+            public void run() {
+                profCollision();
                 handler.postDelayed(this, 1);
             }
         };
         handler.postDelayed(r, 0);
         handler.postDelayed(r2, 0);
+        handler.postDelayed(r3, 0);
     }
 
     /**
@@ -258,7 +274,7 @@ public class GameActivity extends AppCompatActivity {
                     prof.setY(prof.getY() - dy * 10);
             }
         }
-        profCollision(louie, prof); //handles collisions with prof
+        //profCollision(louie, prof); //handles collisions with prof
     }
 
     //randomly generating which profs appear (user selected amount)
@@ -377,28 +393,35 @@ public class GameActivity extends AppCompatActivity {
             else
                 i--;
         }
+
+        //updating the score
+        updateScore();
     }
 
 
     //handling collision with louie and a prof
-    private void profCollision(ImageView louie, ImageView prof) {
-        if(isViewOverlapping(louie, prof)) {
-            if (numLives > 1) {
-                numLives--;
-                prof.setX(0);
-                prof.setY(0);
-                updateLives();
-            } else {
-                numLives--;
-                gameOver(this);
-                //maybe check a "gameover page" rather than a popup message.
-                //(there are intent issues)
+    //private void profCollision(ImageView louie, ImageView prof) {
+    private void profCollision() {
+
+        for(ImageView prof : profList) {
+            if(isViewOverlapping(louie, prof)) {
+                if (numLives > 1) {
+                    numLives--;
+                    prof.setX(0);
+                    prof.setY(0);
+                    updateLives();
+                } else {
+                    numLives = 0;
+                    prof.setX(0);
+                    prof.setY(0);
+                    updateLives();
+                    gameOver(this);
+                }
             }
         }
     }
 
 
-    //function to show popup dialog (Maybe???)
     private void gameOver(Context c) {
         final TextView gameOver = new TextView(c);
         AlertDialog dialog = new AlertDialog.Builder(c)
@@ -437,13 +460,23 @@ public class GameActivity extends AppCompatActivity {
 
     //update the # of lives remaining
     private void updateLives() {
-        String strNumLives;
-        strNumLives = Integer .toString(numLives);
-        decreaseNumLives = livesRemaining.getText().toString();
-        decreaseNumLives = decreaseNumLives.substring(0, decreaseNumLives.length() -
-                (strNumLives.length()));
-        decreaseNumLives = decreaseNumLives + numLives;
+        decreaseNumLives = "Lives Remaining: " + numLives;
         livesRemaining.setText(decreaseNumLives);
+    }
+
+    //algorithm to update score (rewards players for playing at higher difficulty)
+    private int scoreAlgorithm() {
+        int addScore;
+        int livesSelected = Math.abs(10 - startLives);
+        addScore = (10*livesSelected) + (10*numSpeed) + (10*numRange) + (10*numProfs);
+        return addScore;
+    }
+
+    //updating user score on GameActivity screen
+    private void updateScore() {
+        scoreBoard += scoreAlgorithm();
+        currentScore = "Score: " + scoreBoard;
+        score.setText(currentScore);
     }
 
 

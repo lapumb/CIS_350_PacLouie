@@ -5,10 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+
 /**
  * Activity to display the PacLouie's highscores.
  */
 public class HighscoreActivity extends AppCompatActivity {
+
+    DatabaseReference firebase;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
