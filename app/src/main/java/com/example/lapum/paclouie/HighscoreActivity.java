@@ -1,5 +1,6 @@
 package com.example.lapum.paclouie;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -28,4 +29,9 @@ public class HighscoreActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(HighscoreActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
 }

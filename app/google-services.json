@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "632039622422",
+    "firebase_url": "https://paclouie.firebaseio.com",
+    "project_id": "paclouie",
+    "storage_bucket": "paclouie.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632039622422:android:0df74d426d82780f",
+        "android_client_info": {
+          "package_name": "com.example.lapum.paclouie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "632039622422-n4jkv58ldb2o55ru0enhki0fvamobsrk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lapum.paclouie",
+            "certificate_hash": "7859c9e0b60b770ff55c371684f8cd01a4e32c9c"
+          }
+        },
+        {
+          "client_id": "632039622422-kcop13ckr9v3upcdtd25qml41l2a6df5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJpj6FwfdNduYuiCrYEjRMG6rbFoAp_lI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "632039622422-kcop13ckr9v3upcdtd25qml41l2a6df5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
