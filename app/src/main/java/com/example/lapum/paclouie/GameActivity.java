@@ -63,6 +63,17 @@ public class GameActivity extends AppCompatActivity {
         }
     };
 
+    /*
+    //check about a runnable for checking about 'A' collisions, and consatntly checking if overlapping
+    Handler handler2 = new Handler();
+    final Runnable r2 = new Runnable() {
+        @Override
+        public void run() {
+            updateLives();
+            handler2.postDelayed(r2, 1);
+        }
+    }; */
+
 
    //Images for profs and louie
     ImageView prof0;
@@ -548,7 +559,7 @@ public class GameActivity extends AppCompatActivity {
                 numLives--;
                 prof.setX(0);
                 prof.setY(0);
-                updateLives();
+                //updateLives();
             } else {
                 gameOver(this);
                 //maybe check a "gameover page" rather than a popup message.
