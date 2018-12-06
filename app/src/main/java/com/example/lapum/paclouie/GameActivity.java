@@ -234,6 +234,7 @@ public class GameActivity extends AppCompatActivity {
         int dx;
         int dy;
         int rnd;
+        float mult = (float).9;
 
         //random to choose direction of professor
         Random random = new Random();
@@ -244,18 +245,18 @@ public class GameActivity extends AppCompatActivity {
         //applying range to prof movement
         if(rnd >= 5) {
             for(int i = 0; i <= range; i++) {
-                if((prof.getX() + dx * 10) < width)
-                    prof.setX(prof.getX() + dx * 10);
-                if((prof.getY() + dy * 10) < height)
-                    prof.setY(prof.getY() + dy * 10);
+                if((prof.getX() + dx * mult) < width)
+                    prof.setX(prof.getX() + dx * mult);
+                if((prof.getY() + dy * mult) < height)
+                    prof.setY(prof.getY() + dy * mult);
             }
         }
         else {
             for(int i = 0; i <= range; i++) {
-                if((prof.getX() - dx * 10) >= 0)
-                    prof.setX(prof.getX() - dx * 10);
-                if((prof.getY() - dy * 10) >= 0)
-                    prof.setY(prof.getY() - dy * 10);
+                if((prof.getX() - dx * mult) >= 0)
+                    prof.setX(prof.getX() - dx * mult);
+                if((prof.getY() - dy * mult) >= 0)
+                    prof.setY(prof.getY() - dy * mult);
             }
         }
         profCollision(louie, prof); //handles collisions with prof

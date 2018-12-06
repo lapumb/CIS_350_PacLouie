@@ -110,23 +110,23 @@ public class Professor {
 
         //setting physical speed
         if(speed == 1)
-            realSpeed = 880;
+            realSpeed = 35;
         else if(speed == 2)
-            realSpeed = 780;
+            realSpeed = 31;
         else if(speed == 3)
-            realSpeed = 680;
+            realSpeed = 27;
         else if(speed == 4)
-            realSpeed = 580;
+            realSpeed = 23;
         else if(speed == 5)
-            realSpeed = 480;
+            realSpeed = 19;
         else if(speed == 6)
-            realSpeed = 380;
+            realSpeed = 15;
         else if(speed == 7)
-            realSpeed = 280;
+            realSpeed = 11;
         else if(speed == 8)
-            realSpeed = 180;
+            realSpeed = 7;
         else if(speed == 9)
-            realSpeed = 80;
+            realSpeed = 5;
 
         return realSpeed;
     }
