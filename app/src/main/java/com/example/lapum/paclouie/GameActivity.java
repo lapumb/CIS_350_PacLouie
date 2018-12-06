@@ -88,11 +88,6 @@ public class GameActivity extends AppCompatActivity {
      **/
     protected int numAVisible;
 
-    /**
-     * Variable to set the actual speed of the profs movements
-     **/
-    private int speed = Professor.getRealSpeed(numSpeed);
-
 
     //Images for profs and louie
     ImageView prof0, prof1, prof2, prof3, prof4, prof5, prof6, prof7, prof8;
@@ -121,10 +116,6 @@ public class GameActivity extends AppCompatActivity {
         this.louie = findViewById(R.id.gameLouie);
         InstantiateAs();
 
-        //text in upper corners (always visible)
-        this.score = (TextView) findViewById(R.id.scoreText);
-        this.livesRemaining = (TextView) findViewById(R.id.livesText);
-
         AddImageViewsToList();
 
         //initially setting all profs to not appear (gone)
@@ -152,6 +143,10 @@ public class GameActivity extends AppCompatActivity {
 
     //instantiating textView score / lives remaining
     private void instantiateGameText() {
+
+        this.score = (TextView) findViewById(R.id.scoreText);
+        this.livesRemaining = (TextView) findViewById(R.id.livesText);
+
         //lives remaining text
         decreaseNumLives = livesRemaining.getText().toString();
         decreaseNumLives = decreaseNumLives + " " + numLives;
@@ -513,6 +508,11 @@ public class GameActivity extends AppCompatActivity {
         scoreBoard += scoreAlgorithm();
         currentScore = "Score: " + scoreBoard;
         score.setText(currentScore);
+    }
+
+    //return score
+    public int getScore() {
+        return scoreBoard;
     }
 
 
