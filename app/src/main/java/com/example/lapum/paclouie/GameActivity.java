@@ -136,7 +136,7 @@ public class GameActivity extends AppCompatActivity {
         instantiateGameText();
 
         RelativeLayout.LayoutParams layoutParams
-                = new RelativeLayout.LayoutParams(250, 250);
+                = new RelativeLayout.LayoutParams(225, 225);
         louie.setLayoutParams(layoutParams);
         louie.setOnTouchListener(new ChoiceTouchListener());
     }
@@ -386,11 +386,10 @@ public class GameActivity extends AppCompatActivity {
                 numAVisible--;
                 removeA = a;
             }
-            //increase the score here as well, depend on difficulty?
-            // high-score?
         }
         if (removeA != null) {
             aVisibleList.remove(removeA);
+            //updating score, replacing A, making game harder
             updateGame();
         }
     }
@@ -470,6 +469,8 @@ public class GameActivity extends AppCompatActivity {
                 .create();
         //pausing the activity (need to figure this out)
         gameIsRunning = false;
+
+        //TODO need a extra intent for sending highscores***
 
         //setting lives to be zero since we lost
         numLives = 0;

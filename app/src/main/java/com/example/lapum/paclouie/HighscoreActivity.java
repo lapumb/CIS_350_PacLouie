@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -12,6 +15,13 @@ import java.util.Collections;
  * Activity to display the PacLouie's highscores.
  */
 public class HighscoreActivity extends AppCompatActivity {
+
+    //test variable to check if firebase is working
+    private String score = Integer .toString(1000);
+
+    private DatabaseReference firebase, scoreRef;
+    private FirebaseDatabase db;
+
 
     //string for each highscore
     private String scoreText;
@@ -121,6 +131,14 @@ public class HighscoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
 
+
+        //instantiating firebase database
+        firebase = FirebaseDatabase.getInstance().getReference();
+
+        db = FirebaseDatabase.getInstance();
+        firebase = db.getReference();
+        scoreRef = firebase.child("userHighscores").child(score);
+
         //instantiating TextViews
         instantiateScoresText();
 
@@ -131,7 +149,7 @@ public class HighscoreActivity extends AppCompatActivity {
         //setting initial text of textviews
         for(TextView score : highscoreTextList) {
             scoreText = score.getText().toString();
-            scoreText = scoreText + " " + 0;
+            scoreText = scoreText + " null";
             score.setText(scoreText);
         }
 
@@ -160,7 +178,6 @@ public class HighscoreActivity extends AppCompatActivity {
     }
 
 
-
     //instantiate high scores texts
     public void instantiateScoresText() {
         //initializing
@@ -176,4 +193,9 @@ public class HighscoreActivity extends AppCompatActivity {
         this.highscore10 = (TextView) findViewById(R.id.highscore10);
     }
 
+    //updating highscores
+    private void submitScore() {
+        //add scores to firebase db
+
+    }
 }
