@@ -23,56 +23,84 @@ import java.util.Random;
  */
 public class GameActivity extends AppCompatActivity {
 
-    /** Game is Running boolean **/
+    /**
+     * Game is Running boolean
+     **/
     boolean gameIsRunning;
 
-    /** X location. **/
+    /**
+     * X location.
+     **/
     private int x;
 
-    /** Y location. **/
+    /**
+     * Y location.
+     **/
     private int y;
 
-    /** PacLouie layout. **/
+    /**
+     * PacLouie layout.
+     **/
     private RelativeLayout layout;
 
-    /** string to show number of lives remaining **/
+    /**
+     * string to show number of lives remaining
+     **/
     private String decreaseNumLives;
 
-    /** string to show current score of the game **/
+    /**
+     * string to show current score of the game
+     **/
     private String currentScore;
 
-    /** Score obainted in game **/
+    /**
+     * Score obainted in game
+     **/
     private int scoreBoard = 0;
 
-    /** variable for the selected number of lives to START game **/
+    /**
+     * variable for the selected number of lives to START game
+     **/
     final private int startLives = SettingsActivity.getCurrentNumLives();
 
-    /** Variable for the number of profs in the game. **/
+    /**
+     * Variable for the number of profs in the game.
+     **/
     private int numProfs = SettingsActivity.getCurrentNumProfs();
 
-    /** Variable for speed of profs in game **/
+    /**
+     * Variable for speed of profs in game
+     **/
     private int numSpeed = SettingsActivity.getCurrentNumSpeed();
 
-    /** Variable for range of profs in game **/
+    /**
+     * Variable for range of profs in game
+     **/
     private int numRange = SettingsActivity.getCurrentNumRange();
 
-    /** Variable for number of lives in game **/
+    /**
+     * Variable for number of lives in game
+     **/
     private int numLives = SettingsActivity.getCurrentNumLives();
 
-    /** Variable for the number of visible A's. **/
+    /**
+     * Variable for the number of visible A's.
+     **/
     protected int numAVisible;
 
-    /** Variable to set the actual speed of the profs movements **/
+    /**
+     * Variable to set the actual speed of the profs movements
+     **/
     private int speed = Professor.getRealSpeed(numSpeed);
 
 
-   //Images for profs and louie
+    //Images for profs and louie
     ImageView prof0, prof1, prof2, prof3, prof4, prof5, prof6, prof7, prof8;
     ImageView louie;
 
     //objects Louie is to achieve
     ImageView a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14,
-                a15, a16, a17, a18, a19, a20, a21, a22, a23, a24;
+            a15, a16, a17, a18, a19, a20, a21, a22, a23, a24;
 
     //text views in upper corners
     TextView score, livesRemaining;
@@ -100,12 +128,12 @@ public class GameActivity extends AppCompatActivity {
         AddImageViewsToList();
 
         //initially setting all profs to not appear (gone)
-        for(ImageView prof : profList){
+        for (ImageView prof : profList) {
             prof.setVisibility(View.GONE);
         }
 
         //initially setting all a's to be gone
-        for(ImageView a : aList){
+        for (ImageView a : aList) {
             a.setVisibility(View.GONE);
         }
 
@@ -141,26 +169,33 @@ public class GameActivity extends AppCompatActivity {
         final Handler handler = new Handler();
         final Runnable r = new Runnable() {
             public void run() {
-                callMoveProf();
-                handler.postDelayed(this, speed);
+                if (gameIsRunning) {
+                    callMoveProf();
+                    handler.postDelayed(this, Professor.getRealSpeed(numSpeed));
+                }
             }
         };
 
         final Runnable r2 = new Runnable() {
             @Override
             public void run() {
-                aObtained();
-                handler.postDelayed(this, 1);
+                if (gameIsRunning) {
+                    aObtained();
+                    handler.postDelayed(this, 1);
+                }
             }
         };
 
         final Runnable r3 = new Runnable() {
             @Override
             public void run() {
-                profCollision();
-                handler.postDelayed(this, 1);
+                if (gameIsRunning) {
+                    profCollision();
+                    handler.postDelayed(this, 1);
+                }
             }
         };
+
         handler.postDelayed(r, 0);
         handler.postDelayed(r2, 0);
         handler.postDelayed(r3, 0);
@@ -226,8 +261,8 @@ public class GameActivity extends AppCompatActivity {
 
     //function to determine which profs are present and need movement
     public void callMoveProf() {
-        for(ImageView prof : profList){
-            if(prof.getVisibility() == View.VISIBLE)
+        for (ImageView prof : profList) {
+            if (prof.getVisibility() == View.VISIBLE)
                 moveProf(prof, numRange);
         }
     }
@@ -250,7 +285,8 @@ public class GameActivity extends AppCompatActivity {
         int dx;
         int dy;
         int rnd;
-        float mult = (float).9;
+        //float mult = (float).9;
+        int mult = 10;
 
         //random to choose direction of professor
         Random random = new Random();
@@ -259,23 +295,21 @@ public class GameActivity extends AppCompatActivity {
         rnd = random.nextInt(10);
 
         //applying range to prof movement
-        if(rnd >= 5) {
-            for(int i = 0; i <= range; i++) {
-                if((prof.getX() + dx * mult) < width)
+        if (rnd >= 5) {
+            for (int i = 0; i <= range; i++) {
+                if ((prof.getX() + dx * mult) < width)
                     prof.setX(prof.getX() + dx * mult);
-                if((prof.getY() + dy * mult) < height)
+                if ((prof.getY() + dy * mult) < height)
                     prof.setY(prof.getY() + dy * mult);
             }
-        }
-        else {
-            for(int i = 0; i <= range; i++) {
-                if((prof.getX() - dx * mult) >= 0)
+        } else {
+            for (int i = 0; i <= range; i++) {
+                if ((prof.getX() - dx * mult) >= 0)
                     prof.setX(prof.getX() - dx * mult);
-                if((prof.getY() - dy * mult) >= 0)
+                if ((prof.getY() - dy * mult) >= 0)
                     prof.setY(prof.getY() - dy * mult);
             }
         }
-        //profCollision(louie, prof); //handles collisions with prof
     }
 
     //randomly generating which profs appear (user selected amount)
@@ -294,7 +328,7 @@ public class GameActivity extends AppCompatActivity {
     //returns which profs are visible.
     private ImageView[] getProfsVisible() {
         ImageView visible[] = new ImageView[10];
-        for(int i = 0; i < profList.size(); i++){
+        for (int i = 0; i < profList.size(); i++) {
             if (profList.get(i).getVisibility() == View.GONE)
                 visible[i] = profList.get(i);
         }
@@ -304,15 +338,14 @@ public class GameActivity extends AppCompatActivity {
     //method to set which A's are visible (random)
     public void setAVisibility(int profs, int range, int speed, int lives) {
         Random rnd = new Random();
-        int numA = 1 + ((profs/2) + 2) + ((range/2) + 2) + ((speed/2) + 2) + ((lives/2) + 2);
+        int numA = 1 + ((profs / 2) + 2) + ((range / 2) + 2) + ((speed / 2) + 2) + ((lives / 2) + 2);
         numAVisible = numA;
-        for(int i = 0; i <= numA; i++) {
+        for (int i = 0; i <= numA; i++) {
             int rand = rnd.nextInt(25);
-            if(aList.get(rand).getVisibility() == View.GONE) {
+            if (aList.get(rand).getVisibility() == View.GONE) {
                 aList.get(rand).setVisibility((View.VISIBLE));
                 aVisibleList.add(aList.get(rand));
-            }
-            else
+            } else
                 i--;
         }
     }
@@ -320,7 +353,7 @@ public class GameActivity extends AppCompatActivity {
     //returns which A's are visible
     private ImageView[] getAsVisible() {
         ImageView visible[] = new ImageView[25];
-        for(int i = 0; i < aList.size(); i++){
+        for (int i = 0; i < aList.size(); i++) {
             if (aList.get(i).getVisibility() == View.GONE)
                 visible[i] = aList.get(i);
         }
@@ -328,7 +361,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
-    //checking if ImageView's overlap (I think)
+    //checking if ImageView's overlap
     private boolean isViewOverlapping(ImageView firstView, ImageView secondView) {
         int[] firstPosition = new int[2];
         int[] secondPosition = new int[2];
@@ -350,18 +383,18 @@ public class GameActivity extends AppCompatActivity {
     //handling collision with louie and an 'A'
     private void aObtained() {
         ImageView removeA = null;
-        for(ImageView a : aVisibleList){
-            if(isViewOverlapping(louie, a)) {
+        for (ImageView a : aVisibleList) {
+            if (isViewOverlapping(louie, a)) {
                 a.setVisibility(View.GONE);
                 //if(numAVisible == 0)
-                  //  gameWon(this);
+                //  gameWon(this);
                 numAVisible--;
                 removeA = a;
             }
             //increase the score here as well, depend on difficulty?
             // high-score?
         }
-        if(removeA != null) {
+        if (removeA != null) {
             aVisibleList.remove(removeA);
             updateGame();
         }
@@ -374,24 +407,22 @@ public class GameActivity extends AppCompatActivity {
 
         //making the game harder as A's are obtained
         int random = rnd.nextInt(2);
-        if(random == 0) {
-            if(numRange < 9)
+        if (random == 0) {
+            if (numRange < 9)
                 numRange++;
-        }
-        else {
-            if(numSpeed < 9) {
+        } else {
+            if (numSpeed < 9) {
                 numSpeed++;
             }
         }
 
         //repopulating the A randomly that was obtained
-        for(int i = 0; i < 1; i++) {
+        for (int i = 0; i < 1; i++) {
             int rand = rnd.nextInt(25);
-            if(aList.get(rand).getVisibility() == View.GONE) {
+            if (aList.get(rand).getVisibility() == View.GONE) {
                 aList.get(rand).setVisibility((View.VISIBLE));
                 aVisibleList.add(aList.get(rand));
-            }
-            else
+            } else
                 i--;
         }
 
@@ -404,18 +435,14 @@ public class GameActivity extends AppCompatActivity {
     //private void profCollision(ImageView louie, ImageView prof) {
     private void profCollision() {
 
-        for(ImageView prof : profList) {
-            if(isViewOverlapping(louie, prof)) {
+        for (ImageView prof : profList) {
+            if (isViewOverlapping(louie, prof)) {
                 if (numLives > 1) {
                     numLives--;
                     prof.setX(0);
                     prof.setY(0);
                     updateLives();
                 } else {
-                    numLives = 0;
-                    prof.setX(0);
-                    prof.setY(0);
-                    updateLives();
                     gameOver(this);
                 }
             }
@@ -446,6 +473,14 @@ public class GameActivity extends AppCompatActivity {
                     }
                 })
                 .create();
+        //pausing the activity (need to figure this out)
+        gameIsRunning = false;
+
+        //setting lives to be zero since we lost
+        numLives = 0;
+        updateLives();
+
+        //making it so we must click Highscores or Okay, and we exit
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
@@ -469,7 +504,7 @@ public class GameActivity extends AppCompatActivity {
     private int scoreAlgorithm() {
         int addScore;
         int livesSelected = Math.abs(10 - startLives);
-        addScore = (10*livesSelected) + (10*numSpeed) + (10*numRange) + (10*numProfs);
+        addScore = (10 * livesSelected) + (10 * numSpeed) + (10 * numRange) + (10 * numProfs);
         return addScore;
     }
 
@@ -488,46 +523,50 @@ public class GameActivity extends AppCompatActivity {
 
         /**
          * Method to handle user touching screen and move Louie.
-         * @param view The view.
+         *
+         * @param view  The view.
          * @param event The event.
-         * @return  Boolean value.
+         * @return Boolean value.
          */
         public boolean onTouch(final View view, final MotionEvent event) {
-            final int xLoc = (int) event.getRawX();
-            final int yLoc = (int) event.getRawY();
-            switch (event.getAction() & MotionEvent.ACTION_MASK) {
-                case MotionEvent.ACTION_DOWN:
-                    RelativeLayout.LayoutParams params
-                            = (RelativeLayout.LayoutParams)
-                            view.getLayoutParams();
-                    x = xLoc - params.leftMargin;
-                    y = yLoc - params.topMargin;
-                    break;
+            if (gameIsRunning) {
+                final int xLoc = (int) event.getRawX();
+                final int yLoc = (int) event.getRawY();
+                switch (event.getAction() & MotionEvent.ACTION_MASK) {
+                    case MotionEvent.ACTION_DOWN:
+                        RelativeLayout.LayoutParams params
+                                = (RelativeLayout.LayoutParams)
+                                view.getLayoutParams();
+                        x = xLoc - params.leftMargin;
+                        y = yLoc - params.topMargin;
+                        break;
 
-                case MotionEvent.ACTION_UP:
-                    break;
+                    case MotionEvent.ACTION_UP:
+                        break;
 
-                case MotionEvent.ACTION_POINTER_DOWN:
-                    break;
+                    case MotionEvent.ACTION_POINTER_DOWN:
+                        break;
 
-                case MotionEvent.ACTION_POINTER_UP:
-                    break;
+                    case MotionEvent.ACTION_POINTER_UP:
+                        break;
 
-                case MotionEvent.ACTION_MOVE:
-                    RelativeLayout.LayoutParams layoutParams
-                            = (RelativeLayout.LayoutParams)
-                            view.getLayoutParams();
-                    layoutParams.leftMargin = xLoc - x;
-                    layoutParams.topMargin = yLoc - y;
-                    layoutParams.rightMargin = -250;
-                    layoutParams.bottomMargin = -250;
-                    view.setLayoutParams(layoutParams);
-                    break;
-                default:
-                    break;
+                    case MotionEvent.ACTION_MOVE:
+                        RelativeLayout.LayoutParams layoutParams
+                                = (RelativeLayout.LayoutParams)
+                                view.getLayoutParams();
+                        layoutParams.leftMargin = xLoc - x;
+                        layoutParams.topMargin = yLoc - y;
+                        layoutParams.rightMargin = -250;
+                        layoutParams.bottomMargin = -250;
+                        view.setLayoutParams(layoutParams);
+                        break;
+                    default:
+                        break;
+                }
+                layout.invalidate();
+                return true;
             }
-            layout.invalidate();
-            return true;
+            return false;
         }
     }
 }
