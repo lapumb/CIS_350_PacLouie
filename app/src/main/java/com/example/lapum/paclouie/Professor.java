@@ -103,31 +103,35 @@ public class Professor {
         }
     }
 
-    //method returns the actual speed we want the profs to move
-    public static int getRealSpeed(int speed) {
+    /**
+     * Method returns the actual speed we want the profs to move.
+     * @param speed The current speed of the prof.
+     * @return The speed the prof needs to move at.
+     */
+    public static int getRealSpeed(final int speed) {
         //variable to manipulate speed selected
         int realSpeed = 0;
 
         //setting physical speed
-        if(speed == 1)
+        if (speed == 1) {
             realSpeed = 900;
-        else if(speed == 2)
+        } else if (speed == 2) {
             realSpeed = 800;
-        else if(speed == 3)
+        } else if (speed == 3) {
             realSpeed = 700;
-        else if(speed == 4)
+        } else if (speed == 4) {
             realSpeed = 600;
-        else if(speed == 5)
+        } else if (speed == 5) {
             realSpeed = 500;
-        else if(speed == 6)
+        } else if (speed == 6) {
             realSpeed = 400;
-        else if(speed == 7)
+        } else if (speed == 7) {
             realSpeed = 300;
-        else if(speed == 8)
+        } else if (speed == 8) {
             realSpeed = 200;
-        else if(speed == 9)
+        } else if (speed == 9) {
             realSpeed = 100;
-
+        }
         return realSpeed;
     }
 }
