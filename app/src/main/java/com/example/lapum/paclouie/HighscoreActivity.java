@@ -15,17 +15,18 @@ import android.widget.TextView;
  */
 public class HighscoreActivity extends AppCompatActivity {
 
-    //complete list of highscores
-    TextView scoreTexts[];
+    /** Complete list of highscores. **/
+    private TextView[] scoreTexts;
 
-    //highscore textviews
-    TextView highscore1, highscore2, highscore3, highscore4, highscore5, highscore6, highscore7,
-            highscore8, highscore9, highscore10;
+    /** Highscore textviews. **/
+    private TextView highscore1, highscore2, highscore3, highscore4, highscore5,
+            highscore6, highscore7, highscore8, highscore9, highscore10;
 
-    //last score textview
-    TextView lastScore;
+    /** Last score textview. **/
+    private TextView lastScore;
 
-    public int lastGameScore;
+    /** Most recent game score. **/
+    private int lastGameScore;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -45,11 +46,9 @@ public class HighscoreActivity extends AppCompatActivity {
         Intent mIntent = getIntent();
 
         //if we go strait from GameActivity to HighscoreActivity
-        if(mIntent.getIntExtra("SCORE", 0) >= GameActivity.getLastScore()) {
+        if (mIntent.getIntExtra("SCORE", 0) >= GameActivity.getLastScore()) {
             lastGameScore = mIntent.getIntExtra("SCORE", 0);
-        }
-        //if we do not
-        else {
+        } else {
             lastGameScore = GameActivity.getLastScore();
         }
 
@@ -70,23 +69,26 @@ public class HighscoreActivity extends AppCompatActivity {
 
 
         //initializing SharedPreference ints
-        final SharedPreferences settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
+        final SharedPreferences settings = getSharedPreferences("GAME_DATA",
+                Context.MODE_PRIVATE);
+
         SharedPreferences.Editor editor = settings.edit();
-        int highscore1 = settings.getInt("HIGH_SCORE1", 0);
-        int highscore2 = settings.getInt("HIGH_SCORE2", 0);
-        int highscore3 = settings.getInt("HIGH_SCORE3", 0);
-        int highscore4 = settings.getInt("HIGH_SCORE4", 0);
-        int highscore5 = settings.getInt("HIGH_SCORE5", 0);
-        int highscore6 = settings.getInt("HIGH_SCORE6", 0);
-        int highscore7 = settings.getInt("HIGH_SCORE7", 0);
-        int highscore8 = settings.getInt("HIGH_SCORE8", 0);
-        int highscore9 = settings.getInt("HIGH_SCORE9", 0);
-        int highscore10 = settings.getInt("HIGH_SCORE10", 0);
+        int tempHighscore1 = settings.getInt("HIGH_SCORE1", 0);
+        int tempHighscore2 = settings.getInt("HIGH_SCORE2", 0);
+        int tempHighscore3 = settings.getInt("HIGH_SCORE3", 0);
+        int tempHighscore4 = settings.getInt("HIGH_SCORE4", 0);
+        int tempHighscore5 = settings.getInt("HIGH_SCORE5", 0);
+        int tempHighscore6 = settings.getInt("HIGH_SCORE6", 0);
+        int tempHighscore7 = settings.getInt("HIGH_SCORE7", 0);
+        int tempHighscore8 = settings.getInt("HIGH_SCORE8", 0);
+        int tempHighscore9 = settings.getInt("HIGH_SCORE9", 0);
+        int tempHighscore10 = settings.getInt("HIGH_SCORE10", 0);
 
 
         //adding all current high scores to a list
-        int list[] = {highscore1, highscore2, highscore3, highscore4, highscore5,
-                highscore6, highscore7, highscore8, highscore9, highscore10};
+        int[] list = {tempHighscore1, tempHighscore2, tempHighscore3,
+                tempHighscore4, tempHighscore5, tempHighscore6, tempHighscore7,
+                tempHighscore8, tempHighscore9, tempHighscore10};
 
 
         // Clear preferences
@@ -106,15 +108,17 @@ public class HighscoreActivity extends AppCompatActivity {
         });
 
         //checking latest score is greater than a highscore in list
-        for(int score = 0; score < list.length; score++) {
-            if(lastGameScore > list[score]) {
+        for (int score = 0; score < list.length; score++) {
+            if (lastGameScore > list[score]) {
                 int i = 9;
-                while(i != score) {
-                    //shift all other score down one, printing / replacing the score
-                    list[i] = list[i-1];
+                while (i != score) {
+                    //shift all other score down one,
+                    // printing / replacing the score
+                    list[i] = list[i - 1];
 
                     //saving other scores down one index down
-                    editor.putInt("HIGH_SCORE" + Integer .toString(i+1), list[i]);
+                    editor.putInt("HIGH_SCORE" + Integer
+                            .toString(i + 1), list[i]);
                     editor.commit();
                     i--;
                 }
@@ -122,39 +126,50 @@ public class HighscoreActivity extends AppCompatActivity {
                 list[score] = lastGameScore;
 
                 //saving
-                editor.putInt("HIGH_SCORE" + Integer .toString(score+1), list[score]);
+                editor.putInt("HIGH_SCORE" + Integer .toString(score + 1),
+                        list[score]);
                 editor.commit();
 
-                //making sure highscore is not recorded multiple times upon onCreate
+                //making sure highscore is not recorded multiple times
                 lastGameScore = 0;
 
                 //breaking out of for loop
                 score = 9;
             }
-            if(lastGameScore == list[score]) {
+            if (lastGameScore == list[score]) {
                 score = 9;
             }
         }
 
         //setting text of each highscore textview in view
-        for(int i = 0; i < scoreTexts.length; i++) {
-            scoreText = Integer .toString(i+1) + ". " + list[i];
+        for (int i = 0; i < scoreTexts.length; i++) {
+            scoreText = Integer .toString(i + 1) + ". " + list[i];
             scoreTexts[i].setText(scoreText);
         }
 
 
     }
 
-    //adding highscore textviews to temp list for portrait view (10 highscore texts)
+    /**
+     * Adding highscore textviews to temp list for portrait view
+     * (10 highscore texts).
+     * @return List of highscores.
+     */
     private TextView[] textListPortrait() {
-        TextView tempScoreTexts[] = {highscore1, highscore2, highscore3, highscore4, highscore5,
-                highscore6, highscore7, highscore8, highscore9, highscore10};
+        TextView[] tempScoreTexts = {highscore1, highscore2, highscore3,
+                highscore4, highscore5, highscore6, highscore7, highscore8,
+                highscore9, highscore10};
         return tempScoreTexts;
     }
 
-    //adding highscore textviews to temp list for landscape view (5 high scores)
+    /**
+     * Adding highscore textviews to temp list for landscape view
+     * (5 high scores).
+     * @return List of highscores in landscape mode.
+     */
     private TextView[] textListLandscape() {
-        TextView tempScoreTexts[] = {highscore1, highscore2, highscore3, highscore4, highscore5};
+        TextView[] tempScoreTexts = {highscore1, highscore2, highscore3,
+                highscore4, highscore5};
         return tempScoreTexts;
     }
 
@@ -165,7 +180,9 @@ public class HighscoreActivity extends AppCompatActivity {
     }
 
 
-    //instantiate high scores texts
+    /**
+     * Instantiate high scores texts.
+     */
     public void instantiateScoresText() {
         //initializing
         this.highscore1 = (TextView) findViewById(R.id.highscore1);

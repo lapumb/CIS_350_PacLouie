@@ -528,7 +528,8 @@ public class GameActivity extends AppCompatActivity {
         AlertDialog dialog = new AlertDialog.Builder(c)
                 .setTitle("GAME OVER")
                 .setMessage("You lost! Click 'Okay' to exit to home screen,"
-                        + " or click " + "Highscores to view you highscores.")
+                        + " or click " + "Highscores to view and save"
+                        + " your highscores.")
                 .setView(gameOver)
                 .setPositiveButton("Okay",
                         new DialogInterface.OnClickListener() {
