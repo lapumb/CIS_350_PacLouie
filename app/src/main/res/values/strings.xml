@@ -7,6 +7,13 @@
     <string name="a">A that Louie is trying to obtain</string>
 
 
+    <!-- Strings related to 'Game Activity' -->
+    <string name="high">Highest Score: </string>
+    <string name="lives">Live Remaining: </string>
+    <string name="score">Score: </string>
+    <string name="lounge">The teachers lounge. Do not get caught going in or you will lose!</string>
+
+
     <!-- Strings related to 'Start Screen' -->
     <string name="Start">Press Anywhere to Start</string>
     <string name="press_to_start">Press Anywhere to Start</string>
@@ -62,6 +69,9 @@
     <string name="highscore8">8. </string>
     <string name="highscore9">9. </string>
     <string name="highscore10">10. </string>
+    <string name="lastScore">Most Recent Score: </string>
+    <string name="resetScores">Reset Highscores</string>
+
 
 
     <!-- Strings related to 'About' -->
@@ -76,9 +86,9 @@
     <string name="about_goals">Goals of the Game: </string>
     <string name="goals_1">1. Avoid being hit by professors (Each time you get hit, you lose a life)
     </string>
-    <string name="goals_2">2. Gather as many A\'s you can and reach new high scores</string>
-    <string name="goals_3"> 3. Avoid structures you cannot move through</string>
-    <string name="releaseInfo">Release 1.0.0, 10/26/2018</string>
+    <string name="goals_2">2. Gather as many A\'s you can and reach new high scores. Speed, range, and number of professors determine how many points each \'A\' is worth. </string>
+    <string name="goals_3"> 3. Avoid the teachers lounge. If you go inside, you will instantly lose!</string>
+    <string name="releaseInfo">Release 2.0.0, 12/07/2018</string>
 
 
 

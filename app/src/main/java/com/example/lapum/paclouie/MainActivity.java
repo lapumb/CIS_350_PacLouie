@@ -77,4 +77,12 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    //handling back press on MainActivity
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(
+                MainActivity.this, StartScreenActivity.class);
+        startActivity(intent);
+    }
 }

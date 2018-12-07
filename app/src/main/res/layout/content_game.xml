@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/prof1"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="268dp"
@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/prof2"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="132dp"
@@ -34,8 +34,8 @@
 
     <ImageView
         android:id="@+id/prof3"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="13dp"
@@ -50,16 +50,16 @@
         android:layout_height="199dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginStart="151dp"
+        android:layout_marginTop="242dp"
         android:contentDescription="@string/louie"
         android:visibility="visible"
         app:srcCompat="@drawable/single_louielaker" />
 
     <ImageView
         android:id="@+id/prof4"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
@@ -70,8 +70,8 @@
 
     <ImageView
         android:id="@+id/prof5"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="249dp"
@@ -82,8 +82,8 @@
 
     <ImageView
         android:id="@+id/prof6"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="254dp"
@@ -94,8 +94,8 @@
 
     <ImageView
         android:id="@+id/prof7"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="266dp"
@@ -106,8 +106,8 @@
 
     <ImageView
         android:id="@+id/prof8"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="13dp"
@@ -118,8 +118,8 @@
 
     <ImageView
         android:id="@+id/prof0"
-        android:layout_width="110dp"
-        android:layout_height="141dp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="158dp"
@@ -130,8 +130,8 @@
 
     <ImageView
         android:id="@+id/a0"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="170dp"
@@ -141,8 +141,8 @@
 
     <ImageView
         android:id="@+id/a1"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="232dp"
@@ -152,8 +152,8 @@
 
     <ImageView
         android:id="@+id/a2"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="123dp"
@@ -163,8 +163,8 @@
 
     <ImageView
         android:id="@+id/a3"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="297dp"
@@ -174,8 +174,8 @@
 
     <ImageView
         android:id="@+id/a4"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="165dp"
@@ -185,8 +185,8 @@
 
     <ImageView
         android:id="@+id/a5"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="7dp"
@@ -196,8 +196,8 @@
 
     <ImageView
         android:id="@+id/a6"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="313dp"
@@ -207,8 +207,8 @@
 
     <ImageView
         android:id="@+id/a7"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="233dp"
@@ -218,8 +218,8 @@
 
     <ImageView
         android:id="@+id/a8"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="105dp"
@@ -229,8 +229,8 @@
 
     <ImageView
         android:id="@+id/a9"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="84dp"
@@ -240,8 +240,8 @@
 
     <ImageView
         android:id="@+id/a10"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
@@ -251,19 +251,19 @@
 
     <ImageView
         android:id="@+id/a11"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="169dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="194dp"
         android:contentDescription="@string/a"
         app:srcCompat="@drawable/a" />
 
     <ImageView
         android:id="@+id/a16"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="175dp"
@@ -273,8 +273,8 @@
 
     <ImageView
         android:id="@+id/a22"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="112dp"
@@ -284,8 +284,8 @@
 
     <ImageView
         android:id="@+id/a24"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="231dp"
@@ -295,8 +295,8 @@
 
     <ImageView
         android:id="@+id/a15"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="287dp"
@@ -306,8 +306,8 @@
 
     <ImageView
         android:id="@+id/a18"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="172dp"
@@ -317,8 +317,8 @@
 
     <ImageView
         android:id="@+id/a21"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="18dp"
@@ -328,8 +328,8 @@
 
     <ImageView
         android:id="@+id/a20"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="18dp"
@@ -339,8 +339,8 @@
 
     <ImageView
         android:id="@+id/a12"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="109dp"
@@ -350,8 +350,8 @@
 
     <ImageView
         android:id="@+id/a14"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="266dp"
@@ -361,8 +361,8 @@
 
     <ImageView
         android:id="@+id/a19"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="250dp"
@@ -372,8 +372,8 @@
 
     <ImageView
         android:id="@+id/a23"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="108dp"
@@ -383,8 +383,8 @@
 
     <ImageView
         android:id="@+id/a17"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="194dp"
@@ -394,13 +394,56 @@
 
     <ImageView
         android:id="@+id/a13"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="270dp"
         android:layout_marginTop="318dp"
         android:contentDescription="@string/a"
         app:srcCompat="@drawable/a" />
+
+    <TextView
+        android:id="@+id/livesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="542dp"
+        android:layout_marginEnd="22dp"
+        android:text="@string/lives"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@color/Blue"
+        android:textSize="18sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/prof3"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="542dp"
+        android:text="@string/score"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@color/Blue"
+        android:textSize="18sp"
+        android:textStyle="bold|italic" />
+
+    <ImageView
+        android:id="@+id/teacherLounge"
+        android:layout_width="97dp"
+        android:layout_height="53dp"
+        android:layout_alignStart="@+id/a5"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="5dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/lounge"
+        android:cropToPadding="true"
+        app:srcCompat="@drawable/teacherslounge" />
 
 </RelativeLayout>

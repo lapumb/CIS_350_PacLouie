@@ -13,12 +13,6 @@ public class LouieTest {
     }
 
     @Test
-    public void testConstructor2(){
-        Louie louie = new Louie(4, 55, 55);
-        assertEquals(4, louie.getHealth());
-    }
-
-    @Test
     public void testTakeDamage() {
         Louie louie = new Louie();
         louie.takeDamage(1);

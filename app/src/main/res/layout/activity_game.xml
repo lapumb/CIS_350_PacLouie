@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".GameActivity">
 
-    <include layout="@layout/content_game" />
+    <include
+        android:id="@+id/game"
+        layout="@layout/content_game" />
 
 </RelativeLayout>

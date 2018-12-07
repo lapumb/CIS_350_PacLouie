@@ -11,8 +11,6 @@ public class Professor {
 
     /** Integer value for profs speed. **/
     private int speed;
-    /** Image View variable. **/
-    private ImageView sprite;
     /** Integer value for profs X location. **/
     private int x;
     /** Integer value for profs Y location. **/
@@ -67,14 +65,6 @@ public class Professor {
         return speed;
     }
 
-    /**
-     * Return this sprite.
-     * @return This sprite.
-     */
-    public ImageView getSprite() {
-        return this.sprite;
-    }
-
 
     //TODO make sure the new spot is not out of bounds and make sure
     // TODO it is moving 1 FPS
@@ -105,8 +95,8 @@ public class Professor {
 
     /**
      * Method returns the actual speed we want the profs to move.
-     * @param speed Current speed of the prof.
-     * @return The speed for the prof.
+     * @param speed The current speed of the prof.
+     * @return The speed the prof needs to move at.
      */
     public static int getRealSpeed(final int speed) {
         //variable to manipulate speed selected
@@ -114,23 +104,23 @@ public class Professor {
 
         //setting physical speed
         if (speed == 1) {
-            realSpeed = 880;
+            realSpeed = 900;
         } else if (speed == 2) {
-            realSpeed = 780;
+            realSpeed = 800;
         } else if (speed == 3) {
-            realSpeed = 680;
+            realSpeed = 700;
         } else if (speed == 4) {
-            realSpeed = 580;
+            realSpeed = 600;
         } else if (speed == 5) {
-            realSpeed = 480;
+            realSpeed = 500;
         } else if (speed == 6) {
-            realSpeed = 380;
+            realSpeed = 400;
         } else if (speed == 7) {
-            realSpeed = 280;
+            realSpeed = 300;
         } else if (speed == 8) {
-            realSpeed = 180;
+            realSpeed = 200;
         } else if (speed == 9) {
-            realSpeed = 80;
+            realSpeed = 100;
         }
         return realSpeed;
     }
