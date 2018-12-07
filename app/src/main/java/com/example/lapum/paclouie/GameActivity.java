@@ -125,11 +125,12 @@ public class GameActivity extends AppCompatActivity {
         //louie initial start position
         this.louie = findViewById(R.id.gameLouie);
         louie.setX(10);
-        louie.setY(170);
+        louie.setY(200);
 
         //setting teacherslounge visibility to always visibile
-        this.teachersLounge = findViewById(R.id.teacherLounge);
-        teachersLounge.setVisibility(View.VISIBLE);
+        this.teachersLounge = (ImageView) findViewById(R.id.teacherLounge);
+        teachersLounge.setX(0);
+        teachersLounge.setY(0);
 
         //randomly selecting which A's will be in game
         InstantiateAs();
