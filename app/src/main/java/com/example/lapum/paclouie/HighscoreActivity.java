@@ -46,11 +46,8 @@ public class HighscoreActivity extends AppCompatActivity {
         Intent mIntent = getIntent();
 
         //if we go strait from GameActivity to HighscoreActivity
-        if (mIntent.getIntExtra("SCORE", 0) >= GameActivity.getLastScore()) {
             lastGameScore = mIntent.getIntExtra("SCORE", 0);
-        } else {
-            lastGameScore = GameActivity.getLastScore();
-        }
+
 
         //setting last score text
         int displayLatestScore = GameActivity.getLastScore();
@@ -129,9 +126,6 @@ public class HighscoreActivity extends AppCompatActivity {
                 editor.putInt("HIGH_SCORE" + Integer .toString(score + 1),
                         list[score]);
                 editor.commit();
-
-                //making sure highscore is not recorded multiple times
-                lastGameScore = 0;
 
                 //breaking out of for loop
                 score = 9;

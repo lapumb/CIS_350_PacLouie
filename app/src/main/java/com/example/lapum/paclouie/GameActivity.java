@@ -170,7 +170,7 @@ public class GameActivity extends AppCompatActivity {
         //louie initial start position
         this.louie = findViewById(R.id.gameLouie);
         louie.setX(10);
-        louie.setY(200);
+        louie.setY(230);
 
         //setting teacherslounge visibility to always visibile
         this.teachersLounge = (ImageView) findViewById(R.id.teacherLounge);
@@ -528,17 +528,16 @@ public class GameActivity extends AppCompatActivity {
         AlertDialog dialog = new AlertDialog.Builder(c)
                 .setTitle("GAME OVER")
                 .setMessage("You lost! Click 'Okay' to exit to home screen,"
-                        + " or click " + "Highscores to view and save"
-                        + " your highscores.")
+                        + " or click " + "Highscores to view your " +
+                        "current highscores and save"
+                        + " your most recent score.")
                 .setView(gameOver)
                 .setPositiveButton("Okay",
                         new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(final DialogInterface dialog,
                                         final int which) {
-                        Intent intent = new Intent(GameActivity.this,
-                                MainActivity.class);
-                        startActivity(intent);
+                        areYouSurePopup(c);
                     }
                 })
                 .setNegativeButton("Highscores",
@@ -560,6 +559,44 @@ public class GameActivity extends AppCompatActivity {
         //setting lives to be zero since we lost
         numLives = 0;
         updateLives();
+
+        //making it so we must click Highscores or Okay, and we exit
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+    }
+
+    /**
+     * Verifies user is sure they do not want to save score.
+     * @param c The current context.
+     */
+    private void areYouSurePopup(final Context c) {
+        final TextView areYouSure = new TextView(c);
+        AlertDialog dialog = new AlertDialog.Builder(c)
+                .setTitle("ARE YOU SURE?")
+                .setMessage("There is no reversing this action, your score will not be saved " +
+                        "and will not be recovered.")
+                .setView(areYouSure)
+                .setPositiveButton("Yes I'm sure",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(final DialogInterface dialog,
+                                                final int which) {
+                                Intent intent = new Intent(GameActivity.this,
+                                        MainActivity.class);
+                                startActivity(intent);
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(final DialogInterface dialog,
+                                                final int which) {
+                                //sending score to highscore page
+                                gameOver(c);
+                            }
+                        })
+                .create();
 
         //making it so we must click Highscores or Okay, and we exit
         dialog.setCancelable(false);
