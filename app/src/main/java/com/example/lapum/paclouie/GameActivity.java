@@ -145,12 +145,20 @@ public class GameActivity extends AppCompatActivity {
         return lastScore;
     }
 
+    /**
+     * Set the current score.
+     * @param score The current score.
+     */
+    public static void setLastScore(final int score) {
+        lastScore = score;
+    }
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         gameIsRunning = true;
 
         //setting lastScore to be initially zero
-        lastScore = 0;
+        setLastScore(0);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
@@ -564,7 +572,6 @@ public class GameActivity extends AppCompatActivity {
         gameOver(this);
     }
 
-
     /**
      * Update the number of lives remaining.
      */
@@ -594,7 +601,7 @@ public class GameActivity extends AppCompatActivity {
         currentScore = "Score: " + scoreBoard;
         score.setText(currentScore);
 
-        lastScore = scoreBoard;
+        setLastScore(scoreBoard);
     }
 
     /**

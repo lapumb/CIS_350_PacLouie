@@ -11,8 +11,6 @@ public class Professor {
 
     /** Integer value for profs speed. **/
     private int speed;
-    /** Image View variable. **/
-    private ImageView sprite;
     /** Integer value for profs X location. **/
     private int x;
     /** Integer value for profs Y location. **/
@@ -65,14 +63,6 @@ public class Professor {
      */
     public int getSpeed() {
         return speed;
-    }
-
-    /**
-     * Return this sprite.
-     * @return This sprite.
-     */
-    public ImageView getSprite() {
-        return this.sprite;
     }
 
 
