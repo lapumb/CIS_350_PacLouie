@@ -536,7 +536,6 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(final DialogInterface dialog,
                                         final int which) {
-                        //also check high-score shit
                         Intent intent = new Intent(GameActivity.this,
                                 MainActivity.class);
                         startActivity(intent);
