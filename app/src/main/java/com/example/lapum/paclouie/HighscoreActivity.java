@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import android.widget.TextView;
 
@@ -40,9 +41,6 @@ public class HighscoreActivity extends AppCompatActivity {
         //instantiating TextViews
         instantiateScoresText();
 
-        //TODO sending textviews to a list
-        //addTextViewsToList();
-
         //recieving score from gameactivity
         Intent mIntent = getIntent();
 
@@ -58,7 +56,7 @@ public class HighscoreActivity extends AppCompatActivity {
         //setting last score text
         int displayLatestScore = GameActivity.getLastScore();
         mostRecentScore = getString(R.string.lastScore);
-        mostRecentScore = mostRecentScore +" " + displayLatestScore;
+        mostRecentScore = mostRecentScore + " " + displayLatestScore;
         lastScore.setText(mostRecentScore);
 
         int orientation = getResources().getConfiguration().orientation;
@@ -72,7 +70,8 @@ public class HighscoreActivity extends AppCompatActivity {
 
 
         //initializing SharedPreference ints
-        SharedPreferences settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
+        final SharedPreferences settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
         int highscore1 = settings.getInt("HIGH_SCORE1", 0);
         int highscore2 = settings.getInt("HIGH_SCORE2", 0);
         int highscore3 = settings.getInt("HIGH_SCORE3", 0);
@@ -89,44 +88,26 @@ public class HighscoreActivity extends AppCompatActivity {
         int list[] = {highscore1, highscore2, highscore3, highscore4, highscore5,
                 highscore6, highscore7, highscore8, highscore9, highscore10};
 
-        SharedPreferences.Editor editor = settings.edit();
 
+        // Clear preferences
+        TextView resetHighscores = (TextView) findViewById(R.id.resetScores);
+        resetHighscores.setOnClickListener(new TextView.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                SharedPreferences.Editor preferencesEditor = settings.edit();
+                preferencesEditor.clear();
+                preferencesEditor.apply();
 
-        //checking if most recent score is larger than any currently in highscores
-        /*for (int score = 0; score < list.length; score++) {
-            if (lastGameScore >= list[score]) {
-                int i = 9;
-                while(i != score) {
-                    //shift all other score down one, printing / replacing the score
-                    list[i] = list[i-1];
-                    scoreText = Integer .toString(i+1) + ". " + list[i];
-                    scoreTexts[i].setText(scoreText);
-
-                    //saving other scores down one index down
-                    editor.putInt("HIGH_SCORE" + Integer .toString(i+1), list[i]);
-                    editor.commit();
-                    i--;
-                }
-                //adding new high score to list in place of old score
-                list[score] = lastGameScore;
-                //setting specific highscore to be new score
-                scoreText = Integer .toString(score+1) + ". " + list[score];
-                scoreTexts[score].setText(scoreText);
-
-                //saving
-                editor.putInt("HIGH_SCORE" + Integer .toString(score+1), list[score]);
-                editor.commit();
-                break;
+                //reloading highscore activity
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
             }
-            else {
-                //otherwise, keep it set to what it was
-                scoreText = Integer .toString(score+1) + ". " + list[score];
-                scoreTexts[score].setText(scoreText);
-            }
-        } */
+        });
+
         //checking latest score is greater than a highscore in list
-        for (int score = 0; score < list.length; score++) {
-            if (lastGameScore >= list[score]) {
+        for(int score = 0; score < list.length; score++) {
+            if(lastGameScore > list[score]) {
                 int i = 9;
                 while(i != score) {
                     //shift all other score down one, printing / replacing the score
@@ -143,7 +124,15 @@ public class HighscoreActivity extends AppCompatActivity {
                 //saving
                 editor.putInt("HIGH_SCORE" + Integer .toString(score+1), list[score]);
                 editor.commit();
-                break;
+
+                //making sure highscore is not recorded multiple times upon onCreate
+                lastGameScore = 0;
+
+                //breaking out of for loop
+                score = 9;
+            }
+            if(lastGameScore == list[score]) {
+                score = 9;
             }
         }
 
@@ -152,6 +141,7 @@ public class HighscoreActivity extends AppCompatActivity {
             scoreText = Integer .toString(i+1) + ". " + list[i];
             scoreTexts[i].setText(scoreText);
         }
+
 
     }
 
