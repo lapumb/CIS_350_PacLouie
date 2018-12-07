@@ -38,8 +38,8 @@
         android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="109dp"
-        android:layout_marginTop="131dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="197dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
         app:srcCompat="@drawable/professor" />
@@ -62,8 +62,8 @@
         android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginStart="246dp"
+        android:layout_marginTop="282dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
         app:srcCompat="@drawable/professor" />
@@ -110,8 +110,8 @@
         android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="205dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="299dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
         app:srcCompat="@drawable/professor" />
@@ -200,8 +200,8 @@
         android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="102dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="80dp"
         android:contentDescription="@string/a"
         app:srcCompat="@drawable/a" />
 
@@ -382,6 +382,19 @@
         app:srcCompat="@drawable/a" />
 
     <ImageView
+        android:id="@+id/teacherLounge"
+        android:layout_width="122dp"
+        android:layout_height="65dp"
+        android:layout_below="@+id/a16"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:adjustViewBounds="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/lounge"
+        app:srcCompat="@drawable/teacherslounge" />
+
+    <ImageView
         android:id="@+id/a4"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -432,16 +445,5 @@
         android:textColor="@color/Blue"
         android:textSize="18sp"
         android:textStyle="bold|italic" />
-
-    <ImageView
-        android:id="@+id/teacherLounge"
-        android:layout_width="97dp"
-        android:layout_height="53dp"
-        android:layout_alignStart="@+id/a5"
-        android:layout_marginStart="-180dp"
-        android:layout_marginTop="20dp"
-        android:contentDescription="@string/lounge"
-        android:visibility="visible"
-        app:srcCompat="@drawable/teacherslounge" />
 
 </RelativeLayout>

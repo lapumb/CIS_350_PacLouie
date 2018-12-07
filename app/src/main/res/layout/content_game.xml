@@ -435,15 +435,14 @@
 
     <ImageView
         android:id="@+id/teacherLounge"
-        android:layout_width="97dp"
-        android:layout_height="53dp"
-        android:layout_alignStart="@+id/a5"
-        android:layout_alignParentTop="true"
+        android:layout_width="122dp"
+        android:layout_height="65dp"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="0dp"
         android:adjustViewBounds="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:contentDescription="@string/lounge"
-        android:cropToPadding="true"
         app:srcCompat="@drawable/teacherslounge" />
 
 </RelativeLayout>

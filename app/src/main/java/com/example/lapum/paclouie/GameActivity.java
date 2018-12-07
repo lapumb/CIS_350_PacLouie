@@ -227,7 +227,8 @@ public class GameActivity extends AppCompatActivity {
     }
 
     /**
-     * Handler for moving profs, prof collisions, collecting A's.
+     * Handler for moving profs, prof collisions, collecting A's, and collision
+     * with teachers lounge.
      */
     private void handleRunables() {
         final Handler handler = new Handler();
@@ -331,7 +332,7 @@ public class GameActivity extends AppCompatActivity {
     * @param range range professors can move
      */
     public void moveProf(final ImageView prof, final int range) {
-        int tempRange = range;
+        int tempRange;
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
@@ -344,7 +345,6 @@ public class GameActivity extends AppCompatActivity {
         int dx;
         int dy;
         int rnd;
-        //float mult = (float).9;
         int mult = 10;
 
         //random to choose direction of professor
@@ -528,7 +528,7 @@ public class GameActivity extends AppCompatActivity {
         AlertDialog dialog = new AlertDialog.Builder(c)
                 .setTitle("GAME OVER")
                 .setMessage("You lost! Click 'Okay' to exit to home screen,"
-                        + " or click " + "Highscores to view your " +
+                        + " or click " + "'Highscores' to view your " +
                         "current highscores and save"
                         + " your most recent score.")
                 .setView(gameOver)
