@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -95,6 +96,7 @@ public class GameActivity extends AppCompatActivity {
     //Images for profs and louie
     ImageView prof0, prof1, prof2, prof3, prof4, prof5, prof6, prof7, prof8;
     ImageView louie;
+    ImageView teachersLounge;
 
     //objects Louie is to achieve
     ImageView a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14,
@@ -119,7 +121,17 @@ public class GameActivity extends AppCompatActivity {
 
         //initializing images (profs, louie, a's)
         InstantiateProfs();
+
+        //louie initial start position
         this.louie = findViewById(R.id.gameLouie);
+        louie.setX(10);
+        louie.setY(170);
+
+        //setting teacherslounge visibility to always visibile
+        this.teachersLounge = findViewById(R.id.teacherLounge);
+        teachersLounge.setVisibility(View.VISIBLE);
+
+        //randomly selecting which A's will be in game
         InstantiateAs();
 
         AddImageViewsToList();
@@ -182,16 +194,8 @@ public class GameActivity extends AppCompatActivity {
             public void run() {
                 if (gameIsRunning) {
                     aObtained();
-                    handler.postDelayed(this, 1);
-                }
-            }
-        };
-
-        final Runnable r3 = new Runnable() {
-            @Override
-            public void run() {
-                if (gameIsRunning) {
                     profCollision();
+                    loungeCollision();
                     handler.postDelayed(this, 1);
                 }
             }
@@ -199,7 +203,6 @@ public class GameActivity extends AppCompatActivity {
 
         handler.postDelayed(r, 0);
         handler.postDelayed(r2, 0);
-        handler.postDelayed(r3, 0);
     }
 
     /**
@@ -450,6 +453,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
+    private void loungeCollision() {
+        if(isViewOverlapping(louie, teachersLounge)) {
+            gameOver(this);
+        }
+    }
+
     private void gameOver(Context c) {
         final TextView gameOver = new TextView(c);
         AlertDialog dialog = new AlertDialog.Builder(c)
@@ -537,7 +546,7 @@ public class GameActivity extends AppCompatActivity {
          * @param event The event.
          * @return Boolean value.
          */
-        public boolean onTouch(final View view, final MotionEvent event) {
+        public boolean onTouch(final View view, MotionEvent event) {
             if (gameIsRunning) {
                 final int xLoc = (int) event.getRawX();
                 final int yLoc = (int) event.getRawY();
@@ -569,6 +578,7 @@ public class GameActivity extends AppCompatActivity {
                         layoutParams.bottomMargin = -250;
                         view.setLayoutParams(layoutParams);
                         break;
+
                     default:
                         break;
                 }
