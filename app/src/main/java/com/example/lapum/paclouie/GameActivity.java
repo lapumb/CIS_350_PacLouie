@@ -402,7 +402,7 @@ public class GameActivity extends AppCompatActivity {
                                final int speed, final int lives) {
         Random rnd = new Random();
         int numA = 1 + ((profs / 2) + 2) + ((range / 2) + 2)
-                        + ((speed / 2) + 2) + ((lives / 2) + 2);
+                        + ((speed / 2) + 2) + ((lives / 3) + 2);
         numAVisible = numA;
         for (int i = 0; i <= numA; i++) {
             int rand = rnd.nextInt(25);
