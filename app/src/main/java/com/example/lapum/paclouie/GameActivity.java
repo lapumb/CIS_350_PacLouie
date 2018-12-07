@@ -88,6 +88,9 @@ public class GameActivity extends AppCompatActivity {
      **/
     protected int numAVisible;
 
+    /** used to get latest score in Highscore activity in the case that we do not go to HighscoreActivity when GameOver() is called **/
+    public static int lastScore;
+
 
     //Images for profs and louie
     ImageView prof0, prof1, prof2, prof3, prof4, prof5, prof6, prof7, prof8;
@@ -106,6 +109,9 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         gameIsRunning = true;
+
+        //setting lastScore to be initially zero
+        lastScore = 0;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
@@ -462,15 +468,15 @@ public class GameActivity extends AppCompatActivity {
                 .setNegativeButton("Highscores", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        //sending score to highscore page to decide what to do with it
                         Intent intent = new Intent(GameActivity.this, HighscoreActivity.class);
+                        intent.putExtra("SCORE", scoreBoard);
                         startActivity(intent);
                     }
                 })
                 .create();
         //pausing the activity (need to figure this out)
         gameIsRunning = false;
-
-        //TODO need a extra intent for sending highscores***
 
         //setting lives to be zero since we lost
         numLives = 0;
@@ -509,6 +515,8 @@ public class GameActivity extends AppCompatActivity {
         scoreBoard += scoreAlgorithm();
         currentScore = "Score: " + scoreBoard;
         score.setText(currentScore);
+
+        lastScore = scoreBoard;
     }
 
     //return score

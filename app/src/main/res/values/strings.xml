@@ -68,6 +68,7 @@
     <string name="highscore8">8. </string>
     <string name="highscore9">9. </string>
     <string name="highscore10">10. </string>
+    <string name="lastScore">Most Recent Score: </string>
 
 
     <!-- Strings related to 'About' -->

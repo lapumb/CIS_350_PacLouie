@@ -1,174 +1,170 @@
 package com.example.lapum.paclouie;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Activity to display the PacLouie's highscores.
  */
 public class HighscoreActivity extends AppCompatActivity {
 
-    //test variable to check if firebase is working
-    private String score = Integer .toString(1000);
-
-    private DatabaseReference firebase, scoreRef;
-    private FirebaseDatabase db;
-
-
-    //string for each highscore
-    private String scoreText;
-
     //complete list of highscores
-    ArrayList<Integer> highscoreList = new ArrayList<>();
-    ArrayList<TextView>highscoreTextList = new ArrayList<>();
+    TextView scoreTexts[];
 
+    //highscore textviews
     TextView highscore1, highscore2, highscore3, highscore4, highscore5, highscore6, highscore7,
             highscore8, highscore9, highscore10;
 
-    //scores to go in order least to highest
-    int score0;
-    int score1;
-    int score2;
-    int score3;
-    int score4;
-    int score5;
-    int score6;
-    int score7;
-    int score8;
-    int score9;
+    //last score textview
+    TextView lastScore;
 
-    public int getScore0() {
-        return score0;
-    }
-
-    public void setScore0(int score0) {
-        this.score0 = score0;
-    }
-
-    public int getScore1() {
-        return score1;
-    }
-
-    public void setScore1(int score1) {
-        this.score1 = score1;
-    }
-
-    public int getScore2() {
-        return score2;
-    }
-
-    public void setScore2(int score2) {
-        this.score2 = score2;
-    }
-
-    public int getScore3() {
-        return score3;
-    }
-
-    public void setScore3(int score3) {
-        this.score3 = score3;
-    }
-
-    public int getScore4() {
-        return score4;
-    }
-
-    public void setScore4(int score4) {
-        this.score4 = score4;
-    }
-
-    public int getScore5() {
-        return score5;
-    }
-
-    public void setScore5(int score5) {
-        this.score5 = score5;
-    }
-
-    public int getScore6() {
-        return score6;
-    }
-
-    public void setScore6(int score6) {
-        this.score6 = score6;
-    }
-
-    public int getScore7() {
-        return score7;
-    }
-
-    public void setScore7(int score7) {
-        this.score7 = score7;
-    }
-
-    public int getScore8() {
-        return score8;
-    }
-
-    public void setScore8(int score8) {
-        this.score8 = score8;
-    }
-
-    public int getScore9() {
-        return score9;
-    }
-
-    public void setScore9(int score9) {
-        this.score9 = score9;
-    }
-
+    public int lastGameScore;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscore);
 
+        String mostRecentScore;
+        this.lastScore = (TextView) findViewById(R.id.lastScore);
 
-        //instantiating firebase database
-        firebase = FirebaseDatabase.getInstance().getReference();
-
-        db = FirebaseDatabase.getInstance();
-        firebase = db.getReference();
-        scoreRef = firebase.child("userHighscores").child(score);
+        //string for manipulating textview texts
+        String scoreText;
 
         //instantiating TextViews
         instantiateScoresText();
 
-        //sending texts & scores to lists
-        addScoresToList();
-        addTextViewsToList();
+        //TODO sending textviews to a list
+        //addTextViewsToList();
 
-        //setting initial text of textviews
-        for(TextView score : highscoreTextList) {
-            scoreText = score.getText().toString();
-            scoreText = scoreText + " null";
-            score.setText(scoreText);
+        //recieving score from gameactivity
+        Intent mIntent = getIntent();
+
+        //if we go strait from GameActivity to HighscoreActivity
+        if(mIntent.getIntExtra("SCORE", 0) >= GameActivity.lastScore) {
+            lastGameScore = mIntent.getIntExtra("SCORE", 0);
+        }
+        //if we do not
+        else {
+            lastGameScore = GameActivity.lastScore;
+        }
+
+        //setting last score text
+        int displayLatestScore = GameActivity.lastScore;
+        mostRecentScore = getString(R.string.lastScore);
+        mostRecentScore = mostRecentScore +" " + displayLatestScore;
+        lastScore.setText(mostRecentScore);
+
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // In landscape
+            scoreTexts = textListLandscape();
+        } else {
+            // In portrait
+            scoreTexts = textListPortrait();
+        }
+
+
+        //initializing SharedPreference ints
+        SharedPreferences settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
+        int highscore1 = settings.getInt("HIGH_SCORE1", 0);
+        int highscore2 = settings.getInt("HIGH_SCORE2", 0);
+        int highscore3 = settings.getInt("HIGH_SCORE3", 0);
+        int highscore4 = settings.getInt("HIGH_SCORE4", 0);
+        int highscore5 = settings.getInt("HIGH_SCORE5", 0);
+        int highscore6 = settings.getInt("HIGH_SCORE6", 0);
+        int highscore7 = settings.getInt("HIGH_SCORE7", 0);
+        int highscore8 = settings.getInt("HIGH_SCORE8", 0);
+        int highscore9 = settings.getInt("HIGH_SCORE9", 0);
+        int highscore10 = settings.getInt("HIGH_SCORE10", 0);
+
+
+        //adding all current high scores to a list
+        int list[] = {highscore1, highscore2, highscore3, highscore4, highscore5,
+                highscore6, highscore7, highscore8, highscore9, highscore10};
+
+        SharedPreferences.Editor editor = settings.edit();
+
+
+        //checking if most recent score is larger than any currently in highscores
+        /*for (int score = 0; score < list.length; score++) {
+            if (lastGameScore >= list[score]) {
+                int i = 9;
+                while(i != score) {
+                    //shift all other score down one, printing / replacing the score
+                    list[i] = list[i-1];
+                    scoreText = Integer .toString(i+1) + ". " + list[i];
+                    scoreTexts[i].setText(scoreText);
+
+                    //saving other scores down one index down
+                    editor.putInt("HIGH_SCORE" + Integer .toString(i+1), list[i]);
+                    editor.commit();
+                    i--;
+                }
+                //adding new high score to list in place of old score
+                list[score] = lastGameScore;
+                //setting specific highscore to be new score
+                scoreText = Integer .toString(score+1) + ". " + list[score];
+                scoreTexts[score].setText(scoreText);
+
+                //saving
+                editor.putInt("HIGH_SCORE" + Integer .toString(score+1), list[score]);
+                editor.commit();
+                break;
+            }
+            else {
+                //otherwise, keep it set to what it was
+                scoreText = Integer .toString(score+1) + ". " + list[score];
+                scoreTexts[score].setText(scoreText);
+            }
+        } */
+        //checking latest score is greater than a highscore in list
+        for (int score = 0; score < list.length; score++) {
+            if (lastGameScore >= list[score]) {
+                int i = 9;
+                while(i != score) {
+                    //shift all other score down one, printing / replacing the score
+                    list[i] = list[i-1];
+
+                    //saving other scores down one index down
+                    editor.putInt("HIGH_SCORE" + Integer .toString(i+1), list[i]);
+                    editor.commit();
+                    i--;
+                }
+                //adding new high score to list in place of old score
+                list[score] = lastGameScore;
+
+                //saving
+                editor.putInt("HIGH_SCORE" + Integer .toString(score+1), list[score]);
+                editor.commit();
+                break;
+            }
+        }
+
+        //setting text of each highscore textview in view
+        for(int i = 0; i < scoreTexts.length; i++) {
+            scoreText = Integer .toString(i+1) + ". " + list[i];
+            scoreTexts[i].setText(scoreText);
         }
 
     }
 
-    /**
-     * Adds the highscores to lists.
-     */
-    private void addScoresToList() {
-        Integer[] tempHighScores = {score0, score1, score2, score3, score4,
-                score5, score6, score7, score8, score9};
-        Collections.addAll(highscoreList, tempHighScores);
+    //adding highscore textviews to temp list for portrait view (10 highscore texts)
+    private TextView[] textListPortrait() {
+        TextView tempScoreTexts[] = {highscore1, highscore2, highscore3, highscore4, highscore5,
+                highscore6, highscore7, highscore8, highscore9, highscore10};
+        return tempScoreTexts;
     }
 
-    //adding highscore text views to lists
-    private void addTextViewsToList() {
-        TextView[] tempScoreTexts = {highscore1, highscore2, highscore3, highscore4, highscore5,
-                highscore6, highscore7, highscore8, highscore9, highscore10};
-        Collections.addAll(highscoreTextList, tempScoreTexts);
+    //adding highscore textviews to temp list for landscape view (5 high scores)
+    private TextView[] textListLandscape() {
+        TextView tempScoreTexts[] = {highscore1, highscore2, highscore3, highscore4, highscore5};
+        return tempScoreTexts;
     }
 
     @Override
@@ -191,11 +187,5 @@ public class HighscoreActivity extends AppCompatActivity {
         this.highscore8 = (TextView) findViewById(R.id.highscore8);
         this.highscore9 = (TextView) findViewById(R.id.highscore9);
         this.highscore10 = (TextView) findViewById(R.id.highscore10);
-    }
-
-    //updating highscores
-    private void submitScore() {
-        //add scores to firebase db
-
     }
 }
