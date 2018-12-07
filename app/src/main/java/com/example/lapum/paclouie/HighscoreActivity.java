@@ -131,6 +131,7 @@ public class HighscoreActivity extends AppCompatActivity {
                 //breaking out of for loop
                 score = 9;
             }
+            //not adding same highscore multiple times. break loop
             if(lastGameScore == list[score]) {
                 score = 9;
             }
@@ -141,8 +142,6 @@ public class HighscoreActivity extends AppCompatActivity {
             scoreText = Integer .toString(i+1) + ". " + list[i];
             scoreTexts[i].setText(scoreText);
         }
-
-
     }
 
     //adding highscore textviews to temp list for portrait view (10 highscore texts)
