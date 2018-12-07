@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
 import android.widget.TextView;
 
 /**
@@ -46,16 +47,16 @@ public class HighscoreActivity extends AppCompatActivity {
         Intent mIntent = getIntent();
 
         //if we go strait from GameActivity to HighscoreActivity
-        if(mIntent.getIntExtra("SCORE", 0) >= GameActivity.lastScore) {
+        if(mIntent.getIntExtra("SCORE", 0) >= GameActivity.getLastScore()) {
             lastGameScore = mIntent.getIntExtra("SCORE", 0);
         }
         //if we do not
         else {
-            lastGameScore = GameActivity.lastScore;
+            lastGameScore = GameActivity.getLastScore();
         }
 
         //setting last score text
-        int displayLatestScore = GameActivity.lastScore;
+        int displayLatestScore = GameActivity.getLastScore();
         mostRecentScore = getString(R.string.lastScore);
         mostRecentScore = mostRecentScore +" " + displayLatestScore;
         lastScore.setText(mostRecentScore);

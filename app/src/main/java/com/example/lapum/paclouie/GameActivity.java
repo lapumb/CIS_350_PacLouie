@@ -25,9 +25,9 @@ import java.util.Random;
 public class GameActivity extends AppCompatActivity {
 
     /**
-     * Game is Running boolean
+     * Game is Running boolean.
      **/
-    boolean gameIsRunning;
+    private boolean gameIsRunning;
 
     /**
      * X location.
@@ -45,24 +45,24 @@ public class GameActivity extends AppCompatActivity {
     private RelativeLayout layout;
 
     /**
-     * string to show number of lives remaining
+     * string to show number of lives remaining.
      **/
     private String decreaseNumLives;
 
     /**
-     * string to show current score of the game
+     * string to show current score of the game.
      **/
     private String currentScore;
 
     /**
-     * Score obainted in game
+     * Score obainted in game.
      **/
     private int scoreBoard = 0;
 
     /**
-     * variable for the selected number of lives to START game
+     * Variable for the selected number of lives to START game.
      **/
-    final private int startLives = SettingsActivity.getCurrentNumLives();
+    private final int startLives = SettingsActivity.getCurrentNumLives();
 
     /**
      * Variable for the number of profs in the game.
@@ -70,43 +70,80 @@ public class GameActivity extends AppCompatActivity {
     private int numProfs = SettingsActivity.getCurrentNumProfs();
 
     /**
-     * Variable for speed of profs in game
+     * Variable for speed of profs in game.
      **/
     private int numSpeed = SettingsActivity.getCurrentNumSpeed();
 
     /**
-     * Variable for range of profs in game
+     * Variable for range of profs in game.
      **/
     private int numRange = SettingsActivity.getCurrentNumRange();
 
     /**
-     * Variable for number of lives in game
+     * Variable for number of lives in game.
      **/
     private int numLives = SettingsActivity.getCurrentNumLives();
 
     /**
      * Variable for the number of visible A's.
      **/
-    protected int numAVisible;
+    private int numAVisible;
 
-    /** used to get latest score in Highscore activity in the case that we do not go to HighscoreActivity when GameOver() is called **/
-    public static int lastScore;
+    /**
+     * Used to get latest score in Highscore activity in the case that we do
+     * not go to HighscoreActivity when GameOver() is called.
+     **/
+    private static int lastScore;
 
+    /**
+     * Professor images.
+     */
+    private ImageView prof0, prof1, prof2, prof3, prof4,
+                        prof5, prof6, prof7, prof8;
 
-    //Images for profs and louie
-    ImageView prof0, prof1, prof2, prof3, prof4, prof5, prof6, prof7, prof8;
-    ImageView louie;
-    ImageView teachersLounge;
+    /**
+     * Louie image.
+     */
+    private ImageView louie;
 
-    //objects Louie is to achieve
-    ImageView a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14,
-            a15, a16, a17, a18, a19, a20, a21, a22, a23, a24;
+    /**
+     * Teachers lounge image.
+     */
+    private ImageView teachersLounge;
 
-    //text views in upper corners
-    TextView score, livesRemaining;
-    ArrayList<ImageView> profList = new ArrayList<>();
-    ArrayList<ImageView> aList = new ArrayList<>();
-    ArrayList<ImageView> aVisibleList = new ArrayList<>();
+    /**
+     * Images for the A's.
+     */
+    private ImageView a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12,
+            a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24;
+
+    /**
+     * Text view for the score and the lives remaining.
+     */
+    private TextView score, livesRemaining;
+
+    /**
+     * Array list for the profs.
+     */
+    private ArrayList<ImageView> profList = new ArrayList<>();
+
+    /**
+     * Array list for the A's.
+     */
+    private ArrayList<ImageView> aList = new ArrayList<>();
+
+    /**
+     * Array list for the visible A's.
+     */
+    private ArrayList<ImageView> aVisibleList = new ArrayList<>();
+
+    /**
+     * Gets the latest score.
+     * @return The latest score.
+     */
+    public static int getLastScore() {
+        return lastScore;
+    }
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -120,7 +157,7 @@ public class GameActivity extends AppCompatActivity {
         layout = findViewById(R.id.gameView);
 
         //initializing images (profs, louie, a's)
-        InstantiateProfs();
+        instantiateProfs();
 
         //louie initial start position
         this.louie = findViewById(R.id.gameLouie);
@@ -132,9 +169,9 @@ public class GameActivity extends AppCompatActivity {
         teachersLounge.setVisibility(View.VISIBLE);
 
         //randomly selecting which A's will be in game
-        InstantiateAs();
+        instantiateAs();
 
-        AddImageViewsToList();
+        addImageViewsToList();
 
         //initially setting all profs to not appear (gone)
         for (ImageView prof : profList) {
@@ -146,8 +183,10 @@ public class GameActivity extends AppCompatActivity {
             a.setVisibility(View.GONE);
         }
 
-        setProfVisibility(numProfs); //setting how many profs are visible
-        setAVisibility(numProfs, numRange, numSpeed, numLives); //setting number of A's appearing
+        //setting how many profs are visible
+        setProfVisibility(numProfs);
+        // setting number of A's appearing
+        setAVisibility(numProfs, numRange, numSpeed, numLives);
 
         handleRunables();
 
@@ -159,11 +198,13 @@ public class GameActivity extends AppCompatActivity {
         louie.setOnTouchListener(new ChoiceTouchListener());
     }
 
-    //instantiating textView score / lives remaining
+    /**
+     * Instantiate the score and the lives remaining text views.
+     */
     private void instantiateGameText() {
 
-        this.score = (TextView) findViewById(R.id.scoreText);
-        this.livesRemaining = (TextView) findViewById(R.id.livesText);
+        this.score = findViewById(R.id.scoreText);
+        this.livesRemaining = findViewById(R.id.livesText);
 
         //lives remaining text
         decreaseNumLives = livesRemaining.getText().toString();
@@ -176,8 +217,9 @@ public class GameActivity extends AppCompatActivity {
         score.setText(currentScore);
     }
 
-
-    //handler for moving profs, prof collisions, collecting A's.
+    /**
+     * Handler for moving profs, prof collisions, collecting A's.
+     */
     private void handleRunables() {
         final Handler handler = new Handler();
         final Runnable r = new Runnable() {
@@ -208,7 +250,7 @@ public class GameActivity extends AppCompatActivity {
     /**
      * Instantiate prof ImageViews.
      */
-    private void InstantiateProfs() {
+    private void instantiateProfs() {
         this.prof0 = findViewById(R.id.prof0);
         this.prof1 = findViewById(R.id.prof1);
         this.prof2 = findViewById(R.id.prof2);
@@ -223,7 +265,7 @@ public class GameActivity extends AppCompatActivity {
     /**
      * Instantiate A ImageViews.
      */
-    private void InstantiateAs() {
+    private void instantiateAs() {
         this.a0 = findViewById(R.id.a0);
         this.a1 = findViewById(R.id.a1);
         this.a2 = findViewById(R.id.a2);
@@ -254,36 +296,40 @@ public class GameActivity extends AppCompatActivity {
     /**
      * Adds the prof's and a's to lists.
      */
-    private void AddImageViewsToList() {
-        ImageView[] tempProfList = {prof0, prof1, prof2, prof3, prof4, prof5, prof6, prof7, prof8};
+    private void addImageViewsToList() {
+        ImageView[] tempProfList = {prof0, prof1, prof2, prof3, prof4, prof5,
+                                    prof6, prof7, prof8};
         Collections.addAll(profList, tempProfList);
-        ImageView[] tempAList = {a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14,
-                a15, a16, a17, a18, a19, a20, a21, a22, a23, a24};
+        ImageView[] tempAList = {a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10,
+                                    a11, a12, a13, a14, a15, a16, a17, a18,
+                                    a19, a20, a21, a22, a23, a24};
         Collections.addAll(aList, tempAList);
     }
 
-
-    //function to determine which profs are present and need movement
+    /**
+     * Function to determine which profs are present and need movement.
+     */
     public void callMoveProf() {
         for (ImageView prof : profList) {
-            if (prof.getVisibility() == View.VISIBLE)
+            if (prof.getVisibility() == View.VISIBLE) {
                 moveProf(prof, numRange);
+            }
         }
     }
 
-    /*
-    /**Moves the professor that is being called
-    * @param ImageView prof the prof that wants to be moved
-    * @param int range professors can move
+    /**Moves the professor that is being called.
+    * @param prof prof the prof that wants to be moved
+    * @param range range professors can move
      */
-    public void moveProf(ImageView prof, int range) {
+    public void moveProf(final ImageView prof, final int range) {
+        int tempRange = range;
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
 
         //setting the range
-        range = range * 3;
+        tempRange = range * 3;
 
         //difference in x and y
         int dx;
@@ -300,73 +346,74 @@ public class GameActivity extends AppCompatActivity {
 
         //applying range to prof movement
         if (rnd >= 5) {
-            for (int i = 0; i <= range; i++) {
-                if ((prof.getX() + dx * mult) < width)
+            for (int i = 0; i <= tempRange; i++) {
+                if ((prof.getX() + dx * mult) < width) {
                     prof.setX(prof.getX() + dx * mult);
-                if ((prof.getY() + dy * mult) < height)
+                }
+                if ((prof.getY() + dy * mult) < height) {
                     prof.setY(prof.getY() + dy * mult);
+                }
             }
         } else {
-            for (int i = 0; i <= range; i++) {
-                if ((prof.getX() - dx * mult) >= 0)
+            for (int i = 0; i <= tempRange; i++) {
+                if ((prof.getX() - dx * mult) >= 0) {
                     prof.setX(prof.getX() - dx * mult);
-                if ((prof.getY() - dy * mult) >= 0)
+                }
+                if ((prof.getY() - dy * mult) >= 0) {
                     prof.setY(prof.getY() - dy * mult);
+                }
             }
         }
     }
 
-    //randomly generating which profs appear (user selected amount)
-    public void setProfVisibility(int numProfs) {
+    /**
+     * Randomly generating which profs appear (user selected amount).
+     * @param numVisibleProfs The number of profs to make visible.
+     */
+    public void setProfVisibility(final int numVisibleProfs) {
         Random rnd = new Random();
-        for (int i = 0; i < numProfs; i++) {
+        for (int i = 0; i < numVisibleProfs; i++) {
             int rand = rnd.nextInt(9);
-            if (profList.get(rand).getVisibility() == View.GONE)
+            if (profList.get(rand).getVisibility() == View.GONE) {
                 profList.get(rand).setVisibility(View.VISIBLE);
-            else
+            } else {
                 i--;
+            }
         }
     }
 
-
-    //returns which profs are visible.
-    private ImageView[] getProfsVisible() {
-        ImageView visible[] = new ImageView[10];
-        for (int i = 0; i < profList.size(); i++) {
-            if (profList.get(i).getVisibility() == View.GONE)
-                visible[i] = profList.get(i);
-        }
-        return visible;
-    }
-
-    //method to set which A's are visible (random)
-    public void setAVisibility(int profs, int range, int speed, int lives) {
+    /**
+     * Method to set which A's are visible (random).
+     * @param profs Number of profs visible.
+     * @param range The range of the profs.
+     * @param speed The speed of the profs.
+     * @param lives The number of lives.
+     */
+    public void setAVisibility(final int profs, final int range,
+                               final int speed, final int lives) {
         Random rnd = new Random();
-        int numA = 1 + ((profs / 2) + 2) + ((range / 2) + 2) + ((speed / 2) + 2) + ((lives / 2) + 2);
+        int numA = 1 + ((profs / 2) + 2) + ((range / 2) + 2)
+                        + ((speed / 2) + 2) + ((lives / 2) + 2);
         numAVisible = numA;
         for (int i = 0; i <= numA; i++) {
             int rand = rnd.nextInt(25);
             if (aList.get(rand).getVisibility() == View.GONE) {
                 aList.get(rand).setVisibility((View.VISIBLE));
                 aVisibleList.add(aList.get(rand));
-            } else
+            } else {
                 i--;
+            }
         }
     }
 
-    //returns which A's are visible
-    private ImageView[] getAsVisible() {
-        ImageView visible[] = new ImageView[25];
-        for (int i = 0; i < aList.size(); i++) {
-            if (aList.get(i).getVisibility() == View.GONE)
-                visible[i] = aList.get(i);
-        }
-        return visible;
-    }
-
-
-    //checking if ImageView's overlap
-    private boolean isViewOverlapping(ImageView firstView, ImageView secondView) {
+    /**
+     * Checking if ImageView's overlap.
+     * @param firstView The first view to check.
+     * @param secondView The second view to check.
+     * @return True if the views are overlapping else false.
+     */
+    private boolean isViewOverlapping(final ImageView firstView,
+                                      final ImageView secondView) {
         int[] firstPosition = new int[2];
         int[] secondPosition = new int[2];
 
@@ -375,23 +422,22 @@ public class GameActivity extends AppCompatActivity {
 
         // Rect constructor parameters: left, top, right, bottom
         Rect rectFirstView = new Rect(firstPosition[0], firstPosition[1],
-                firstPosition[0] + firstView.getMeasuredWidth(), firstPosition[1] +
-                firstView.getMeasuredHeight());
+                firstPosition[0] + firstView.getMeasuredWidth(),
+                firstPosition[1] + firstView.getMeasuredHeight());
         Rect rectSecondView = new Rect(secondPosition[0], secondPosition[1],
-                secondPosition[0] + secondView.getMeasuredWidth(), secondPosition[1] +
-                secondView.getMeasuredHeight());
+                secondPosition[0] + secondView.getMeasuredWidth(),
+                secondPosition[1] + secondView.getMeasuredHeight());
         return rectFirstView.intersect(rectSecondView);
     }
 
-
-    //handling collision with louie and an 'A'
+    /**
+     * Handling collision with louie and an 'A'.
+     */
     private void aObtained() {
         ImageView removeA = null;
         for (ImageView a : aVisibleList) {
             if (isViewOverlapping(louie, a)) {
                 a.setVisibility(View.GONE);
-                //if(numAVisible == 0)
-                //  gameWon(this);
                 numAVisible--;
                 removeA = a;
             }
@@ -403,16 +449,18 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-
-    //update the gameboard after an A is obtained
+    /**
+     * Update the gameboard after an A is obtained.
+     */
     private void updateGame() {
         Random rnd = new Random();
 
         //making the game harder as A's are obtained
         int random = rnd.nextInt(2);
         if (random == 0) {
-            if (numRange < 9)
+            if (numRange < 9) {
                 numRange++;
+            }
         } else {
             if (numSpeed < 9) {
                 numSpeed++;
@@ -425,17 +473,18 @@ public class GameActivity extends AppCompatActivity {
             if (aList.get(rand).getVisibility() == View.GONE) {
                 aList.get(rand).setVisibility((View.VISIBLE));
                 aVisibleList.add(aList.get(rand));
-            } else
+            } else {
                 i--;
+            }
         }
 
         //updating the score
         updateScore();
     }
 
-
-    //handling collision with louie and a prof
-    //private void profCollision(ImageView louie, ImageView prof) {
+    /**
+     *Handling collision with louie and a prof.
+     */
     private void profCollision() {
 
         for (ImageView prof : profList) {
@@ -452,33 +501,45 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * Handles collisions with the teachers lounge.
+     */
     private void loungeCollision() {
-        if(isViewOverlapping(louie, teachersLounge)) {
+        if (isViewOverlapping(louie, teachersLounge)) {
             gameOver(this);
         }
     }
 
-    private void gameOver(Context c) {
+    /**
+     * Handles when the game has ended.
+     * @param c The current context.
+     */
+    private void gameOver(final Context c) {
         final TextView gameOver = new TextView(c);
         AlertDialog dialog = new AlertDialog.Builder(c)
                 .setTitle("GAME OVER")
-                .setMessage("You lost! Click 'Okay' to exit to home screen, or click " +
-                        "Highscores to view you highscores.")
+                .setMessage("You lost! Click 'Okay' to exit to home screen,"
+                        + " or click " + "Highscores to view you highscores.")
                 .setView(gameOver)
-                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Okay",
+                        new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(final DialogInterface dialog,
+                                        final int which) {
                         //also check high-score shit
-                        Intent intent = new Intent(GameActivity.this, MainActivity.class);
+                        Intent intent = new Intent(GameActivity.this,
+                                MainActivity.class);
                         startActivity(intent);
                     }
                 })
-                .setNegativeButton("Highscores", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Highscores",
+                        new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //sending score to highscore page to decide what to do with it
-                        Intent intent = new Intent(GameActivity.this, HighscoreActivity.class);
+                    public void onClick(final DialogInterface dialog,
+                                        final int which) {
+                        //sending score to highscore page
+                        Intent intent = new Intent(GameActivity.this,
+                                HighscoreActivity.class);
                         intent.putExtra("SCORE", scoreBoard);
                         startActivity(intent);
                     }
@@ -497,7 +558,6 @@ public class GameActivity extends AppCompatActivity {
         dialog.show();
     }
 
-
     //handle if back is pressed, end game
     @Override
     public void onBackPressed() {
@@ -505,21 +565,30 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
-    //update the # of lives remaining
+    /**
+     * Update the number of lives remaining.
+     */
     private void updateLives() {
         decreaseNumLives = "Lives Remaining: " + numLives;
         livesRemaining.setText(decreaseNumLives);
     }
 
-    //algorithm to update score (rewards players for playing at higher difficulty)
+    /**
+     * Algorithm to update score
+     * (rewards players for playing at higher difficulty).
+     * @return The score to add.
+     */
     private int scoreAlgorithm() {
         int addScore;
         int livesSelected = Math.abs(10 - startLives);
-        addScore = (10 * livesSelected) + (10 * numSpeed) + (10 * numRange) + (10 * numProfs);
+        addScore = (10 * livesSelected) + (10 * numSpeed)
+                + (10 * numRange) + (10 * numProfs);
         return addScore;
     }
 
-    //updating user score on GameActivity screen
+    /**
+     * Updating user score on GameActivity screen.
+     */
     private void updateScore() {
         scoreBoard += scoreAlgorithm();
         currentScore = "Score: " + scoreBoard;
@@ -528,11 +597,13 @@ public class GameActivity extends AppCompatActivity {
         lastScore = scoreBoard;
     }
 
-    //return score
+    /**
+     * Returns the current score.
+     * @return The current score.
+     */
     public int getScore() {
         return scoreBoard;
     }
-
 
     /**
      * Class to handle Louie movement.
@@ -546,7 +617,7 @@ public class GameActivity extends AppCompatActivity {
          * @param event The event.
          * @return Boolean value.
          */
-        public boolean onTouch(final View view, MotionEvent event) {
+        public boolean onTouch(final View view, final MotionEvent event) {
             if (gameIsRunning) {
                 final int xLoc = (int) event.getRawX();
                 final int yLoc = (int) event.getRawY();
