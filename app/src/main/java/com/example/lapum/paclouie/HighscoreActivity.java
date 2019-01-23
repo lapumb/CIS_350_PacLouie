@@ -1,13 +1,14 @@
 package com.example.lapum.paclouie;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
 import android.widget.TextView;
 
 /**
@@ -27,6 +28,8 @@ public class HighscoreActivity extends AppCompatActivity {
 
     /** Most recent game score. **/
     private int lastGameScore;
+
+    SharedPreferences settings;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -66,7 +69,7 @@ public class HighscoreActivity extends AppCompatActivity {
 
 
         //initializing SharedPreference ints
-        final SharedPreferences settings = getSharedPreferences("GAME_DATA",
+        settings = getSharedPreferences("GAME_DATA",
                 Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = settings.edit();
@@ -93,14 +96,7 @@ public class HighscoreActivity extends AppCompatActivity {
         resetHighscores.setOnClickListener(new TextView.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                SharedPreferences.Editor preferencesEditor = settings.edit();
-                preferencesEditor.clear();
-                preferencesEditor.apply();
-
-                //reloading highscore activity
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
+                areYouSurePopup(HighscoreActivity.this);
             }
         });
 
@@ -188,5 +184,44 @@ public class HighscoreActivity extends AppCompatActivity {
         this.highscore8 = (TextView) findViewById(R.id.highscore8);
         this.highscore9 = (TextView) findViewById(R.id.highscore9);
         this.highscore10 = (TextView) findViewById(R.id.highscore10);
+    }
+
+    /**
+     * Verifies user is sure they want to clear highest scores.
+     * @param c The current context.
+     */
+    private void areYouSurePopup(final Context c) {
+        final TextView areYouSure = new TextView(c);
+        AlertDialog dialog = new AlertDialog.Builder(c)
+                .setTitle("ARE YOU SURE?")
+                .setMessage("There is no reversing this action, your scores will not be saved " +
+                        "and cannot not be recovered.")
+                .setView(areYouSure)
+                .setPositiveButton("Yes I'm sure",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(final DialogInterface dialog,
+                                                final int which) {
+                                SharedPreferences.Editor preferencesEditor = settings.edit();
+                                preferencesEditor.clear();
+                                preferencesEditor.apply();
+
+                                //reloading highscore activity
+                                Intent intent = getIntent();
+                                finish();
+                                startActivity(intent);
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(final DialogInterface dialog,
+                                                final int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                .create();
+
+        dialog.show();
     }
 }

@@ -1,7 +1,5 @@
 package com.example.lapum.paclouie;
 
-import android.widget.ImageView;
-
 import java.util.Random;
 
 /**
@@ -106,21 +104,21 @@ public class Professor {
         if (speed == 1) {
             realSpeed = 900;
         } else if (speed == 2) {
-            realSpeed = 800;
+            realSpeed = 850;
         } else if (speed == 3) {
-            realSpeed = 700;
+            realSpeed = 800;
         } else if (speed == 4) {
-            realSpeed = 600;
+            realSpeed = 750;
         } else if (speed == 5) {
-            realSpeed = 500;
+            realSpeed = 700;
         } else if (speed == 6) {
-            realSpeed = 400;
+            realSpeed = 650;
         } else if (speed == 7) {
-            realSpeed = 300;
+            realSpeed = 600;
         } else if (speed == 8) {
-            realSpeed = 200;
+            realSpeed = 550;
         } else if (speed == 9) {
-            realSpeed = 100;
+            realSpeed = 500;
         }
         return realSpeed;
     }

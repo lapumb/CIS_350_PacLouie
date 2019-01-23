@@ -339,7 +339,7 @@ public class GameActivity extends AppCompatActivity {
         int width = displayMetrics.widthPixels;
 
         //setting the range
-        tempRange = range * 3;
+        tempRange = range * 2;
 
         //difference in x and y
         int dx;
@@ -575,7 +575,7 @@ public class GameActivity extends AppCompatActivity {
         AlertDialog dialog = new AlertDialog.Builder(c)
                 .setTitle("ARE YOU SURE?")
                 .setMessage("There is no reversing this action, your score will not be saved " +
-                        "and will not be recovered.")
+                        "and cannot be recovered.")
                 .setView(areYouSure)
                 .setPositiveButton("Yes I'm sure",
                         new DialogInterface.OnClickListener() {

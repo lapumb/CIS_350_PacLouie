@@ -14,8 +14,8 @@
         android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="321dp"
-        android:layout_marginTop="165dp"
+        android:layout_marginStart="330dp"
+        android:layout_marginTop="138dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
         app:srcCompat="@drawable/professor" />
@@ -26,8 +26,8 @@
         android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="185dp"
-        android:layout_marginTop="206dp"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="224dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
         app:srcCompat="@drawable/professor" />
@@ -38,8 +38,8 @@
         android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="197dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="159dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
         app:srcCompat="@drawable/professor" />
@@ -50,8 +50,8 @@
         android:layout_height="199dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="126dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginStart="93dp"
+        android:layout_marginTop="54dp"
         android:contentDescription="@string/louie"
         android:visibility="visible"
         app:srcCompat="@drawable/single_louielaker" />
@@ -62,8 +62,8 @@
         android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="246dp"
-        android:layout_marginTop="282dp"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="242dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
         app:srcCompat="@drawable/professor" />
@@ -110,8 +110,8 @@
         android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="299dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="240dp"
         android:contentDescription="@string/prof"
         android:visibility="visible"
         app:srcCompat="@drawable/professor" />
@@ -167,8 +167,8 @@
         android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="135dp"
+        android:layout_marginStart="356dp"
+        android:layout_marginTop="249dp"
         android:contentDescription="@string/a"
         app:srcCompat="@drawable/a" />
 
@@ -189,8 +189,8 @@
         android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="47dp"
-        android:layout_marginTop="181dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="235dp"
         android:contentDescription="@string/a"
         app:srcCompat="@drawable/a" />
 
@@ -200,8 +200,8 @@
         android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="134dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="405dp"
+        android:layout_marginTop="223dp"
         android:contentDescription="@string/a"
         app:srcCompat="@drawable/a" />
 
@@ -288,8 +288,8 @@
         android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="106dp"
-        android:layout_marginTop="133dp"
+        android:layout_marginStart="133dp"
+        android:layout_marginTop="177dp"
         android:contentDescription="@string/a"
         app:srcCompat="@drawable/a" />
 
@@ -299,8 +299,8 @@
         android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="244dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginStart="94dp"
+        android:layout_marginTop="117dp"
         android:contentDescription="@string/a"
         app:srcCompat="@drawable/a" />
 
@@ -411,8 +411,8 @@
         android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="182dp"
+        android:layout_marginStart="348dp"
+        android:layout_marginTop="124dp"
         android:contentDescription="@string/a"
         app:srcCompat="@drawable/a" />
 
@@ -420,11 +420,9 @@
         android:id="@+id/livesText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="324dp"
-        android:layout_marginEnd="81dp"
+        android:layout_marginEnd="70dp"
         android:layout_marginBottom="10dp"
         android:text="@string/lives"
         android:textAllCaps="true"
@@ -438,10 +436,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/prof3"
-        android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="324dp"
+        android:layout_marginStart="13dp"
         android:layout_marginBottom="10dp"
         android:text="@string/score"
         android:textAllCaps="true"
